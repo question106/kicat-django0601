@@ -20,13 +20,13 @@ services:
       # Django production settings
       - DEBUG=0
       - SECRET_KEY=your-production-secret-key-here
-      - ALLOWED_HOSTS=kicat.co.kr,www.kicat.co.kr
+      - ALLOWED_HOSTS=kicat.co.kr www.kicat.co.kr kicat.graceed.co.uk
       
       # Database configuration
       - DB_HOST=db
       - DB_NAME=kicat_production
       - DB_USER=postgres
-      - DB_PASS=your-secure-database-password
+      - DB_PASSWORD=your-secure-database-password
       
       # Additional settings
       - DJANGO_SETTINGS_MODULE=app.settings
