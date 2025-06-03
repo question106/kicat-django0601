@@ -140,10 +140,6 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = '/vol/web/static'
 
-# Media files served by WhiteNoise
-WHITENOISE_USE_FINDERS = True
-WHITENOISE_AUTOREFRESH = True
-
 # Enable WhiteNoise compression and caching only in production
 if not DEBUG:
     # Temporarily disable compression to fix memory issue
