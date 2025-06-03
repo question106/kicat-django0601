@@ -12,6 +12,10 @@ services:
       - nginx-certs:/etc/nginx/certs
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-html:/usr/share/nginx/html
+      - media-files:/vol/web/media:ro
+      - ./nginx-media.conf:/etc/nginx/vhost.d/kicat.co.kr:ro
+      - ./nginx-media.conf:/etc/nginx/vhost.d/www.kicat.co.kr:ro
+      - ./nginx-media.conf:/etc/nginx/vhost.d/kicat.graceed.co.uk:ro
     restart: unless-stopped
     networks:
       - proxy-network
@@ -39,6 +43,9 @@ volumes:
   nginx-vhost:
   nginx-html:
   acme-state:
+  media-files:
+    external: true
+    name: kicat-production_media-files
 
 networks:
   proxy-network:
