@@ -135,9 +135,10 @@ MEDIA_ROOT = '/vol/web/media'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'quotes/static')
-]
+# Remove STATICFILES_DIRS to avoid duplication with AppDirectoriesFinder
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'quotes/static')
+# ]
 STATIC_ROOT = '/vol/web/static'
 
 # Optimize static files collection for limited memory
