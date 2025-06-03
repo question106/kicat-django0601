@@ -142,7 +142,9 @@ STATIC_ROOT = '/vol/web/static'
 
 # Enable WhiteNoise compression and caching only in production
 if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # Temporarily disable compression to fix memory issue
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    pass
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
