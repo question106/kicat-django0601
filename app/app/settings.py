@@ -128,7 +128,7 @@ USE_TZ = True
 
 
 # Media files
-MEDIA_URL = '/static/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = '/vol/web/media'
 
 # Static files (CSS, JavaScript, Images)
