@@ -38,20 +38,6 @@ services:
       - proxy-network
       - kicat-internal
 
-  # PostgreSQL Database
-  db:
-    image: postgres:13-alpine
-    container_name: kicat-db
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=kicat_production
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=your-secure-database-password
-    restart: unless-stopped
-    networks:
-      - kicat-internal
-
   # Nginx configuration setup (runs once then exits)
   nginx-config:
     image: alpine:latest
@@ -97,13 +83,27 @@ services:
     networks:
       - proxy-network
 
+  # PostgreSQL Database
+  db:
+    image: postgres:13-alpine
+    container_name: kicat-db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=kicat_production
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=your-secure-database-password
+    restart: unless-stopped
+    networks:
+      - kicat-internal
+
 volumes:
   static-files:
   media-files:
   postgres-data:
   nginx-vhost:
     external: true
-    name: proxy-stack_nginx-vhost
+    name: nginx-proxy_nginx-vhost
 
 networks:
   proxy-network:
