@@ -31,13 +31,11 @@ ENV PATH="/py/bin:$PATH"
 # Change to app user
 USER app
 
-# Collect static files and run migrations in production
-RUN python manage.py collectstatic --noinput
-
 EXPOSE 8000
 
 # Production command with Gunicorn
-CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 app.wsgi:application"]
+# Run collectstatic, migrations, then start server
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn --bind 0.0.0.0:8000 app.wsgi:application"]
 
 
 
