@@ -140,11 +140,14 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = '/vol/web/static'
 
-# Enable WhiteNoise compression and caching only in production
-if not DEBUG:
-    # Temporarily disable compression to fix memory issue
-    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    pass
+# Optimize static files collection for limited memory
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+# Disable static file compression to save memory
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
