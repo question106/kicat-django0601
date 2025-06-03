@@ -23,94 +23,31 @@ Ensure your VPS has:
 - ✅ **Docker installed**
 - ✅ **Domain DNS configured** (A records pointing to VPS IP)
 
-### ✅ **Step 3: Network Setup**
-
-**On your VPS, create the proxy network:**
-```bash
-docker network create proxy-network
-```
-
 ## 🛠️ Deployment Steps
 
-### **Step 1: Deploy Global Nginx Proxy (One Time Only)**
+### **Step 1: Deploy Global Nginx Proxy (First Time Only)**
 
 1. **Go to Portainer UI** → **Stacks** → **Add Stack**
 2. **Name:** `nginx-proxy`
-3. **Copy this configuration:**
+3. **Build method:** Upload
+4. **Upload:** `portainer-setup/proxy-stack/docker-compose.yml`
+5. **Deploy the stack**
 
-```yaml
-version: '3.8'
-
-services:
-  nginx-proxy:
-    image: nginxproxy/nginx-proxy:alpine
-    container_name: nginx-proxy
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - nginx-certs:/etc/nginx/certs
-      - nginx-vhost:/etc/nginx/vhost.d
-      - nginx-html:/usr/share/nginx/html
-    restart: unless-stopped
-    networks:
-      - proxy-network
-
-  letsencrypt:
-    image: nginxproxy/acme-companion
-    container_name: nginx-proxy-acme
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - nginx-certs:/etc/nginx/certs
-      - nginx-vhost:/etc/nginx/vhost.d
-      - nginx-html:/usr/share/nginx/html
-      - acme-state:/etc/acme.sh
-    environment:
-      - DEFAULT_EMAIL=admin@kicat.co.kr  # 👈 CHANGE THIS
-    depends_on:
-      - nginx-proxy
-    restart: unless-stopped
-    networks:
-      - proxy-network
-
-volumes:
-  nginx-certs:
-  nginx-vhost:
-  nginx-html:
-  acme-state:
-
-networks:
-  proxy-network:
-    external: true
-```
-
-4. **Deploy the stack**
+> ✅ **Note:** The proxy stack will automatically create the `proxy-network` that your sites will use.
 
 ### **Step 2: Deploy Your Django Application**
 
 1. **Go to Portainer UI** → **Stacks** → **Add Stack**
 2. **Name:** `kicat-production`
-3. **Copy configuration from:** `portainer-setup/kicat-production/docker-compose.yml`
-4. **⚠️ IMPORTANT: Update these values:**
-
-```yaml
-environment:
-  # Domain configuration
-  - VIRTUAL_HOST=your-domain.com,www.your-domain.com       # 👈 CHANGE THIS
-  - LETSENCRYPT_HOST=your-domain.com,www.your-domain.com   # 👈 CHANGE THIS
-  - LETSENCRYPT_EMAIL=your-email@domain.com                # 👈 CHANGE THIS
-  
-  # Security
-  - SECRET_KEY=generate-a-super-secure-key-here             # 👈 GENERATE NEW
-  - ALLOWED_HOSTS=your-domain.com,www.your-domain.com      # 👈 CHANGE THIS
-  - DB_PASS=create-secure-database-password                # 👈 CHANGE THIS
-
-build:
-  context: https://github.com/YOUR-USERNAME/kicat-django0601.git  # 👈 CHANGE THIS
-```
-
-5. **Deploy the stack**
+3. **Build method:** Git Repository
+4. **Repository URL:** `https://github.com/question106/kicat-django0601.git`
+5. **Compose path:** `portainer-setup/kicat-production/docker-compose.yml`
+6. **Environment Variables:**
+   ```
+   DJANGO_SECRET_KEY=your_generated_key
+   DB_PASSWORD=your_generated_key
+   ```
+7. **Deploy the stack**
 
 ## 🔧 Configuration Details
 
