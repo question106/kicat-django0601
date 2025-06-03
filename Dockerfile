@@ -3,12 +3,10 @@ LABEL maintainer="kjobslink.com"
 
 ENV PYTHONUNBUFFERED=1
 
+# Copy requirements first for better caching
 COPY requirements.txt /requirements.txt
-COPY ./app /app
 
-WORKDIR /app
-EXPOSE 8000
-
+# Install dependencies
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --update --no-cache postgresql-client && \
@@ -22,10 +20,24 @@ RUN python -m venv /py && \
     chown -R app:app /vol && \
     chmod -R 755 /vol
 
+# Copy application code
+COPY ./app /app
 
+WORKDIR /app
+
+# Set PATH
 ENV PATH="/py/bin:$PATH"
 
+# Change to app user
 USER app
+
+# Collect static files and run migrations in production
+RUN python manage.py collectstatic --noinput
+
+EXPOSE 8000
+
+# Production command with Gunicorn
+CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 app.wsgi:application"]
 
 
 

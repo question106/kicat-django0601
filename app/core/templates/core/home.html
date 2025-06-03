@@ -1,0 +1,435 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Hero Section (Simplified) -->
+    <section class="py-16 md:py-24 bg-gradient-to-r from-primary/5 to-gray-50">
+        <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8">
+        <!-- Image (appears first on mobile) -->
+        <div class="relative h-[350px] md:h-[650px] overflow-hidden shadow-xl group order-first md:order-last">
+            <div class="absolute inset-0 border-l-4 border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+            <img
+            src="{% static './img/header-3.jpg' %}"
+            alt="비즈니스 미팅을 위한 전문 번역 서비스"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+        </div>
+        
+        <!-- Text content (appears after image on mobile) -->
+        <div class="order-last md:order-first text-center md:text-left">
+            <div class="inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-6 md:mb-4 mx-auto md:mx-0">
+            90% 이상 재의뢰
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3 md:mb-6 text-gray-900">
+            <span class="text-primary">고품질의 전문성을 갖춘</span>
+            </h1>
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 md:mb-6 text-gray-900">
+            <span class="">피트너가 되겠습니다</span>
+            </h1>
+            <p class="hidden md:block text-lg text-gray-600 mb-8 leading-relaxed">
+            정부기관 통번역사가 설립한 에이전시로 풍부한 경험으로 서비스를 제공합니다.
+            </p>
+
+            <!-- Key Benefits - Reduced to 3 most important -->
+            <div class="hidden md:flex flex-wrap gap-2 sm:gap-3 mb-10 md:mb-8 overflow-x-auto justify-center md:justify-start px-2 -mx-2">
+            <div class="flex items-center gap-1 bg-accent/20 px-2 sm:px-3 py-1.5 rounded inline-flex flex-shrink-0 text-center w-auto">
+                <i data-lucide="clock" class="h-3.5 w-3.5 text-primary flex-shrink-0"></i>
+                <span class="text-xs font-medium line-clamp-1">행정사법 제23조에 의거하여 비밀엄수 준수</span>
+            </div>
+            <div class="flex items-center gap-1 bg-accent/20 px-2 sm:px-3 py-1.5 rounded inline-flex flex-shrink-0 text-center">
+                <i data-lucide="shield-check" class="h-3.5 w-3.5 text-primary flex-shrink-0"></i>
+                <span class="text-xs font-medium">당일견적 및 배정</span>
+            </div>
+            <div class="flex items-center gap-1 bg-accent/20 px-2 sm:px-3 py-1.5 rounded inline-flex flex-shrink-0 text-center">
+                <i data-lucide="users" class="h-3.5 w-3.5 text-primary flex-shrink-0"></i>
+                <span class="text-xs font-medium">전문감수 실시</span>
+            </div>
+            </div>
+            <!-- Mobile version -->
+            <div class="flex flex-wrap gap-2 sm:gap-3 mb-10 md:mb-8 overflow-x-auto justify-center md:justify-start px-2 -mx-2 md:hidden">
+            <div class="flex items-center gap-1 bg-accent/20 px-2 sm:px-3 py-1.5 rounded inline-flex flex-shrink-0 text-center w-auto">
+                <i data-lucide="clock" class="h-3.5 w-3.5 text-primary flex-shrink-0"></i>
+                <span class="text-xs font-medium line-clamp-1">행정사법 제23조에 의거하여 비밀엄수 준수</span>
+            </div>
+            <div class="inline">
+                <div class="flex items-center gap-1 bg-accent/20 px-2 sm:px-3 py-1.5 rounded inline-flex flex-shrink-0 text-center">
+                <i data-lucide="shield-check" class="h-3.5 w-3.5 text-primary flex-shrink-0"></i>
+                <span class="text-xs font-medium">당일견적 및 배정</span>
+                </div>
+                <div class="flex items-center gap-1 bg-accent/20 px-2 sm:px-3 py-1.5 rounded inline-flex flex-shrink-0 text-center">
+                <i data-lucide="users" class="h-3.5 w-3.5 text-primary flex-shrink-0"></i>
+                <span class="text-xs font-medium">전문감수 실시</span>
+                </div>
+            </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+            <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-11 px-8 py-2 transition-colors quote-request-btn">
+                견적 요청하기
+                <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+            </button>
+            <a href="{% url 'core:service_interpretation' %}" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium border-2 border-accent bg-transparent text-gray-900 hover:bg-accent/10 h-11 px-8 py-2 transition-colors">
+                통역 서비스
+            </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Trust & Credibility Block -->
+    <section class="py-10 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+        <h2 class="text-xl font-medium text-gray-700">
+            많은 기업들이 <span class="text-primary font-semibold">한국통번역주식회사</span>를 선택하고 있습니다
+        </h2>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-8 sm:gap-8 md:gap-10">
+        <div class="w-[120px] h-[80px] sm:w-[150px] sm:h-[90px] md:w-[180px] md:h-[100px] relative opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-lg bg-white">
+            <img src="{% static 'img/partners/ministry_of_culture_physical_tour' %}" alt="고객사 1" class="absolute inset-0 w-full h-full object-contain p-2" />
+        </div>
+        <div class="w-[120px] h-[80px] sm:w-[150px] sm:h-[90px] md:w-[180px] md:h-[100px] relative opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 p-2 rounded-lg bg-white">
+            <img src="{% static 'img/partners/ebs.jpg' %}" alt="고객사 2" class="absolute inset-0 w-full h-full object-contain p-2" />
+        </div>
+        <div class="w-[120px] h-[80px] sm:w-[150px] sm:h-[90px] md:w-[180px] md:h-[100px] relative opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 p-2 rounded-lg bg-white">
+            <img src="{% static 'img/partners/kdi.jpg' %}" alt="고객사 3" class="absolute inset-0 w-full h-full object-contain p-2" />
+        </div>
+        <div class="w-[120px] h-[80px] sm:w-[150px] sm:h-[90px] md:w-[180px] md:h-[100px] relative opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 p-2 rounded-lg bg-white">
+            <img src="{% static 'img/partners/hyundai.jpg' %}" alt="고객사 4" class="absolute inset-0 w-full h-full object-contain p-2" />
+        </div>
+        <div class="w-[120px] h-[80px] sm:w-[150px] sm:h-[90px] md:w-[180px] md:h-[100px] relative opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 p-2 rounded-lg bg-white">
+            <img src="{% static 'img/partners/lotte_gallery.jpg' %}" alt="고객사 5" class="absolute inset-0 w-full h-full object-contain p-2" />
+        </div>
+        </div>
+        
+        <div class="text-center mt-8">
+        <button id="partnersModalBtn" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-11 px-8 py-2 transition-colors">
+            더 많은 고객사 보기
+            <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+        </button>
+        </div>
+        <!-- Partners Modal script moved to the main script section at the bottom of the page -->
+    </div>
+    </section>
+
+
+    <!-- Service Overview Section -->
+    <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-2">서비스</div>
+        <h3 class="text-3xl font-bold">
+            <span class="text-primary">전문</span> 통/번역 솔루션
+        </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="border p-6 hover:shadow-md transition-all">
+            <div class="flex items-center mb-3">
+            <i data-lucide="file-text" class="h-6 w-6 text-primary mr-2"></i>
+            <h3 class="text-xl font-bold">전문 통역 서비스</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+            동시 통역, 순차 통역, 수행 통역, 화상 통역, 위스퍼링 통역 등 다양한 전문 통역 서비스 제공
+            </p>
+            <a href="{% url 'core:service_interpretation' %}" class="text-primary font-medium hover:underline flex items-center">
+            자세히 보기 <i data-lucide="arrow-right" class="ml-1 h-4 w-4"></i>
+            </a>
+        </div>
+
+        <div class="border p-6 hover:shadow-md transition-all">
+            <div class="flex items-center mb-3">
+            <i data-lucide="globe" class="h-6 w-6 text-primary mr-2"></i>
+            <h3 class="text-xl font-bold">문서 번역 서비스</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+            비즈니스 문서군, 마케팅 문서군, 기술 문서군, 국제표준 문서군, 글로벌·로컬라이징 문서군
+            </p>
+            <a href="{% url 'core:service_translation' %}" class="text-primary font-medium hover:underline flex items-center">
+            자세히 보기 <i data-lucide="arrow-right" class="ml-1 h-4 w-4"></i>
+            </a>
+        </div>
+
+        <div class="border p-6 hover:shadow-md transition-all">
+            <div class="flex items-center mb-3">
+            <i data-lucide="credit-card" class="h-6 w-6 text-primary mr-2"></i>
+            <h3 class="text-xl font-bold">PointPlus 시스템</h3>
+            </div>
+            <p class="text-gray-600 mb-4">시간을 절약하는 선결제 포인트 서비스입니다. 계정에 미리 포인트를 충전하면 번역 요청 시마다 자동으로 차감됩니다. 매번 견적을 받고, 계약을 체결하고, 결제하는 반복 작업을 줄일 수 있습니다.</p>
+            <a href="{% url 'core:service_others' %}" class="text-primary font-medium hover:underline flex items-center">
+            자세히 보기 <i data-lucide="arrow-right" class="ml-1 h-4 w-4"></i>
+            </a>
+        </div>
+        </div>
+
+        <!-- <div class="mt-10 text-center">
+        <div class="flex flex-row sm:flex-row justify-center gap-4">
+            <a href="./design1-7-2-translation.html" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-10 px-6 py-2 transition-colors">
+            번역 서비스 더보기
+            <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+            </a>
+            <a href="./design1-7-2-interpretation.html" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-secondary text-white hover:bg-secondary/80 h-10 px-6 py-2 transition-colors">
+            통역 서비스 더보기
+            <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+            </a>
+        </div>
+        </div> -->
+    </div>
+    </section>
+
+    <!-- Success Stories / Case Studies -->
+    <section id="case-studies" class="py-16 bg-gradient-to-b from-muted/30 to-white">
+    <div class="container mx-auto px-4">
+    <!-- Testimonials -->
+    <div class="bg-gradient-to-b from-muted/30 to-white">
+        <div class="text-center mb-8">
+        <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-2">고객 후기</div>
+        <h3 class="text-3xl font-bold">
+            고객이 <span class="text-primary">직접</span> 말하는 서비스 품질
+        </h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            
+            <!-- Case Study Card 1: 문화체육관광부 -->
+        <div class="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg bg-white">
+            <div class="relative h-40">
+            <img
+                src="{% static 'img/partners/ministry_of_culture_physical_tour' %}"
+                alt="문화체육관광부 국제회의 통역"
+                class="absolute inset-0 w-2/3 h-2/3 object-cover object-center mx-auto left-0 right-0 top-0 bottom-0 my-auto group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute top-2 left-2 bg-primary text-white text-xs py-1 px-3 rounded-full font-medium">
+                정부/중앙부처
+            </div>
+            </div>
+
+            <div class="p-6 pb-0">
+            <h3 class="text-xl font-bold leading-tight">문화체육관광부 국제회의 장·차관 동시/순차통역</h3>
+            </div>
+
+            <div class="p-6 space-y-4">
+            <!-- Key Metrics Row -->
+            <div class="grid grid-cols-2 gap-2 my-4">
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="star" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">5점</span>
+                <span class="text-xs text-center text-mutedForeground">만족도</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="refresh-cw" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">100%</span>
+                <span class="text-xs text-center text-mutedForeground">재의뢰</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="check-circle" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">100%</span>
+                <span class="text-xs text-center text-mutedForeground">기한 준수</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="award" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">다수</span>
+                <span class="text-xs text-center text-mutedForeground">연계 의뢰</span>
+                </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 과제
+                </h4>
+                <p class="text-sm">한국 측 발제 발표, 국가 간 면담, 및 성명서 발표에 대한 통역</p>
+                </div>
+
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 방법론
+                </h4>
+                <p class="text-sm">자동화된 매칭 툴을 통해 회의 주제에 대한 전문성을 보유하고, 정부기관 의전 및 통역 경력을 보유한 통역사 배정</p>
+                </div>
+
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 결과
+                </h4>
+                <p class="text-sm font-medium">
+                    <span>매끄러운 회의 진행으로 <span class="text-secondary font-bold">차기 통역 건에 대한 재의뢰</span> 및 타사업 번역 의뢰</span>
+                </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Case Study Card 2: KDI -->
+        <div class="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg bg-white">
+            <div class="relative h-40">
+            <img
+                src="{% static 'img/partners/kdi.jpg' %}"
+                alt="KDI KSP 영문보고서 감수 및 현지어 번역"
+                class="absolute inset-0 w-2/3 h-2/3 object-cover object-center mx-auto left-0 right-0 top-0 bottom-0 my-auto group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute top-2 left-2 bg-primary text-white text-xs py-1 px-3 rounded-full font-medium">
+                공공기관
+            </div>
+            </div>
+
+            <div class="p-6 pb-0">
+            <h3 class="text-xl font-bold leading-tight">KDI KSP 영문보고서 감수 및 현지어 번역</h3>
+            </div>
+
+            <div class="p-6 space-y-4">
+            <!-- Key Metrics Row -->
+            <div class="grid grid-cols-2 gap-2 my-4">
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="check-circle" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">100%</span>
+                <span class="text-xs text-center text-mutedForeground">기한준수</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="trending-up" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">0.5%</span>
+                <span class="text-xs text-center text-mutedForeground">재번역율</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="globe" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">9개국</span>
+                <span class="text-xs text-center text-mutedForeground">언어 진행</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="clock" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">20%</span>
+                <span class="text-xs text-center text-mutedForeground">시간 단축</span>
+                </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 과제
+                </h4>
+                <p class="text-sm">전문 보고서의 영문감수 및 출판용 포맷팅</p>
+                </div>
+
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 방법론
+                </h4>
+                <p class="text-sm">감수와 재번역을 동시에 진행하고, 수년 동안 누적된 KSP보고서 검토에 따른 노하우를 바탕으로 구축된 효율적인 프로세스 활용</p>
+                </div>
+
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 결과
+                </h4>
+                <p class="text-sm font-medium">
+                    <span>기한 내 편집을 포함한 감수 완료, <span class="text-secondary font-bold">시간 단축</span> 및 타언어 번역 수요 증가</span>
+                </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Case Study Card 3: 현대자동차 -->
+        <div class="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg bg-white">
+            <div class="relative h-40">
+            <img
+                src="{% static 'img/partners/hyundai.jpg' %}"
+                alt="현대자동차 산학과제 결과물 보고서"
+                class="absolute inset-0 w-2/3 h-2/3 object-cover object-center mx-auto left-0 right-0 top-0 bottom-0 my-auto group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute top-2 left-2 bg-primary text-white text-xs py-1 px-3 rounded-full font-medium">
+                대기업
+            </div>
+            </div>
+
+            <div class="p-6 pb-0">
+            <h3 class="text-xl font-bold leading-tight">현대자동차 산학과제 결과물 보고서 영문 감수</h3>
+            </div>
+
+            <div class="p-6 space-y-4">
+            <!-- Key Metrics Row -->
+            <div class="grid grid-cols-2 gap-2 my-4">
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="check-circle" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">100%</span>
+                <span class="text-xs text-center text-mutedForeground">기한 준수</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="trending-up" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">90%</span>
+                <span class="text-xs text-center text-mutedForeground">일관성</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="star" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">5점</span>
+                <span class="text-xs text-center text-mutedForeground">만족도</span>
+                </div>
+                <div class="flex flex-col items-center p-2 bg-primary/5 rounded-lg border border-primary/10">
+                <i data-lucide="award" class="h-5 w-5 text-secondary"></i>
+                <span class="text-xl font-bold text-primary mt-1">A+</span>
+                <span class="text-xs text-center text-mutedForeground">품질 등급</span>
+                </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 과제
+                </h4>
+                <p class="text-sm">산학과제 결과물 보고서에 대한 영문 감수 및 디자인 작업</p>
+                </div>
+
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 방법론
+                </h4>
+                <p class="text-sm">해당분야 통/번역 경력을 다수 보유한 번역사를 배정하고, 사전 브리핑을 통해 핵심 용어 및 쟁점을 전달하고, 디자인 팀과 협력한 워크플로우 구축</p>
+                </div>
+
+                <div>
+                <h4 class="text-sm font-medium text-primary flex items-center gap-1">
+                    <span class="inline-block w-1.5 h-1.5 bg-secondary rounded-full"></span> 결과
+                </h4>
+                <p class="text-sm font-medium">
+                    <span>보고서의 <span class="text-secondary font-bold">퀄리티 향상</span>, 사내 디자인과 통일된 편집물 제공</span>
+                </p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- View More Cases Button -->
+        <div class="col-span-1 md:col-span-3 flex justify-center mt-6">
+            <a href="{% url 'core:cases' %}" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-10 px-6 py-2 transition-colors">
+            <span>더 많은 사례 보기</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </a>
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6">글로벌 비즈니스의 성공, 한국통번역과 함께 시작하세요</h2>
+        <p class="text-lg mb-8 max-w-2xl mx-auto">
+        20개 이상의 언어로 전문적인 서비스를 제공합니다. 귀사의 품격을 높이는 첫걸음을 함께 시작하세요.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-white text-primary hover:bg-gray-100 h-11 px-8 py-2 transition-colors quote-request-btn">
+            견적 요청하기
+            <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+        </button>
+        <a href="mailto:contact@globaltrans.kr" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium border-2 border-white bg-transparent text-white hover:bg-white/10 h-11 px-8 py-2 transition-colors">
+            문의하기
+        </a>
+        </div>
+    </div>
+    </section>
+{% endblock %} 

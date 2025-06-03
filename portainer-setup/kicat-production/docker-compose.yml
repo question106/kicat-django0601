@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Django Application
+  app:
+    build:
+      context: https://github.com/question106/kicat-django0601.git 
+      dockerfile: Dockerfile
+    container_name: kicat-app
+    volumes:
+      - static-files:/vol/web/static
+      - media-files:/vol/web/media
+    environment:
+      # Domain configuration for nginx-proxy
+      - VIRTUAL_HOST=kicat.co.kr,www.kicat.co.kr,kicat.graceed.co.uk
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=kicat.co.kr,www.kicat.co.kr,kicat.graceed.co.uk
+      - LETSENCRYPT_EMAIL=question106@gmail.com
+      
+      # Django production settings
+      - DEBUG=0
+      - SECRET_KEY=your-production-secret-key-here
+      - ALLOWED_HOSTS=kicat.co.kr,www.kicat.co.kr
+      
+      # Database configuration
+      - DB_HOST=db
+      - DB_NAME=kicat_production
+      - DB_USER=postgres
+      - DB_PASS=your-secure-database-password
+      
+      # Additional settings
+      - DJANGO_SETTINGS_MODULE=app.settings
+      
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - proxy-network
+      - kicat-internal
+
+  # PostgreSQL Database
+  db:
+    image: postgres:13-alpine
+    container_name: kicat-db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=kicat_production
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=your-secure-database-password
+    restart: unless-stopped
+    networks:
+      - kicat-internal
+
+volumes:
+  static-files:
+  media-files:
+  postgres-data:
+
+networks:
+  proxy-network:
+    external: true
+  kicat-internal:
+    driver: bridge 

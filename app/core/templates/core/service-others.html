@@ -1,0 +1,182 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="py-20 md:py-10 mt-16 bg-gradient-to-r from-primary/5 to-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center">
+        <div class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold bg-secondary text-white mb-4 shadow-sm">
+            서비스
+        </div>
+        <h2 class="text-4xl font-bold mb-6 relative text-center">
+            <span class="relative z-10 ">특별 서비스</span>
+            <span class="absolute -bottom-2 left-0 right-0 h-3 bg-accent opacity-30 -z-10 transform -skew-x-3"></span>
+        </h2>
+        <div class="w-20 h-1 bg-primary mb-6"></div>
+        <p class="text-mutedForeground max-w-2xl mx-auto text-center leading-relaxed">
+            비즈니스의 경계를 넘어서는 혁신적인 서비스로 글로벌 커뮤니케이션의 새로운 차원을 경험하세요
+        </p>
+        </div>
+    </div>
+</section>
+<!-- Service Showcase Section -->
+<section id="services" class="py-20 relative overflow-hidden">
+    <!-- Background decorative elements -->
+    <div class="absolute top-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl -z-10"></div>
+    <div class="container mx-auto px-4">
+        <!-- Service Cards with Hover Effects -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- PointPlus Service -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-primary group">
+            <div class="flex items-center mb-6">
+            <div class="bg-primary/10 p-4 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+                <path d="M12 18V6"></path>
+                </svg>
+            </div>
+            <h3 class="text-3xl font-bold ml-4 group-hover:text-primary transition-colors">PointPlus</h3>
+            </div>
+            <div class="mb-6 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="PointPlus Service" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <p class="text-lg text-mutedForeground mb-6">
+            시간을 절약하는 선결제 포인트 서비스입니다. 계정에 미리 포인트를 충전하면 번역 요청 시마다 자동으로 차감됩니다. 매번 견적을 받고, 계약을 체결하고, 결제하는 반복 작업을 줄일 수 있습니다.
+            </p>
+            <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">빠른 번역 요청 처리</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">반복적인 행정 절차 감소</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">효율적인 비용 관리</span>
+            </li>
+            </ul>
+            <a href="#" class="inline-block text-primary font-medium text-lg hover:underline">자세히 알아보기 →</a>
+        </div>
+
+        <!-- Event Host Interpretation Service -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-accent group">
+            <div class="flex items-center mb-6">
+            <div class="bg-primary/10 p-4 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-primary">
+                <path d="M12 2v2"></path>
+                <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"></path>
+                <path d="M8 4h8"></path>
+                <path d="M10 14v-4"></path>
+                <path d="M14 14v-4"></path>
+                <path d="M11 12h2"></path>
+                <path d="M9 20v-2"></path>
+                <path d="M15 20v-2"></path>
+                </svg>
+            </div>
+            <h3 class="text-3xl font-bold ml-4 group-hover:text-primary transition-colors">행사 진행 통역</h3>
+            </div>
+            <div class="mb-6 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1560439514-4e9645039924?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Event Interpretation Service" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <p class="text-lg text-mutedForeground mb-6">
+            전문 통역사가 행사의 사회자(MC) 역할을 수행하며, 호스트의 말을 실시간으로 유창하게 번역하여 행사를 원활하게 진행합니다. 국제 행사, 컨퍼런스, 기업 행사에 이상적입니다.
+            </p>
+            <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">양방향 소통 가능</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">전문 분야별 MC 통역사 배정</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">문화적 맥락 전달</span>
+            </li>
+            </ul>
+            <a href="#" class="inline-block text-primary font-medium text-lg hover:underline">자세히 알아보기 →</a>
+        </div>
+
+        <!-- Multilingual Research Support -->
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-secondary group">
+            <div class="flex items-center mb-6">
+            <div class="bg-secondary/10 p-4 rounded-full w-20 h-20 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-secondary">
+                <path d="m21 21-4.343-4.343"></path>
+                <circle cx="12" cy="12" r="8"></circle>
+                <path d="M8 12h8"></path>
+                <path d="M12 8v8"></path>
+                </svg>
+            </div>
+            <h3 class="text-3xl font-bold ml-4 group-hover:text-secondary transition-colors">다국어 리서치</h3>
+            </div>
+            <div class="mb-6 overflow-hidden rounded-lg">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Multilingual Research" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <p class="text-lg text-mutedForeground mb-6">
+            고객이 외국어로 특정 주제(시장 동향, 학술 주제, 정책 업데이트 등)에 대한 조사가 필요할 때, 전문 번역사가 조사를 수행하고 고객이 선호하는 언어로 정리된 보고서를 제공합니다.
+            </p>
+            <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-secondary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">다국어 자료 분석</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-secondary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">체계적인 보고서 작성</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-secondary mt-0.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="text-lg">산업별 전문가 배정</span>
+            </li>
+            </ul>
+            <a href="#" class="inline-block text-secondary font-medium text-lg hover:underline">자세히 알아보기 →</a>
+        </div>
+        </div>
+        
+        <!-- CTA Button with Animation -->
+        <div class="mt-16 text-center">
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-lg font-medium bg-primary text-white hover:bg-primaryDark h-16 px-12 py-4 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 quote-request-btn group">
+            <span>서비스 문의하기</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+            </svg>
+        </button>
+        </div>
+    </div>
+    </section>
+{% endblock %} 

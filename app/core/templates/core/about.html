@@ -1,0 +1,449 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="py-16 md:py-24 bg-gradient-to-r from-primary/5 to-gray-50">
+<div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8">
+    <!-- Image (appears first on mobile) -->
+    <div class="relative h-[350px] md:h-[550px] overflow-hidden shadow-xl group order-first md:order-last">
+        <div class="absolute inset-0 border-l-4 border-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+        <img
+        src="{% static 'img/about/company_building.png' %}"
+        alt="한국통번역주식회사 사무실"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 object-top"
+        />
+    </div>
+    
+    <!-- Text content (appears after image on mobile) -->
+    <div class="order-last md:order-first text-center md:text-left">
+        <div class="inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-6 md:mb-4 mx-auto md:mx-0">
+        회사소개
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3 md:mb-6 text-gray-900">
+        <span class="text-primary">한국통번역주식회사</span>
+        </h1>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-8 md:mb-6 text-gray-900">
+        <span class="">회사소개</span>
+        </h1>
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+        안녕하세요 <strong>한국통번역주식회사(구 한국문화예술번역원)</strong>입니다.<br>한국통번역주식회사는 국제경영을 전공하고 문화체육관광부에서 통번역 업무를 담당한 통번역사가 설립한 번역원으로써 문화예술, 사회, 경제경영 분야에 대한 풍부한 지식과 경험을 바탕으로 전문 서비스를 제공하고 있습니다.
+        </p>
+    </div>
+    </div>
+</div>
+</section>
+
+<!-- CEO Greeting Section -->
+<section id="ceo-greeting" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+    <div class="text-center mb-8">
+        <div class="inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-2">CEO 인사말</div>
+        <h3 class="text-3xl font-bold">
+        대표이사 <span class="text-primary">인사말</span>
+        </h3>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 items-center">
+        <div class="bg-white p-8 shadow-md relative mx-auto max-w-4xl">
+        <div class="absolute -top-4 -left-4 text-6xl text-primary/20">"</div>
+        <div class="relative z-10">
+            <!-- <div class="text-center mb-6">
+            <h3 class="font-semibold text-xl">홍길동</h3>
+            <p class="text-gray-600">대표이사</p>
+            </div> -->
+            <p class="text-gray-600 mb-6 leading-relaxed">
+            안녕하세요, 한국통번역주식회사 대표이사 홍길동입니다.
+            </p>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+            저희 한국통번역주식회사는 정확하고 전문적인 번역 서비스로 고객분들께 최상의 결과물을 제공하기 위해 노력하고 있습니다. 국제경영을 전공하고 문화체육관광부에서 통번역 업무를 담당한 경험을 바탕으로 설립한 저희 회사는 문화예술, 사회, 경제경영 분야에 특화된 서비스를 제공하고 있습니다.
+            </p>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+            함께 일하는 전문가들의 발전을 생각하며 고객사 한 분 한 분의 수요를 파악하는 사람 중심의 한국통번역주식회사가 여러분의 신뢰할 수 있는 파트너가 되어 드리겠습니다.
+            </p>
+            <div class="text-right mt-8">
+            <p class="font-medium">한국통번역주식회사</p>
+            <p class="font-semibold">대표이사 홍길동</p>
+            </div>
+        </div>
+        <div class="absolute -bottom-4 -right-4 text-6xl text-primary/20">"</div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Company Vision Section -->
+<section id="company-vision" class="py-16 bg-gradient-to-b from-muted/30 to-white">
+    <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+        <div class="inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-2">회사 비전</div>
+        <h3 class="text-3xl font-bold">
+        <span class="text-primary">비전</span> 및 핵심가치
+        </h3>
+    </div>
+
+    <!-- Vision Pyramid Structure -->
+    <div class="relative max-w-5xl mx-auto mb-20">
+        <!-- Vision - Top of Pyramid -->
+        <div class="bg-primary text-white p-8 shadow-xl rounded-lg max-w-lg mx-auto mb-8 transform hover:scale-105 transition-transform duration-300">
+        <div class="flex items-center justify-center">
+            <!-- <div class="bg-white/20 rounded-full p-4 mr-4">
+            <i data-lucide="target" class="h-10 w-10 text-white"></i>
+            </div> -->
+            <div class="text-center">
+            <h3 class="text-2xl font-bold mb-2">비전</h3>
+            <p class="text-xl font-medium">고객과 임직원이 함께 발전해 나가는</p>
+            <p class="text-xl font-semibold">문화예술·사회·경제 분야 전문 통번역원</p>
+            </div>
+        </div>
+        </div>
+        
+        <!-- Connecting Line -->
+        <div class="w-1 h-12 bg-gradient-to-b from-primary to-secondary mx-auto -mt-4 mb-4"></div>
+        
+        <!-- Mission - Middle of Pyramid -->
+        <div class="bg-secondary text-white p-6 shadow-lg rounded-lg max-w-2xl mx-auto mb-12 transform hover:scale-105 transition-transform duration-300">
+        <div class="flex items-center justify-center">
+            <!-- <div class="bg-white/20 rounded-full p-3 mr-4">
+            <i data-lucide="flag" class="h-8 w-8 text-white"></i>
+            </div> -->
+            <div class="text-center">
+            <h3 class="text-xl font-bold mb-2">미션</h3>
+            <p class="font-medium">문화예술·사회·경제 분야별 DB 구축 및<br>번역사 성장에 기여</p>
+            </div>
+        </div>
+        </div>
+        
+        <!-- Connecting Lines to Core Values -->
+        <div class="hidden md:flex justify-center items-center mb-8">
+        <div class="w-1/3 h-0.5 bg-gradient-to-r from-transparent to-primary/70"></div>
+        <div class="w-1/3 h-0.5 bg-primary/70"></div>
+        <div class="w-1/3 h-0.5 bg-gradient-to-l from-transparent to-primary/70"></div>
+        </div>
+    </div>
+
+    <!-- Core Values - Base of Pyramid -->
+    <div class="max-w-5xl mx-auto">
+        <!-- <h3 class="text-2xl font-bold text-center mb-8 flex items-center justify-center">
+        <i data-lucide="heart" class="h-7 w-7 text-primary mr-2"></i>
+        핵심가치
+        </h3>
+        -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Core Value 1 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg border-b-4 border-primary hover:shadow-xl transition-all transform hover:-translate-y-2 duration-300">
+            <div class="flex flex-col items-center text-center mb-4">
+            <div class="rounded-full bg-primary/10 p-4 mb-4">
+                <i data-lucide="award" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-primary">품질 우선</h4>
+            </div>
+            <p class="text-gray-600 text-center">고품질 서비스로 고객만족 최우선</p>
+        </div>
+        
+        <!-- Core Value 2 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg border-b-4 border-primary hover:shadow-xl transition-all transform hover:-translate-y-2 duration-300">
+            <div class="flex flex-col items-center text-center mb-4">
+            <div class="rounded-full bg-primary/10 p-4 mb-4">
+                <i data-lucide="heart-handshake" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-primary">정성</h4>
+            </div>
+            <p class="text-gray-600 text-center">모든 프로젝트에 정성을 다한 결과물</p>
+        </div>
+        
+        <!-- Core Value 3 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg border-b-4 border-primary hover:shadow-xl transition-all transform hover:-translate-y-2 duration-300">
+            <div class="flex flex-col items-center text-center mb-4">
+            <div class="rounded-full bg-primary/10 p-4 mb-4">
+                <i data-lucide="settings" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h4 class="text-xl font-semibold text-primary">맞춤화 서비스</h4>
+            </div>
+            <p class="text-gray-600 text-center">고객 요구에 최적화된 서비스 제공</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Key Features Section -->
+<section id="company-features" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+    <div class="text-center mb-8">
+        <div class="inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-2">특징</div>
+        <h3 class="text-3xl font-bold">
+        <span class="text-primary">주요</span>특징
+        </h3>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+        <div class="text-primary mb-4">
+            <i data-lucide="users" class="h-10 w-10"></i>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">전문 인력</h4>
+        <p class="text-gray-600">
+            통번역대학원 졸업생 및 정부기관 출신 경력자로 구성된 전문가 팀 전원이 높은 수준의 서비스를 제공합니다.
+        </p>
+        </div>
+
+        <div class="bg-white p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+        <div class="text-primary mb-4">
+            <i data-lucide="boxes" class="h-10 w-10"></i>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">체계적 관리</h4>
+        <p class="text-gray-600">
+            전문 번역사 관리 시스템을 통한 분야별, 경력에 맞는 번역사 배정으로 최적의 결과물을 보장합니다.
+        </p>
+        </div>
+
+        <div class="bg-white p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
+        <div class="text-primary mb-4">
+            <i data-lucide="check-circle" class="h-10 w-10"></i>
+        </div>
+        <h4 class="text-xl font-semibold mb-3">고품질 서비스</h4>
+        <p class="text-gray-600">
+            재번역을 필요로 하지 않는 고품질 맞춤화 서비스를 제공하여 고객 만족도를 높입니다.
+        </p>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- NDA Section -->
+<section id="nda" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+    <!-- <div class="text-center mb-10">
+        <div class="inline-flex items-center border-2 border-primary px-3 py-1 text-xs font-bold bg-primary text-white mb-3 rounded-sm tracking-wider">CONFIDENTIALITY</div>
+        <h2 class="text-3xl font-bold mb-2">
+        <span class="text-primary border-b-2 border-primary pb-1">기밀정보 보호</span> 서약
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">고객의 소중한 정보를 지키는 것은 우리의 최우선 가치입니다</p>
+    </div> -->
+
+    <div class="max-w-4xl mx-auto bg-white p-8 shadow-xl border border-gray-200 rounded-md relative">
+        <div class="absolute -top-5 -left-5 w-24 h-24">
+        <div class="absolute w-full h-full bg-primary/10 rounded-full"></div>
+        <div class="absolute w-full h-full flex items-center justify-center">
+            <div class="bg-white/20 rounded-full p-3">
+            <i data-lucide="shield-check" class="h-16 w-16 text-primary"></i>
+            </div>
+        </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+        
+        <div class="w-full">
+            <div class="border-b-2 border-primary/20 pb-4 mb-6 text-center">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-2">서약서</div>
+                <h3 class="text-3xl font-bold">
+                <span class="text-primary">기밀정보 보호</span> 서약서
+                </h3>
+            </div>
+            <p class="text-gray-700 font-medium">
+                최상의 서비스 제공과 함께 고객의 정보 보호에 만전을 기하겠습니다.
+            </p>
+            </div>
+            
+            <p class="text-gray-700 mb-4 leading-relaxed">
+            한국통번역주식회사는 <span class="font-semibold underline decoration-primary decoration-2 underline-offset-2">국가 공인 외국어 번역 행정사 사무소</span>로서 
+            행정사법 제23조에 의거하여 모든 문서와 개인 정보에 대한 철저한 비밀엄수 의무를 준수합니다.
+            </p>
+            
+            <div class="bg-gray-50 p-5 border-l-4 border-primary mb-5 relative">
+            <p class="text-gray-800 text-sm font-medium relative z-10">
+                <span class="text-primary font-bold block mb-1">행정사법 제23조(비밀엄수)</span>
+                행정사 또는 행정사이었던 사람(행정사의 사무직원 또는 사무직원이었던 사람을 포함한다)은 
+                <span class="bg-yellow-100 px-1">정당한 사유 없이 직무상 알게 된 사실을 다른 사람에게 누설하여서는 아니 된다.</span>
+            </p>
+            </div>
+            
+            <p class="text-gray-800 font-semibold text-center border-t border-b border-gray-200 py-3 my-5">
+            고객님의 소중한 정보 보호를 위해 더욱더 노력하겠습니다.
+            </p>
+            
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="flex flex-col items-center p-3 bg-primary/5 rounded-md">
+                <i data-lucide="lock" class="h-8 w-8 text-primary mb-2"></i>
+                <span class="text-sm font-bold text-gray-800 text-center">기밀 문서 관리</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-primary/5 rounded-md">
+                <i data-lucide="user-check" class="h-8 w-8 text-primary mb-2"></i>
+                <span class="text-sm font-bold text-gray-800 text-center">NDA 의무화</span>
+            </div>
+            <div class="flex flex-col items-center p-3 bg-primary/5 rounded-md">
+                <i data-lucide="hard-drive" class="h-8 w-8 text-primary mb-2"></i>
+                <span class="text-sm font-bold text-gray-800 text-center">보안 서버 운영</span>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="mt-12 flex justify-center">
+        <div class="inline-block pt-4 text-center">
+            <div class="mb-6">
+            <p class="text-center text-gray-700 mb-1">2025<span>년</span><span class="ml-2">04</span><span></span>월</span><span class="ml-2">27</span><span>일</span></p>
+            </div>
+            <div class="flex flex-col items-center">
+            <div class="mb-4 text-center">
+                <p class="font-medium text-gray-800 mb-1">한국통번역주식회사</p>
+                <div class="flex justify-center items-center relative">
+                <div class="flex items-center">
+                    <p class="font-medium text-gray-800">대표이사 <span class="font-bold ml-2">홍 길 동</span></p>
+                </div>
+                <div class="">
+                    <img src="https://blog.kakaocdn.net/dn/cFdogq/btq5i3K8B4c/Ofb29lYXRXxKAIXznkfNx1/img.png" alt="회사 직인" class="h-24 w-24">
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="mt-12 border-t-2 border-gray-300 pt-4">
+            <p class="text-sm text-gray-600">본 서약서는 한국통번역주식회사의 기밀정보 보호 정책에 따라 작성되었습니다.</p>
+            <p class="text-sm text-gray-600">문서번호: KICAT-NDA-2024-<span class="text-primary">0001</span></p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 bg-primary text-white">
+    <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-6">함께 성장하는 파트너가 되어드리겠습니다</h2>
+    <p class="text-lg mb-8 max-w-2xl mx-auto">
+        한국통번역주식회사와 함께 글로벌 비즈니스의 언어 장벽을 넘어 성공적인 커뮤니케이션을 이루세요.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-white text-primary hover:bg-gray-100 h-11 px-8 py-2 transition-colors quote-request-btn">
+        견적 요청하기
+        <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+        </button>
+        <a href="mailto:contact@globaltrans.kr" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium border-2 border-white bg-transparent text-white hover:bg-white/10 h-11 px-8 py-2 transition-colors">
+        문의하기
+        </a>
+    </div>
+    </div>
+</section>
+
+
+
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+    <div class="text-center mb-10">
+        <div class="inline-flex items-center border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-white mb-2">회사 위치</div>
+        <h2 class="text-3xl font-bold">
+        <span class="text-primary">찾아오시는</span> 길
+        </h2>
+    </div>
+
+    <!-- Full-width map at the top -->
+    <div class="w-full h-[400px] mb-8 shadow-lg overflow-hidden">
+        <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.3426724095364!2d127.02631231744384!3d37.49851999981168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15857ce38dd%3A0xac87641577138f3d!2z7ISc7Jq47Yq567OE7IucIOqwleuCqOq1rCDthYztl6TrnoDroZwgNDI2!5e0!3m2!1sko!2skr!4v1622169462333!5m2!1sko!2skr" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy"
+        class="w-full h-full">
+        </iframe>
+    </div>
+    
+    <!-- Contact info cards in 3 columns -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Address Card -->
+        <div class="bg-white p-6 shadow-md border-t-4 border-primary flex flex-col items-center text-center h-full">
+        <div class="inline-flex items-center justify-center bg-primary/10 rounded-full w-16 h-16 mb-4">
+            <i data-lucide="map-pin" class="h-8 w-8 text-primary"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-primary mb-3">주소</h3>
+        <p class="text-gray-700">서울특별시 강남구 테헤란로 123, 5층</p>
+        </div>
+        
+        <!-- Contact Info Card -->
+        <div class="bg-white p-6 shadow-md border-t-4 border-secondary flex flex-col h-full">
+        <div class="inline-flex items-center justify-center bg-secondary/10 rounded-full w-16 h-16 mb-4 mx-auto">
+            <i data-lucide="phone" class="h-8 w-8 text-secondary"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-secondary mb-3 text-center">연락처 정보</h3>
+        
+        <ul class="space-y-3 mt-2">
+            <li class="flex items-start">
+            <i data-lucide="phone" class="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5"></i>
+            <div>
+                <span class="font-medium">전화번호:</span>
+                <p class="text-gray-600">02-123-4567</p>
+            </div>
+            </li>
+            <li class="flex items-start">
+            <i data-lucide="printer" class="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5"></i>
+            <div>
+                <span class="font-medium">팩스:</span>
+                <p class="text-gray-600">02-123-4568</p>
+            </div>
+            </li>
+            <li class="flex items-start">
+            <i data-lucide="mail" class="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5"></i>
+            <div>
+                <span class="font-medium">이메일:</span>
+                <p class="text-gray-600">contact@kicat.co.kr</p>
+            </div>
+            </li>
+            <li class="flex items-start">
+            <i data-lucide="clock" class="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5"></i>
+            <div>
+                <span class="font-medium">영업시간:</span>
+                <p class="text-gray-600">평일 09:00 - 18:00</p>
+            </div>
+            </li>
+        </ul>
+        </div>
+        
+        <!-- Transportation Card -->
+        <div class="bg-white p-6 shadow-md border-t-4 border-primary flex flex-col h-full">
+        <div class="inline-flex items-center justify-center bg-primary/10 rounded-full w-16 h-16 mb-4 mx-auto">
+            <i data-lucide="train" class="h-8 w-8 text-primary"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-primary mb-3 text-center">교통안내</h3>
+        
+        <div class="space-y-4 mt-2">
+            <div class="flex items-center bg-blue-50 p-3 rounded">
+            <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-3">
+                <span class="text-sm font-bold">2</span>
+            </div>
+            <div>
+                <p class="font-medium text-blue-800">2호선 강남역</p>
+                <p class="text-gray-600 text-sm">3번 출구에서 도보 5분</p>
+            </div>
+            </div>
+            
+            <div class="flex items-center bg-green-50 p-3 rounded">
+            <div class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-3">
+                <span class="text-sm font-bold">S</span>
+            </div>
+            <div>
+                <p class="font-medium text-green-800">신분당선 강남역</p>
+                <p class="text-gray-600 text-sm">5번 출구에서 도보 7분</p>
+            </div>
+            </div>
+            
+            <div class="flex items-center bg-yellow-50 p-3 rounded">
+            <div class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-3">
+                <i data-lucide="bus" class="h-4 w-4"></i>
+            </div>
+            <div>
+                <p class="font-medium text-yellow-800">버스</p>
+                <p class="text-gray-600 text-sm">강남역 버스정류장 하차 후 도보 3분</p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %} 

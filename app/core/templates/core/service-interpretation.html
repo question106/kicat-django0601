@@ -1,0 +1,1252 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Header Section -->
+<section class="py-20 md:py-10 md:mt-16 bg-gradient-to-r from-primary/5 to-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center">
+        <div class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold bg-secondary text-white mb-4 shadow-sm">
+            서비스
+        </div>
+        <h2 class="text-4xl font-bold mb-6 text-center">
+            <span class="relative z-10"><span class="text-primary">통역</span> 서비스</span>
+        </h2>
+        <div class="w-20 h-1 bg-primary mb-6"></div>
+        <p class="text-mutedForeground max-w-2xl mx-auto text-center leading-relaxed">
+            국제 회의와 비즈니스 미팅을 위한 정확하고 자연스러운 실시간 통역 서비스로 언어 장벽 없는 소통을 지원합니다.
+        </p>
+        </div>
+    </div>
+</section>
+<!-- Service Overview Section -->
+<!-- <section id="services" class="py-16">
+<div class="container mx-auto px-4">
+    <div class="tabs">
+    <div class="grid grid-cols-1 md:grid-cols-5 w-full mb-8 bg-gray-100 rounded-lg p-1">
+        <button class="tab-trigger active text-gray-900 py-1.5 px-3 rounded-sm" data-tab="synchrone-translation">동시 통역</button>
+        <button class="tab-trigger text-gray-900 py-1.5 px-3 rounded-sm" data-tab="consecutive-translation">순차 통역</button>
+        <button class="tab-trigger text-gray-900 py-1.5 px-3 rounded-sm" data-tab="escort-translation">수행 통역</button>
+        <button class="tab-trigger text-gray-900 py-1.5 px-3 rounded-sm" data-tab="video-translation">화상 통역</button>
+        <button class="tab-trigger text-gray-900 py-1.5 px-3 rounded-sm" data-tab="whispering-translation">위스퍼링 통역</button>
+    </div>
+
+    <div class="tab-content active" id="synchrone-translation-tab">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h3 class="text-2xl font-bold mb-4">동시 통역</h3>
+            <p class="text-mutedForeground mb-4">
+            전문 통역사가 특수 부스 내에서 연사의 발언을 실시간으로 청취하며 즉각적으로 통역하는 서비스입니다. 
+            다국어 통역이 필요한 대규모 국제 컨퍼런스, 세미나, 심포지엄에 이상적이며, 
+            참석자들이 프레젠테이션 자료를 보면서 동시에 내용을 이해해야 하는 상황에 최적화되어 있습니다.
+            </p>
+            <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>국제 컨퍼런스 및 포럼</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>다국어 기업 행사 및 세미나</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>실시간 멀티미디어 프레젠테이션</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>하이브리드 및 온라인 국제 행사</span>
+            </li>
+            </ul>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden shadow-md">
+            <img
+            src="https://images.unsplash.com/photo-1560439514-4e9645039924?q=80&w=2070&auto=format&fit=crop"
+            alt="동시 통역 서비스"
+            class="absolute inset-0 w-full h-full object-cover"
+            />
+        </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="consecutive-translation-tab">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h3 class="text-2xl font-bold mb-4">순차 통역</h3>
+            <p class="text-mutedForeground mb-4">
+            통역사가 연사와 같은 공간에서 발언을 경청하고 메모한 후, 연사의 발언이 끝나면 
+            전문적인 기법으로 내용을 정확하게 전달하는 방식입니다. 
+            정상회담, 고위급 회의, 비즈니스 협상, 소규모 세미나 등 
+            참석자 간의 깊이 있는 소통이 필요한 환경에 적합합니다.
+            </p>
+            <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>정상급 및 고위급 양자 회담</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>비즈니스 협상 및 계약 체결</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>전문가 인터뷰 및 기자회견</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>소규모 전문 세미나 및 워크숍</span>
+            </li>
+            </ul>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden shadow-md">
+            <img
+            src="https://images.unsplash.com/photo-1573497491765-dccce02b29df?q=80&w=2070&auto=format&fit=crop"
+            alt="순차 통역 서비스"
+            class="absolute inset-0 w-full h-full object-cover"
+            />
+        </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="escort-translation-tab">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h3 class="text-2xl font-bold mb-4">수행 통역</h3>
+            <p class="text-mutedForeground mb-4">
+            전문 통역사가 고객의 전체 일정에 동행하며 모든 의사소통을 원활하게 지원하는 서비스입니다.
+            국가 대표단, 기업 임원, 해외 바이어, 투자자 등이 방문 기간 동안 
+            다양한 상황에서 효과적인 소통이 필요할 때 최적의 솔루션을 제공합니다.
+            상황에 따라 순차 통역, 위스퍼링 등 다양한 통역 기법을 유연하게 적용합니다.
+            </p>
+            <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>해외 VIP 및 기업 대표단 방문</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>산업 시찰 및 현장 방문</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>비즈니스 미팅 및 네트워킹 행사</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>문화 행사 및 공식 만찬</span>
+            </li>
+            </ul>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden shadow-md">
+            <img
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop"
+            alt="수행 통역 서비스"
+            class="absolute inset-0 w-full h-full object-cover"
+            />
+        </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="video-translation-tab">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h3 class="text-2xl font-bold mb-4">화상 통역</h3>
+            <p class="text-mutedForeground mb-4">
+            원격으로 진행되는 화상 회의, 웨비나, 온라인 컨퍼런스에서 실시간 통역을 제공하는 서비스입니다.
+            최신 화상 회의 플랫폼과 통역 기술을 활용하여 지리적 제약 없이 
+            전 세계 참가자들 간의 원활한 의사소통을 지원합니다.
+            고품질 오디오와 비디오 환경에서 최적의 통역 경험을 제공합니다.
+            </p>
+            <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>글로벌 화상 회의 및 웨비나</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>원격 비즈니스 협상 및 미팅</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>가상 컨퍼런스 및 국제 포럼</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>다국어 온라인 교육 및 트레이닝</span>
+            </li>
+            </ul>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden shadow-md">
+            <img
+            src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?q=80&w=2070&auto=format&fit=crop"
+            alt="화상 통역 서비스"
+            class="absolute inset-0 w-full h-full object-cover"
+            />
+        </div>
+        </div>
+    </div>
+    <div class="tab-content" id="whispering-translation-tab">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h3 class="text-2xl font-bold mb-4">위스퍼링 통역</h3>
+            <p class="text-mutedForeground mb-4">
+            통역사가 소수의 청취자(1-2명)에게 낮은 목소리로 실시간 통역을 제공하는 서비스입니다.
+            특별한 장비 없이 진행되며, 대다수 참석자는 원어로 소통하지만 
+            일부 참석자만 통역이 필요한 상황에 이상적입니다.
+            공식 행사, 비즈니스 미팅, 전시회 등 다양한 환경에서 
+            개인화된 통역 솔루션을 제공합니다.
+            </p>
+            <ul class="space-y-2">
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>소규모 비즈니스 미팅 및 협상</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>VIP 수행 및 특별 행사</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>전시회 및 산업 박람회</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                <span>문화 행사 및 가이드 투어</span>
+            </li>
+            </ul>
+        </div>
+        <div class="relative h-[300px] rounded-lg overflow-hidden shadow-md">
+            <img
+            src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop"
+            alt="위스퍼링 통역 서비스"
+            class="absolute inset-0 w-full h-full object-cover"
+            />
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section> -->
+
+<!-- Interpretation Types Section -->
+<section id="interpretation-types" class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl font-bold mb-6 relative text-center">
+            <span class="relative z-10">통역 종류</span>
+        </h2>
+        <div class="w-20 h-1 bg-primary mb-6"></div>
+        <p class="text-mutedForeground max-w-2xl mx-auto text-center leading-relaxed">
+            다양한 상황과 목적에 맞는 전문 통역 서비스를 제공합니다.
+        </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 동시 통역 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <div class="md:flex h-full">
+            <div class="md:w-1/2 h-48 md:h-auto overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1560439514-4e9645039924?q=80&w=2070&auto=format&fit=crop" 
+                alt="동시 통역" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="p-6 md:w-1/2">
+                <h3 class="text-xl font-bold mb-3 text-primary">동시 통역</h3>
+                <p class="text-mutedForeground leading-relaxed">
+                전문 통역사가 특수 부스 내에서 연사의 발언을 실시간으로 청취하며 즉각적으로 통역하는 서비스입니다. 
+                다국어 통역이 필요한 대규모 국제 컨퍼런스, 세미나, 심포지엄에 이상적입니다.
+                </p>
+            </div>
+            </div>
+        </div>
+
+        <!-- 순차 통역 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <div class="md:flex h-full">
+            <div class="md:w-1/2 h-48 md:h-auto overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?q=80&w=2073&auto=format&fit=crop" 
+                alt="순차 통역" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="p-6 md:w-1/2">
+                <h3 class="text-xl font-bold mb-3 text-primary">순차 통역</h3>
+                <p class="text-mutedForeground leading-relaxed">
+                통역사가 연사와 같은 공간에서 발언을 경청하고 메모한 후, 연사의 발언이 끝나면 
+                전문적인 기법으로 내용을 정확하게 전달하는 방식입니다. 정상회담, 고위급 회의에 적합합니다.
+                </p>
+            </div>
+            </div>
+        </div>
+
+        <!-- 수행 통역 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <div class="md:flex h-full">
+            <div class="md:w-1/2 h-48 md:h-auto overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" 
+                alt="수행 통역" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="p-6 md:w-1/2">
+                <h3 class="text-xl font-bold mb-3 text-primary">수행 통역</h3>
+                <p class="text-mutedForeground leading-relaxed">
+                전문 통역사가 고객의 전체 일정에 동행하며 모든 의사소통을 원활하게 지원하는 서비스입니다.
+                국가 대표단, 기업 임원, 해외 바이어, 투자자 등의 방문 기간 동안 최적의 솔루션을 제공합니다.
+                </p>
+            </div>
+            </div>
+        </div>
+
+        <!-- 화상 통역 -->
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <div class="md:flex h-full">
+            <div class="md:w-1/2 h-48 md:h-auto overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?q=80&w=2070&auto=format&fit=crop" 
+                alt="화상 통역" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+            </div>
+            <div class="p-6 md:w-1/2">
+                <h3 class="text-xl font-bold mb-3 text-primary">화상 통역</h3>
+                <p class="text-mutedForeground leading-relaxed">
+                원격으로 진행되는 화상 회의, 웨비나, 온라인 컨퍼런스에서 실시간 통역을 제공하는 서비스입니다.
+                최신 화상 회의 플랫폼과 통역 기술을 활용하여 지리적 제약 없이 의사소통을 지원합니다.
+                </p>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+        <!-- 위스퍼링 통역 - Enhanced with better styling -->
+        <div class="mt-12">
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <div class="md:flex h-full">
+            <div class="md:w-2/5 h-40 md:h-64 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2074&auto=format&fit=crop" 
+                alt="위스퍼링 통역" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0"></div>
+            </div>
+            <div class="p-8 md:w-3/5">
+                <div class="flex items-center mb-4">
+                <div class="rounded-full h-10 w-10 flex items-center justify-center mr-3">
+                    <i data-lucide="mic" class="h-5 w-5 text-primary"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-primary">위스퍼링 통역</h3>
+                </div>
+                <p class="text-mutedForeground leading-relaxed mb-4">
+                통역사가 소수의 청취자(1-2명)에게 낮은 목소리로 실시간 통역을 제공하는 서비스입니다.
+                특별한 장비 없이 진행되며, 일부 참석자만 통역이 필요한 상황에 이상적입니다.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                <div class="flex items-start gap-2">
+                    <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                    <span class="text-sm">비즈니스 미팅 및 협상</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                    <span class="text-sm">VIP 수행 및 특별 행사</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                    <span class="text-sm">전시회 및 산업 박람회</span>
+                </div>
+                <div class="flex items-start gap-2">
+                    <i data-lucide="check-circle" class="h-5 w-5 text-primary mt-0.5"></i>
+                    <span class="text-sm">문화 행사 및 가이드 투어</span>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<!-- Interpretation Process Section -->
+<section id="interpretation-process" class="py-16 bg-gradient-to-r from-gray-50 to-muted">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl font-bold mb-3 relative text-center">
+            <span class="relative z-10">통역 진행절차</span>
+            
+        </h2>
+        <div class="w-20 h-1 bg-primary mb-6"></div>
+        <p class="text-mutedForeground max-w-2xl mx-auto text-center leading-relaxed">
+            통역 내용 검토부터 견적 산출, 전문 통역사 배정까지 <span class="font-bold text-secondary decoration-2 decoration-accent/70">당일 처리</span>로 신속하게 진행해 드립니다.
+        </p>
+        </div>
+
+        <!-- Desktop view -->
+        <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="message-square" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">1.통역 의뢰 및 상담</h3>
+            <p class="text-mutedForeground text-sm">홈페이지 견적 요청 또는 이메일 문의</p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="users" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">2.통역사 리스트 발송</h3>
+            <p class="text-mutedForeground text-sm">클라이언트-통역사 확정</p>
+
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="file-text" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">3.견적서 발송</h3>
+            <p class="text-mutedForeground text-sm">500만원 미만 선결제</p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="user-check" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">4.통역사 배정</h3>
+            <p class="text-mutedForeground text-sm"></p>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center md:col-start-1 lg:col-start-1 relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="file-input" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">5.회의 자료 및 참고자료 수신</h3>
+            <p class="text-mutedForeground text-sm">클라이언트 송부</p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 6 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="book-open" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">6.통역사 사전교육 실시</h3>
+            <p class="text-mutedForeground text-sm"></p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 7 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="mic" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">7.통역 진행</h3>
+            <p class="text-mutedForeground text-sm"></p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 8 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+            <i data-lucide="check-circle" class="h-8 w-8 text-primary"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">8.입금 및 사후관리</h3>
+            <p class="text-mutedForeground text-sm"></p>
+        </div>
+        </div>
+
+        <!-- Mobile carousel view -->
+        <div class="md:hidden relative">
+        <div class="carousel-container overflow-hidden">
+            <div class="carousel-track flex transition-transform duration-300" id="processCarousel">
+            <!-- Step 1 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="message-square" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">1.통역 의뢰 및 상담</h3>
+                <p class="text-mutedForeground text-sm">홈페이지 견적 요청 또는 이메일 문의</p>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="users" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">2.통역사 리스트 발송</h3>
+                <p class="text-mutedForeground text-sm">클라이언트-통역사 확정</p>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="file-text" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">3.견적서 발송</h3>
+                <p class="text-mutedForeground text-sm">500만원 미만 선결제</p>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="user-check" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">4.통역사 배정</h3>
+                </div>
+            </div>
+            
+            <!-- Step 5 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="file-input" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">5.회의 자료 및 참고자료 수신</h3>
+                <p class="text-mutedForeground text-sm">클라이언트 송부</p>
+                </div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="book-open" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">6.통역사 사전교육 실시</h3>
+                </div>
+            </div>
+            
+            <!-- Step 7 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="mic" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">7.통역 진행</h3>
+                </div>
+            </div>
+            
+            <!-- Step 8 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="check-circle" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">8.입금 및 사후관리</h3>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Carousel controls -->
+        <div class="flex justify-center mt-6 gap-4">
+            <button id="prevBtn" class="bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="m15 18-6-6 6-6"></path>
+            </svg>
+            </button>
+            <button id="nextBtn" class="bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+            </button>
+        </div>
+        
+        <!-- Carousel indicators -->
+        <div class="flex justify-center mt-4 gap-2" id="carouselIndicators">
+            <button class="h-2 w-2 rounded-full bg-primary" data-index="0"></button>
+            <button class="h-2 w-2 rounded-full bg-gray-300" data-index="1"></button>
+            <button class="h-2 w-2 rounded-full bg-gray-300" data-index="2"></button>
+            <button class="h-2 w-2 rounded-full bg-gray-300" data-index="3"></button>
+            <button class="h-2 w-2 rounded-full bg-gray-300" data-index="4"></button>
+            <button class="h-2 w-2 rounded-full bg-gray-300" data-index="5"></button>
+            <button class="h-2 w-2 rounded-full bg-gray-300" data-index="6"></button>
+            <button class="h-2 w-2 rounded-full bg-gray-300" data-index="7"></button>
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- Translation Process Section -->
+<section id="interpretation-process" class="py-16 ">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl font-bold mb-6 relative text-center">
+            <span class="relative z-10">번역 진행절차</span>
+            
+        </h2>
+        <div class="w-20 h-1 bg-primary mb-6"></div>
+        <p class="text-mutedForeground max-w-2xl mx-auto text-center leading-relaxed">
+            번역 내용 검토부터 견적 산출, 전문 번역사 배정까지 <span class="font-semibold text-secondary decoration-2 decoration-accent/70">당일 처리</span>로 신속하게 진행해 드립니다.
+        </p>
+        </div>
+
+        <!-- Desktop view -->
+        <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">1</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">번역 의뢰</h3>
+            <p class="text-mutedForeground text-sm">홈페이지 견적 요청 또는 이메일 문의</p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Same Day Process Highlight -->
+        <div class="bg-secondary/5 border-2 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg md:col-span-2 lg:col-span-3">
+            <div class="inline-flex items-center absolute -top-3 left-1/2 transform -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-sm font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            당일 완료
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center text-center relative">
+                <div class="bg-secondary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                <span class="text-secondary font-bold text-xl">2</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">내용 검토 및 견적 상담</h3>
+                <p class="text-mutedForeground text-sm">번역 범위 및 예상 비용 검토</p>
+                <div class="absolute top-1/2 -right-3 transform -translate-y-1/2 hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center text-center relative">
+                <div class="bg-secondary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                <span class="text-secondary font-bold text-xl">3</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">견적서 발송 및 결제 확인</h3>
+                <p class="text-mutedForeground text-sm">500만원 이하 선결제</p>
+                <div class="absolute top-1/2 -right-3 transform -translate-y-1/2 hidden sm:block">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center text-center">
+                <div class="bg-secondary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                <span class="text-secondary font-bold text-xl">4</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">전문 번역사 배정</h3>
+                <p class="text-mutedForeground text-sm">분야 경력보유 번역사</p>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center md:col-start-1 lg:col-start-1 relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">5</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">번역</h3>
+
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 6 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">6</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">1차 감수</h3>
+            <p class="text-mutedForeground text-sm">원어민</p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 7 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">7</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">감수내용 확인 및 반영</h3>
+            <p class="text-mutedForeground text-sm">번역사</p>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 8 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center rounded-lg relative">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">8</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">2차 감수</h3>
+            <p class="text-mutedForeground text-sm">분야 전문가</p>
+        </div>
+        <!-- Step 9 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center md:col-start-1 lg:col-start-1 relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">9</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">번역문 제출</h3>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 10 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">10</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">잔금 청구</h3>
+            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            </div>
+        </div>
+        
+        <!-- Step 11 -->
+        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+            <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+            <span class="text-primary font-bold text-xl">11</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">사후 관리</h3>
+            <p class="text-mutedForeground text-sm">필요시 수정 및 보완</p>
+        </div>
+        </div>
+
+        <!-- Mobile carousel view -->
+        <div class="md:hidden relative">
+        <div class="carousel-container overflow-hidden">
+            <div class="carousel-track flex transition-transform duration-300" id="processCarousel">
+            <!-- Step 1 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">1</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">번역 의뢰</h3>
+                <p class="text-mutedForeground text-sm">홈페이지 견적 요청 또는 이메일 문의</p>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4 pt-4">
+                <div class="bg-secondary/5 border-2 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="inline-flex items-center absolute -top-3 left-1/2 transform -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-sm font-bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    당일 완료
+                </div>
+                <div class="bg-secondary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-secondary font-bold text-xl">2</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">내용 검토 및 견적 상담</h3>
+                <p class="text-mutedForeground text-sm">번역 범위 및 예상 비용 검토</p>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4 pt-4">
+                <div class="bg-secondary/5 border-2 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="inline-flex items-center absolute -top-3 left-1/2 transform -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-sm font-bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    당일 완료
+                </div>
+                <div class="bg-secondary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-secondary font-bold text-xl">3</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">견적서 발송 및 결제 확인</h3>
+                <p class="text-mutedForeground text-sm">500만원 이하 선결제</p>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4 pt-4">
+                <div class="bg-secondary/5 border-2 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="inline-flex items-center absolute -top-3 left-1/2 transform -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full text-sm font-bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    당일 완료
+                </div>
+                <div class="bg-secondary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-secondary font-bold text-xl">4</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">전문 번역사 배정</h3>
+                <p class="text-mutedForeground text-sm">분야 경력보유 번역사</p>
+                </div>
+            </div>
+            
+            <!-- Step 5 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">5</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">번역</h3>
+                </div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">6</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">1차 감수</h3>
+                <p class="text-mutedForeground text-sm">원어민</p>
+                </div>
+            </div>
+            
+            <!-- Step 7 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">7</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">감수내용 확인 및 반영</h3>
+                <p class="text-mutedForeground text-sm">번역사</p>
+                </div>
+            </div>
+            
+            <!-- Step 8 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center rounded-lg relative">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">8</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">2차 감수</h3>
+                <p class="text-mutedForeground text-sm">분야 전문가</p>
+                </div>
+            </div>
+            
+            <!-- Step 9 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">9</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">번역문 제출</h3>
+                </div>
+            </div>
+            
+            <!-- Step 10 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">10</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">잔금 청구</h3>
+                </div>
+            </div>
+            
+            <!-- Step 11 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <span class="text-primary font-bold text-xl">11</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">사후 관리</h3>
+                <p class="text-mutedForeground text-sm">필요시 수정 및 보완</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Carousel controls -->
+        <div class="flex justify-center mt-6 gap-2">
+            <button id="prevBtn" class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"></path>
+            </svg>
+            </button>
+            <div id="carouselDots" class="flex items-center gap-2">
+            <!-- Dots will be generated by JavaScript -->
+            </div>
+            <button id="nextBtn" class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"></path>
+            </svg>
+            </button>
+        </div>
+        </div>
+
+        <!-- Carousel JavaScript -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('processCarousel');
+            const items = document.querySelectorAll('.carousel-item');
+            const dotsContainer = document.getElementById('carouselDots');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+            const totalItems = items.length;
+            
+            // Generate dots
+            for (let i = 0; i < totalItems; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('h-2', 'w-2', 'rounded-full', 'bg-gray-300');
+            if (i === 0) dot.classList.add('bg-primary', 'w-4');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+            }
+            
+            function updateCarousel() {
+            const translateValue = -currentIndex * 100 + '%';
+            carousel.style.transform = `translateX(${translateValue})`;
+            
+            // Update dots
+            const dots = dotsContainer.querySelectorAll('button');
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                dot.classList.remove('bg-gray-300', 'w-2');
+                dot.classList.add('bg-primary', 'w-4');
+                } else {
+                dot.classList.remove('bg-primary', 'w-4');
+                dot.classList.add('bg-gray-300', 'w-2');
+                }
+            });
+            }
+            
+            function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+            }
+            
+            prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+            });
+            
+            // Touch events for swiping
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            });
+            
+            function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe left
+                nextBtn.click();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe right
+                prevBtn.click();
+            }
+            }
+        });
+        </script>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('processCarousel');
+    const items = document.querySelectorAll('.carousel-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('#carouselIndicators button');
+    
+    let currentIndex = 0;
+    const itemWidth = items[0].offsetWidth;
+    const itemCount = items.length;
+    
+    // Update carousel position
+    function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        if (index === currentIndex) {
+        indicator.classList.remove('bg-gray-300');
+        indicator.classList.add('bg-primary');
+        } else {
+        indicator.classList.remove('bg-primary');
+        indicator.classList.add('bg-gray-300');
+        }
+    });
+    }
+    
+    // Event listeners for buttons
+    prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+    updateCarousel();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % itemCount;
+    updateCarousel();
+    });
+    
+    // Event listeners for indicators
+    indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+    });
+    });
+    
+    // Touch events for swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].screenX;
+    });
+    
+    carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+    });
+    
+    function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Swipe left
+        nextBtn.click();
+    } else if (touchEndX > touchStartX + swipeThreshold) {
+        // Swipe right
+        prevBtn.click();
+    }
+    }
+});
+</script>
+
+<!-- Interpretation Rates Section -->
+<section id="interpretation-rates" class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl font-bold mb-3 relative text-center">
+            <span class="relative z-10">통역 요율</span>
+            
+        </h2>
+        <div class="w-20 h-1 bg-primary mb-6"></div>
+        <p class="text-mutedForeground max-w-2xl mx-auto text-center leading-relaxed">
+            제시된 요율은 <span class="text-secondary font-medium">통역 종류</span>, <span class="text-secondary font-medium">난이도</span>, <span class="text-secondary font-medium">특수 분야</span> 등 세부 사항에 따라 달라질 수 있습니다. <span class="text-secondary font-medium">맞춤형 견적</span>이 필요하시면 언제든지 문의해 주세요.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 2년 이하 경력 -->
+        <div class="bg-white p-8 shadow-md">
+            <h3 class="text-xl font-bold mb-6 pb-3 border-b text-center">2년 이하 경력</h3>
+            <ul class="space-y-4">
+            <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mr-3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>1시간 까지 : 500,000원</span>
+            </li>
+            <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mr-3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>6시간 까지 : 800,000원</span>
+            </li>
+            <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mr-3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>6시간 초과시 150,000원/시간</span>
+            </li>
+            </ul>
+        </div>
+
+        <!-- 3년 이상 경력 -->
+        <div class="bg-white p-8 shadow-md">
+            <h3 class="text-xl font-bold mb-6 pb-3 border-b text-center">3년 이상 경력</h3>
+            <ul class="space-y-4">
+            <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mr-3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>1시간 까지 : 600,000원</span>
+            </li>
+            <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mr-3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>6시간 까지 : 900,000원</span>
+            </li>
+            <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mr-3">
+                <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>6시간 초과시 150,000원/시간</span>
+            </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-8 text-center">  
+            <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-10 px-4 py-2 mt-6 shadow-md hover:shadow-lg transition-all quote-request-btn">
+                    견적 요청하기
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+            </button>
+        </div>
+    </div>
+</section>
+<!-- Rental Service Section -->
+<section id="rental-service" class="py-16 bg-gradient-to-r from-muted to-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col items-center mb-12">
+        <h2 class="text-3xl font-bold mb-3 relative text-center">
+            <span class="relative z-10">통역 장비 대여 서비스</span>
+            
+        </h2>
+        <div class="w-20 h-1 bg-primary mb-6"></div>
+        <p class="text-mutedForeground max-w-2xl mx-auto text-center leading-relaxed">
+            일회성 행사나 회의를 위해 고가의 통역 장비를 구매할 필요 없이, 합리적인 가격으로 필요한 장비를 대여해 드립니다.
+        </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 통역 마이크 및 헤드셋 -->
+            <div class="bg-white p-6 shadow-md rounded-sm hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <div class="bg-primary/10 p-3 rounded-md mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                </svg>
+                </div>
+                <h4 class="text-lg font-semibold">통역 마이크 및 헤드셋</h4>
+            </div>
+            <p class="text-mutedForeground mb-4">고품질 통역용 마이크와 헤드셋으로 선명한 음질을 보장합니다.</p>
+            <!-- <p class="text-sm font-medium">대여 가격: 50,000원/일</p> -->
+            </div>
+
+            <!-- 통역 부스 -->
+            <div class="bg-white p-6 shadow-md rounded-sm hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <div class="bg-primary/10 p-3 rounded-md mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary">
+                    <path d="M3 21V10l9-9 9 9v11"></path>
+                    <path d="M1 21h22"></path>
+                    <path d="M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"></path>
+                </svg>
+                </div>
+                <h4 class="text-lg font-semibold">통역 부스</h4>
+            </div>
+            <p class="text-mutedForeground mb-4">방음 처리된 전문 통역 부스로 소음 없는 통역 환경을 제공합니다.</p>
+            <!-- <p class="text-sm font-medium">대여 가격: 300,000원/일</p> -->
+            </div>
+
+            <!-- 동시통역 시스템 -->
+            <div class="bg-white p-6 shadow-md rounded-sm hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-4">
+                <div class="bg-primary/10 p-3 rounded-md mr-4">
+                <i data-lucide="cassette-tape" class="h-6 w-6 text-primary mb-1"></i>
+                </div>
+                <h4 class="text-lg font-semibold">동시통역 시스템</h4>
+            </div>
+            <p class="text-mutedForeground mb-4">최대 100명까지 지원 가능한 완벽한 동시통역 시스템을 제공합니다.</p>
+            <!-- <p class="text-sm font-medium">대여 가격: 문의 요망</p> -->
+            </div>
+        </div>
+
+        <div class="mt-8 bg-secondary/5 border border-secondary20 p-6 rounded-sm">
+            <h4 class="font-semibold mb-2 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary mr-2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+            </svg>
+            장비 대여 안내
+            </h4>
+            <ul class="text-sm text-mutedForeground space-y-2">
+            <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-primary mr-2 mt-1">
+                <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                <span>모든 장비는 전문 기술자가 설치 및 운영을 지원합니다.</span>
+            </li>
+            <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-primary mr-2 mt-1">
+                <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                <span>대규모 행사나 특수 요구사항이 있는 경우 별도 문의 바랍니다.</span>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
