@@ -460,7 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Custom scrolling with padding adjustment
 document.addEventListener('DOMContentLoaded', function() {
 // Function to scroll to element with offset
-function scrollToElement(elementId, offset = 30) {
+function scrollToElement(elementId, offset = 80) {
     const element = document.getElementById(elementId);
     if (!element) return;
     
@@ -482,7 +482,7 @@ serviceButtons.forEach(button => {
     });
 });
 
-// Update menu items with hash links
+// Update menu items with hash links (local page anchors)
 document.querySelectorAll('.menu-item[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -490,6 +490,38 @@ document.querySelectorAll('.menu-item[href^="#"]').forEach(anchor => {
     scrollToElement(targetId);
     });
 });
+
+// Handle dropdown menu items with hash fragments
+document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        const currentPath = window.location.pathname;
+        
+        // Check if this is a link to the current page with a hash
+        if (href.includes(currentPath + '#') || href.startsWith('#')) {
+            e.preventDefault();
+            
+            // Extract the hash part
+            const hashIndex = href.indexOf('#');
+            const targetId = href.substring(hashIndex + 1);
+            
+            if (targetId) {
+                scrollToElement(targetId);
+            }
+        }
+        // If it's a link to a different page with hash, let it navigate normally
+        // The target page will handle the scroll offset when it loads
+    });
+});
+
+// Handle hash in URL on page load (for direct links with hash)
+if (window.location.hash) {
+    // Wait a bit for the page to fully load
+    setTimeout(() => {
+        const targetId = window.location.hash.substring(1);
+        scrollToElement(targetId);
+    }, 500);
+}
 });
 
  // Section fade-in animation
@@ -694,4 +726,350 @@ $(document).ready(function() {
             originalCloseQuoteModal();
         }
     };
+});
+
+// Awards Carousel functionality (for cases.html)
+document.addEventListener('DOMContentLoaded', function() {
+    const awardsCarousel = document.querySelector('.carousel-inner');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    
+    if (!awardsCarousel || !prevBtn || !nextBtn) return; // Exit if elements not found
+    
+    let currentIndex = 0;
+    
+    function getVisibleItems() {
+        const allItems = document.querySelectorAll('.carousel-item');
+        const visibleItems = [];
+        
+        allItems.forEach(item => {
+            const computedStyle = window.getComputedStyle(item);
+            if (computedStyle.display !== 'none') {
+                visibleItems.push(item);
+            }
+        });
+        
+        return visibleItems;
+    }
+    
+    function getTotalVisibleItems() {
+        return getVisibleItems().length;
+    }
+    
+    function updateCarousel() {
+        const totalItems = getTotalVisibleItems();
+        
+        // Ensure currentIndex is within bounds
+        if (currentIndex >= totalItems) {
+            currentIndex = 0;
+        } else if (currentIndex < 0) {
+            currentIndex = totalItems - 1;
+        }
+        
+        const translateValue = -currentIndex * 100 + '%';
+        awardsCarousel.style.transform = `translateX(${translateValue})`;
+        
+        // Update indicators - only show indicators for visible items
+        indicators.forEach((indicator, index) => {
+            indicator.classList.remove('active', 'bg-primary');
+            indicator.classList.add('bg-gray-300');
+            
+            // Hide indicators that don't correspond to visible items
+            if (index < totalItems) {
+                indicator.style.display = 'block';
+            } else {
+                indicator.style.display = 'none';
+            }
+        });
+        
+        // Set active indicator
+        if (indicators[currentIndex]) {
+            indicators[currentIndex].classList.remove('bg-gray-300');
+            indicators[currentIndex].classList.add('active', 'bg-primary');
+        }
+    }
+    
+    // Previous button click
+    prevBtn.addEventListener('click', () => {
+        const totalItems = getTotalVisibleItems();
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updateCarousel();
+    });
+    
+    // Next button click
+    nextBtn.addEventListener('click', () => {
+        const totalItems = getTotalVisibleItems();
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
+    });
+    
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            const totalItems = getTotalVisibleItems();
+            if (index < totalItems) {
+                currentIndex = index;
+                updateCarousel();
+            }
+        });
+    });
+    
+    // Touch events for swipe functionality
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    awardsCarousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    awardsCarousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swipe left (next)
+            nextBtn.click();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Swipe right (previous)
+            prevBtn.click();
+        }
+    }
+    
+    // Handle window resize to recalculate visible items
+    window.addEventListener('resize', () => {
+        // Reset to first slide on resize to avoid issues
+        currentIndex = 0;
+        updateCarousel();
+    });
+    
+    // Initialize carousel
+    updateCarousel();
+});
+
+// Awards Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const awardsModal = document.getElementById('awardsModal');
+    const closeAwardsModalBtn = document.getElementById('closeAwardsModal');
+    const awardModalImage = document.getElementById('awardModalImage');
+    const awardModalTitle = document.getElementById('awardModalTitle');
+    const awardModalDate = document.getElementById('awardModalDate');
+    const awardModalLocation = document.getElementById('awardModalLocation');
+    const awardModalDescription = document.getElementById('awardModalDescription');
+    
+    // Function to open awards modal
+    function openAwardsModal(imageData) {
+        if (awardsModal) {
+            // Populate modal content
+            awardModalImage.src = imageData.image;
+            awardModalImage.alt = imageData.title;
+            awardModalTitle.textContent = imageData.title;
+            awardModalDate.textContent = imageData.date || imageData.description; // Fallback to description if no date
+            awardModalLocation.textContent = imageData.location || ''; // Location if available
+            awardModalDescription.textContent = imageData.description || '';
+            
+            // Show modal
+            awardsModal.classList.remove('hidden');
+            awardsModal.classList.add('animate-fade-in');
+            document.body.classList.add('overflow-hidden');
+            
+            // Reinitialize Lucide icons for the modal
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+    }
+    
+    // Function to close awards modal
+    function closeAwardsModal() {
+        if (awardsModal) {
+            awardsModal.classList.add('hidden');
+            awardsModal.classList.remove('animate-fade-in');
+            document.body.classList.remove('overflow-hidden');
+        }
+    }
+    
+    // Add click event listeners to all carousel image wrappers
+    document.addEventListener('click', function(e) {
+        const imageWrapper = e.target.closest('.carousel-image-wrapper');
+        if (imageWrapper) {
+            e.preventDefault();
+            
+            const imageData = {
+                image: imageWrapper.dataset.image,
+                title: imageWrapper.dataset.title,
+                description: imageWrapper.dataset.description,
+                date: imageWrapper.dataset.date,
+                location: imageWrapper.dataset.location
+            };
+            
+            openAwardsModal(imageData);
+        }
+    });
+    
+    // Close modal when close button is clicked
+    if (closeAwardsModalBtn) {
+        closeAwardsModalBtn.addEventListener('click', closeAwardsModal);
+    }
+    
+    // Close modal when clicking outside the modal content
+    if (awardsModal) {
+        awardsModal.addEventListener('click', function(e) {
+            if (e.target === awardsModal) {
+                closeAwardsModal();
+            }
+        });
+    }
+    
+    // Close modal when pressing Escape key (update existing handler)
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (quoteRequestModal && !quoteRequestModal.classList.contains('hidden')) {
+                closeQuoteModal();
+            }
+            if (partnersModal && !partnersModal.classList.contains('hidden')) {
+                closePartnersModalFunc();
+            }
+            if (awardsModal && !awardsModal.classList.contains('hidden')) {
+                closeAwardsModal();
+            }
+        }
+    });
+});
+
+// Translation Process Carousel functionality (for service-translation.html)
+document.addEventListener('DOMContentLoaded', function() {
+    const processCarousel = document.getElementById('processCarousel');
+    const processItems = document.querySelectorAll('#processCarousel .carousel-item');
+    const processDotsContainer = document.getElementById('carouselDots');
+    const processPrevBtn = document.getElementById('prevBtn');
+    const processNextBtn = document.getElementById('nextBtn');
+    
+    if (!processCarousel || !processPrevBtn || !processNextBtn) return; // Exit if elements not found
+    
+    let processCurrentIndex = 0;
+    const processTotalItems = processItems.length;
+    
+    // Generate dots
+    for (let i = 0; i < processTotalItems; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('h-2', 'w-2', 'rounded-full', 'bg-gray-300');
+        if (i === 0) dot.classList.add('bg-primary', 'w-4');
+        dot.addEventListener('click', () => goToProcessSlide(i));
+        processDotsContainer.appendChild(dot);
+    }
+    
+    function updateProcessCarousel() {
+        // Ensure currentIndex is within bounds
+        if (processCurrentIndex >= processTotalItems) {
+            processCurrentIndex = 0;
+        } else if (processCurrentIndex < 0) {
+            processCurrentIndex = processTotalItems - 1;
+        }
+        
+        const translateValue = -processCurrentIndex * 100 + '%';
+        processCarousel.style.transform = `translateX(${translateValue})`;
+        
+        // Update dots
+        const dots = processDotsContainer.querySelectorAll('button');
+        dots.forEach((dot, index) => {
+            if (index === processCurrentIndex) {
+                dot.classList.remove('bg-gray-300', 'w-2');
+                dot.classList.add('bg-primary', 'w-4');
+            } else {
+                dot.classList.remove('bg-primary', 'w-4');
+                dot.classList.add('bg-gray-300', 'w-2');
+            }
+        });
+    }
+    
+    function goToProcessSlide(index) {
+        processCurrentIndex = index;
+        updateProcessCarousel();
+    }
+    
+    // Previous button click
+    processPrevBtn.addEventListener('click', () => {
+        processCurrentIndex = (processCurrentIndex - 1 + processTotalItems) % processTotalItems;
+        updateProcessCarousel();
+    });
+    
+    // Next button click
+    processNextBtn.addEventListener('click', () => {
+        processCurrentIndex = (processCurrentIndex + 1) % processTotalItems;
+        updateProcessCarousel();
+    });
+    
+    // Touch events for swipe functionality
+    let processeTouchStartX = 0;
+    let processTouchEndX = 0;
+    
+    processCarousel.addEventListener('touchstart', (e) => {
+        processeTouchStartX = e.changedTouches[0].screenX;
+    });
+    
+    processCarousel.addEventListener('touchend', (e) => {
+        processTouchEndX = e.changedTouches[0].screenX;
+        handleProcessSwipe();
+    });
+    
+    function handleProcessSwipe() {
+        const swipeThreshold = 50;
+        if (processTouchEndX < processeTouchStartX - swipeThreshold) {
+            // Swipe left (next)
+            processNextBtn.click();
+        } else if (processTouchEndX > processeTouchStartX + swipeThreshold) {
+            // Swipe right (previous)
+            processPrevBtn.click();
+        }
+    }
+    
+    // Initialize carousel
+    updateProcessCarousel();
+});
+
+// Tab functionality for service translation page
+document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    if (tabBtns.length === 0) return; // Exit if no tabs found
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and set inactive styles
+            tabBtns.forEach(b => {
+                b.classList.remove('active', 'bg-primary', 'text-white');
+                b.classList.add('bg-transparent', 'text-gray-600');
+                // Update hover classes for inactive state
+                b.classList.remove('hover:bg-primary-dark');
+                b.classList.add('hover:bg-gray-200', 'hover:text-gray-800');
+            });
+            
+            // Add active class to clicked button and set active styles
+            btn.classList.add('active', 'bg-primary', 'text-white');
+            btn.classList.remove('bg-transparent', 'text-gray-600');
+            // Update hover classes for active state
+            btn.classList.remove('hover:bg-gray-200', 'hover:text-gray-800');
+            btn.classList.add('hover:bg-primary-dark');
+            
+            // Hide all tab contents
+            tabContents.forEach(content => {
+                content.style.display = 'none';
+                content.classList.remove('active');
+            });
+            
+            // Show target tab content
+            const targetContent = document.getElementById(targetTab + '-tab');
+            if (targetContent) {
+                targetContent.style.display = 'block';
+                targetContent.classList.add('active');
+            }
+        });
+    });
 });

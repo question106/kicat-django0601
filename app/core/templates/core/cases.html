@@ -30,7 +30,7 @@
         <div class="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg bg-white">
             <div class="relative h-48">
             <img
-                src="{% static 'img/partners/ministry_of_culture_physical_tour.jpg' %}"
+                src="{% static 'img/partners/korea_ministry_of_culture_physical_tour.jpg' %}"
                 alt="문화체육관광부 국제회의 통역"
                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
@@ -99,7 +99,7 @@
         <div class="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg bg-white">
             <div class="relative h-48">
             <img
-                src="{% static 'img/partners/kdi.jpg' %}"
+                src="{% static 'img/partners/KDI_logo.jpeg' %}"
                 alt="KDI KSP 영문보고서 감수 및 현지어 번역"
                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
@@ -582,157 +582,77 @@
     <div class="mt-12 mb-12 relative overflow-hidden">
         <h3 class="text-lg font-medium text-center mb-6">수상 및 학술대회</h3>
         
+        {% if award_slides %}
         <div class="carousel-container relative">
-        <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
-            <!-- Carousel items -->
-            <div class="carousel-item min-w-full px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1742415888265-d5044039d8e6?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                        data-title="우수 번역상 수상" 
-                        data-description="2022년 한국번역가협회">
-                    <img src="https://images.unsplash.com/photo-1742415888265-d5044039d8e6?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="우수 번역상 수상" class="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-300" />
+            <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
+                {% load static %}
+                
+                <!-- Render slides using pre-calculated slide data -->
+                {% for slide in award_slides %}
+                <div class="carousel-item min-w-full px-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        {% for award in slide %}
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                            <div class="carousel-image-wrapper cursor-pointer" 
+                                    data-image="{{ award.image.url }}" 
+                                    data-title="{{ award.title }}" 
+                                    data-description="{{ award.description }}"
+                                    data-date="{{ award.get_formatted_date }}"
+                                    data-location="{{ award.location }}">
+                                <img src="{{ award.image.url }}" alt="{{ award.title }}" class="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-300" />
+                            </div>
+                            <div class="p-3 sm:p-4">
+                                <h4 class="font-medium mb-1 text-sm sm:text-base">{{ award.title }}</h4>
+                                <p class="text-xs sm:text-sm text-mutedForeground">
+                                    {% if award.short_description %}
+                                        {{ award.short_description }}
+                                    {% else %}
+                                        {{ award.get_year_location }}
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="p-3 sm:p-4">
-                    <h4 class="font-medium mb-1 text-sm sm:text-base">우수 번역상 수상</h4>
-                    <p class="text-xs sm:text-sm text-mutedForeground">2022년 한국번역가협회</p>
-                </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&auto=format&fit=crop&q=80" 
-                        data-title="국제 번역 컨퍼런스" 
-                        data-description="2023년 서울">
-                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&auto=format&fit=crop&q=80" alt="국제 번역 컨퍼런스" class="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-3 sm:p-4">
-                    <h4 class="font-medium mb-1 text-sm sm:text-base">국제 번역 컨퍼런스</h4>
-                    <p class="text-xs sm:text-sm text-mutedForeground">2023년 서울</p>
-                </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow hidden sm:block">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" 
-                        data-title="번역 품질 인증" 
-                        data-description="2023년 품질인증원">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" alt="번역 품질 인증" class="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-3 sm:p-4">
-                    <h4 class="font-medium mb-1 text-sm sm:text-base">번역 품질 인증</h4>
-                    <p class="text-xs sm:text-sm text-mutedForeground">2023년 품질인증원</p>
-                </div>
-                </div>
-            </div>
+                {% endfor %}
             </div>
             
-            <div class="carousel-item min-w-full px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&auto=format&fit=crop&q=80" 
-                        data-title="아시아 번역 심포지엄" 
-                        data-description="2022년 도쿄">
-                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&auto=format&fit=crop&q=80" alt="아시아 번역 심포지엄" class="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-3 sm:p-4">
-                    <h4 class="font-medium mb-1 text-sm sm:text-base">아시아 번역 심포지엄</h4>
-                    <p class="text-xs sm:text-sm text-mutedForeground">2022년 도쿄</p>
-                </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=600&auto=format&fit=crop&q=80" 
-                        data-title="최우수 현지화 서비스상" 
-                        data-description="2023년 글로벌 비즈니스 어워드">
-                    <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=600&auto=format&fit=crop&q=80" alt="최우수 현지화 서비스상" class="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-3 sm:p-4">
-                    <h4 class="font-medium mb-1 text-sm sm:text-base">최우수 현지화 서비스상</h4>
-                    <p class="text-xs sm:text-sm text-mutedForeground">2023년 글로벌 비즈니스 어워드</p>
-                </div>
-                </div>
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow hidden sm:block">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" 
-                        data-title="언어 기술 컨퍼런스" 
-                        data-description="2023년 부산">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" alt="언어 기술 컨퍼런스" class="w-full h-40 sm:h-48 object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-3 sm:p-4">
-                    <h4 class="font-medium mb-1 text-sm sm:text-base">언어 기술 컨퍼런스</h4>
-                    <p class="text-xs sm:text-sm text-mutedForeground">2023년 부산</p>
-                </div>
-                </div>
-            </div>
-            </div>
+            <!-- Navigation buttons (only show if more than 1 slide) -->
+            {% if total_slides > 1 %}
+            <button class="carousel-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md hover:bg-white z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-6 w-6 text-primary">
+                <path d="m15 18-6-6 6-6"></path>
+                </svg>
+            </button>
+            <button class="carousel-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md hover:bg-white z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right h-6 w-6 text-primary">
+                <path d="m9 18 6-6-6-6"></path>
+                </svg>
+            </button>
             
-            <!-- Mobile-only slide for the third item -->
-            <div class="carousel-item min-w-full px-4 block sm:hidden">
-            <div class="grid grid-cols-1 gap-4">
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" 
-                        data-title="번역 품질 인증" 
-                        data-description="2023년 품질인증원">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" alt="번역 품질 인증" class="w-full h-40 object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-3">
-                    <h4 class="font-medium mb-1 text-sm">번역 품질 인증</h4>
-                    <p class="text-xs text-mutedForeground">2023년 품질인증원</p>
-                </div>
-                </div>
+            <!-- Simplified Indicators -->
+            <div class="carousel-indicators flex justify-center gap-2 mt-4">
+                {% for slide in award_slides %}
+                <button class="carousel-indicator w-2 h-2 rounded-full bg-gray-300 {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></button>
+                {% endfor %}
             </div>
-            </div>
-            
-            <!-- Mobile-only slide for the sixth item -->
-            <div class="carousel-item min-w-full px-4 block sm:hidden">
-            <div class="grid grid-cols-1 gap-4">
-                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="carousel-image-wrapper cursor-pointer" 
-                        data-image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" 
-                        data-title="언어 기술 컨퍼런스" 
-                        data-description="2023년 부산">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" alt="언어 기술 컨퍼런스" class="w-full h-40 object-cover hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-3">
-                    <h4 class="font-medium mb-1 text-sm">언어 기술 컨퍼런스</h4>
-                    <p class="text-xs text-mutedForeground">2023년 부산</p>
-                </div>
-                </div>
-            </div>
+            {% endif %}
+        </div>
+        {% else %}
+        <!-- No awards message -->
+        <div class="text-center py-12">
+            <div class="text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-gray-400">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <path d="M3 6h18"></path>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <p class="text-lg font-medium">아직 등록된 수상 및 학술대회가 없습니다.</p>
+                <p class="text-sm mt-1">관리자 페이지에서 수상 내역을 추가해보세요.</p>
             </div>
         </div>
-        
-        <!-- Navigation buttons -->
-        <button class="carousel-prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md hover:bg-white z-10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left h-6 w-6 text-primary">
-            <path d="m15 18-6-6 6-6"></path>
-            </svg>
-        </button>
-        <button class="carousel-next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 rounded-full p-2 shadow-md hover:bg-white z-10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right h-6 w-6 text-primary">
-            <path d="m9 18 6-6-6-6"></path>
-            </svg>
-        </button>
-        
-        <!-- Indicators -->
-        <div class="carousel-indicators flex justify-center gap-2 mt-4">
-            <button class="carousel-indicator w-2 h-2 rounded-full bg-gray-300 active" data-index="0"></button>
-            <button class="carousel-indicator w-2 h-2 rounded-full bg-gray-300" data-index="1"></button>
-            <button class="carousel-indicator w-2 h-2 rounded-full bg-gray-300 block sm:hidden" data-index="2"></button>
-            <button class="carousel-indicator w-2 h-2 rounded-full bg-gray-300 block sm:hidden" data-index="3"></button>
-        </div>
-        
-        <!-- Screen size indicator (hidden in production) -->
-        <div class="fixed bottom-4 right-4 bg-black/70 text-white text-xs px-2 py-1 rounded-md z-50 hidden">
-            <span class="block sm:hidden">xs (mobile)</span>
-            <span class="hidden sm:block md:hidden">sm (small tablet)</span>
-            <span class="hidden md:block lg:hidden">md (tablet/laptop)</span>
-            <span class="hidden lg:block xl:hidden">lg (desktop)</span>
-            <span class="hidden xl:block">xl (large desktop)</span>
-        </div>
-        </div>
+        {% endif %}
     </div>
     <!-- End of Company Awards & Certifications Carousel Gallery -->
 
@@ -770,14 +690,10 @@
             <div class="p-4 border-b bg-gray-50 flex flex-col items-start">
             <div class="flex items-center justify-between w-full">
                 <div>
-                <div class="font-bold text-gray-900">김지영</div>
+                <div class="font-bold text-gray-900">김○○ 님</div>
                 <div class="text-sm text-gray-600">법무법인 국제, 법률 고문</div>
             </div>
-                <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0077B5">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path>
-                </svg>
-                </div>
+
             </div>
             <div class="mt-2">
                 <span class="bg-accent text-xs px-2 py-1 font-medium text-primary">법률 번역</span>
@@ -804,14 +720,9 @@
             <div class="p-4 border-b bg-gray-50 flex flex-col items-start">
             <div class="flex items-center justify-between w-full">
                 <div>
-                <div class="font-bold text-gray-900">이민호</div>
+                <div class="font-bold text-gray-900">이○○</div>
                 <div class="text-sm text-gray-600">테크코프, 기술 이사</div>
             </div>
-                <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
-                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"></path>
-                </svg>
-                </div>
             </div>
             <div class="mt-2">
                 <span class="bg-accent text-xs px-2 py-1 font-medium text-primary">기술 문서</span>
@@ -838,13 +749,8 @@
             <div class="p-4 border-b bg-gray-50 flex flex-col items-start">
             <div class="flex items-center justify-between w-full">
                 <div>
-                <div class="font-bold text-gray-900">박수진</div>
+                <div class="font-bold text-gray-900">박○○</div>
                 <div class="text-sm text-gray-600">글로벌마케팅, 마케팅 매니저</div>
-            </div>
-                <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E4405F">
-                    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 1 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"></path>
-                </svg>
             </div>
         </div>
             <div class="mt-2">
@@ -870,13 +776,13 @@
     </div>
         <!-- CTA Button with Animation -->
         <div class="mt-12 text-center">
-        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-12 px-8 py-3 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 quote-request-btn group">
+        <a href="https://pf.kakao.com/_dVjAxl" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-12 px-8 py-3 rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
             <span>문의하기</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform">
             <path d="M5 12h14"></path>
             <path d="m12 5 7 7-7 7"></path>
             </svg>
-        </button>
+        </a>
         </div>
     </div>
 </section>
