@@ -38,51 +38,6 @@ services:
       - proxy-network
       - kicat-internal
 
-  # Nginx configuration setup (runs once then exits)
-  nginx-config:
-    image: alpine:latest
-    container_name: kicat-nginx-config
-    volumes:
-      - nginx-vhost:/etc/nginx/vhost.d
-      - media-files:/vol/web/media:ro
-    command: |
-      sh -c "
-        echo 'Setting up nginx media configuration for kicat domains...'
-        
-        # Create media serving config for each domain
-        cat > /etc/nginx/vhost.d/kicat.co.kr << 'EOF'
-      location /media/ {
-          alias /vol/web/media/;
-          expires 1y;
-          add_header Cache-Control 'public, immutable';
-          access_log off;
-      }
-      EOF
-        
-        cat > /etc/nginx/vhost.d/www.kicat.co.kr << 'EOF'  
-      location /media/ {
-          alias /vol/web/media/;
-          expires 1y;
-          add_header Cache-Control 'public, immutable';
-          access_log off;
-      }
-      EOF
-        
-        cat > /etc/nginx/vhost.d/kicat.graceed.co.uk << 'EOF'
-      location /media/ {
-          alias /vol/web/media/;
-          expires 1y;
-          add_header Cache-Control 'public, immutable';
-          access_log off;
-      }
-      EOF
-        
-        echo '✅ nginx media configuration created for kicat domains'
-      "
-    restart: "no"
-    networks:
-      - proxy-network
-
   # PostgreSQL Database
   db:
     image: postgres:13-alpine
@@ -101,9 +56,6 @@ volumes:
   static-files:
   media-files:
   postgres-data:
-  nginx-vhost:
-    external: true
-    name: nginx-proxy_nginx-vhost
 
 networks:
   proxy-network:

@@ -27,7 +27,7 @@ urlpatterns = [
 ]
 
 # Serve media files in both development and production
-# Note: In production, consider using nginx for better performance
+# This is needed because we're using nginx-proxy which forwards requests to Django
 urlpatterns += static(
     settings.MEDIA_URL, 
     document_root=settings.MEDIA_ROOT,

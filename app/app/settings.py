@@ -135,10 +135,8 @@ MEDIA_ROOT = '/vol/web/media'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/static/'
-# Remove STATICFILES_DIRS to avoid duplication with AppDirectoriesFinder
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'quotes/static')
-# ]
+# Static files are now served from the core app's static directory
+# Django's AppDirectoriesFinder automatically finds static files from all installed apps
 STATIC_ROOT = '/vol/web/static'
 
 # Optimize static files collection for limited memory
