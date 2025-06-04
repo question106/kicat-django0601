@@ -57,7 +57,7 @@ class CasesView(TemplateView):
         return context
 
 class KoreaCultureArtsTranslationAgencyView(TemplateView):
-    template_name = "core/korea-culture-arts-translation-agency.html"
+    template_name = "core/korea_culture_arts_translation_agency.html"
     http_method_names = ["get"]
 
 class QuoteRequestView(TemplateView):
