@@ -25,17 +25,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(
+    filter(
+        None, 
+        os.environ.get('ALLOWED_HOSTS', '').split(' '),
 
-# Add any additional hosts from environment variable
-additional_hosts = os.environ.get('ALLOWED_HOSTS', '')
-if additional_hosts:
-    ALLOWED_HOSTS.extend(
-        filter(
-            None, 
-            additional_hosts.split(','),
-        )
     )
+)
 
 
 # Application definition
@@ -172,11 +169,3 @@ if not DEBUG:
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
 FILE_UPLOAD_PERMISSIONS = 0o644
-
-# Site settings for social media sharing
-SITE_ID = 1
-SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
-
-# Use X-Forwarded-Proto header for HTTPS detection behind proxy
-USE_X_FORWARDED_HOST = True
-USE_X_FORWARDED_PORT = True

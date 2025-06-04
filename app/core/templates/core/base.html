@@ -10,11 +10,10 @@
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
-        <meta property="og:url" content="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.get_host }}{{ request.get_full_path }}">
-        <meta property="og:title" content="글로벌번역 - 전문 번역 서비스 | 한국통번역주식회사">
-        <meta property="og:description" content="빠르고 신뢰할 수 있는 전문 번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다. 정부기관, 대기업 번역 실적 다수.">
-        <meta property="og:image" content="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.get_host }}{% static 'img/logo_symbol.png' %}">
-        <meta property="og:image:secure_url" content="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.get_host }}{% static 'img/logo_symbol.png' %}">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:title" content="글로벌번역 - 전문 번역 서비스">
+        <meta property="og:description" content="빠르고 신뢰할 수 있는 전문 번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.">
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo_symbol.png' %}">
         <meta property="og:image:width" content="545">
         <meta property="og:image:height" content="397">
         <meta property="og:image:type" content="image/png">
@@ -24,25 +23,20 @@
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:url" content="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.get_host }}{{ request.get_full_path }}">
+        <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
         <meta name="twitter:title" content="글로벌번역 - 전문 번역 서비스">
         <meta name="twitter:description" content="빠르고 신뢰할 수 있는 전문 번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.">
-        <meta name="twitter:image" content="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.get_host }}{% static 'img/logo_symbol.png' %}">
+        <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo_symbol.png' %}">
         <meta name="twitter:image:alt" content="한국통번역주식회사 로고">
 
-        <!-- KakaoTalk & Korean Social Media optimized -->
+        <!-- KakaoTalk specific (uses Open Graph but sometimes needs these) -->
         <meta property="kakao:card" content="summary">
-        <meta property="kakao:image" content="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.get_host }}{% static 'img/logo_symbol.png' %}">
-        <meta name="naver-site-verification" content="">
+        <meta property="kakao:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo_symbol.png' %}">
         
         <!-- Additional meta tags for better social sharing -->
         <meta name="author" content="한국통번역주식회사">
         <meta name="robots" content="index, follow">
         <meta name="theme-color" content="#710600">
-        <meta name="keywords" content="번역, 통역, 전문번역, 기업번역, 정부기관번역, 글로벌번역, 한국통번역">
-        
-        <!-- Canonical URL -->
-        <link rel="canonical" href="{% if request.is_secure %}https{% else %}http{% endif %}://{{ request.get_host }}{{ request.get_full_path }}">
 
         <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
