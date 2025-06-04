@@ -4,139 +4,103 @@
 - File uploads work locally (`manage.py runserver`)
 - In production (Docker + nginx-proxy), files upload but return 404 when accessed
 - **NEW ISSUE**: Quote request modal shows "오류가 발생했습니다. 다시 시도해 주세요." error when uploading files
+- **DISCOVERY**: Files ARE being uploaded (visible in admin), but nginx can't serve them
 
 ## 🕵️ Enhanced Step-by-Step Debugging
 
-### Step 1: Debug File Upload Errors in Production
+### ⚠️ **URGENT: Volume Mapping Issue Detected**
 
-#### Check Django Logs
+From your nginx logs, I can see:
 ```bash
-# View Django application logs in production
-docker logs kicat-app -f
-
-# Or if using Docker Compose
-docker-compose logs app -f
+[error] open() "/vol/web/media/quotes/translation_material_GvoTFxs.pdf" failed (2: No such file or directory)
 ```
 
-#### Test File Upload Directly
+**This means nginx-proxy can't see the files that Django is saving!**
+
+### Step 1: Check Volume Mapping Issue
+
+#### Test 1: Check if Django App Can See Its Own Files
 ```bash
-# SSH into the production container to test file uploads
-docker exec -it kicat-app /bin/sh
+# Check files in Django container
+docker exec -it kicat-app ls -la /vol/web/media/quotes/
 
-# Inside container, check media directory permissions
-ls -la /vol/web/media/
-ls -la /vol/web/media/quotes/
-
-# Check if Django can write to media directory
-touch /vol/web/media/test_file.txt
-ls -la /vol/web/media/test_file.txt
-rm /vol/web/media/test_file.txt
+# Check if files exist after upload
+docker exec -it kicat-app find /vol/web/media -name "*.pdf" -ls
 ```
 
-#### Check File Upload Limits
+#### Test 2: Check if nginx-proxy Can See Media Files
 ```bash
-# Check Django settings in production
-docker exec -it kicat-app python manage.py shell
+# Check if nginx-proxy container can see the media files
+docker exec -it nginx-proxy ls -la /vol/web/media/quotes/ 2>/dev/null || echo "nginx-proxy CANNOT see media files"
 
-# In Django shell:
-from django.conf import settings
-print(f"MEDIA_ROOT: {settings.MEDIA_ROOT}")
-print(f"MEDIA_URL: {settings.MEDIA_URL}")
-print(f"FILE_UPLOAD_MAX_MEMORY_SIZE: {getattr(settings, 'FILE_UPLOAD_MAX_MEMORY_SIZE', 'Not set')}")
-print(f"DATA_UPLOAD_MAX_MEMORY_SIZE: {getattr(settings, 'DATA_UPLOAD_MAX_MEMORY_SIZE', 'Not set')}")
+# Check nginx-proxy volume mounts
+docker inspect nginx-proxy | grep -A 20 "Mounts"
 ```
 
-### Step 2: Test File Upload API Endpoint
-
-#### Manual API Test
+#### Test 3: Check Volume Configuration
 ```bash
-# Test the quote creation endpoint with curl
-curl -X POST https://kicat.co.kr/quotes/create/ \
-  -H "Content-Type: multipart/form-data" \
-  -F "name=Test User" \
-  -F "company=Test Company" \
-  -F "email=test@example.com" \
-  -F "phone=123-456-7890" \
-  -F "service_type=1" \
-  -F "message=Test message" \
-  -F "file=@test_document.pdf" \
-  -H "X-CSRFToken: YOUR_CSRF_TOKEN"
+# List all volumes
+docker volume ls | grep media
+
+# Check volume details
+docker volume inspect kicat-production_media-files
 ```
 
-### Step 3: Check Browser Network Tab
+### Step 2: Fix Volume Mapping
 
-1. Open Browser DevTools (F12)
-2. Go to Network tab
-3. Try submitting the quote form
-4. Look for the POST request to `/quotes/create/`
-5. Check:
-   - Request headers
-   - Request payload
-   - Response status and body
-   - Any error messages
+The issue is that **nginx-proxy and Django app don't share the same volume**. Here are the solutions:
 
-### Step 4: Common Production Issues & Solutions
+#### Solution A: Let Django Serve Media Files (Recommended)
+Since Django is already serving static files, let it handle media too:
 
-#### Issue 1: Missing CSRF Token
-**Symptoms**: 403 Forbidden errors
-**Solution**: Ensure CSRF token is properly included in form
+**No nginx configuration needed** - Django will serve media files directly through the app.
 
-#### Issue 2: nginx Client Max Body Size
-**Symptoms**: 413 Request Entity Too Large
-**Solution**: Add to nginx configuration:
-```nginx
-client_max_body_size 10M;
+#### Solution B: Fix nginx-proxy Volume Mapping (Advanced)
+If you want nginx to serve media files directly:
+
+1. **Update proxy-stack to mount media volume:**
+```yaml
+# In portainer-setup/proxy-stack/docker-compose.yml
+volumes:
+  - kicat-production_media-files:/vol/web/media:ro  # Add this line
 ```
 
-#### Issue 3: Volume Permissions
-**Symptoms**: Permission denied errors
-**Solution**: Check Docker volume permissions:
-```bash
-docker exec -it kicat-app ls -la /vol/web/media/
-# Should show app:app ownership
-```
+2. **Redeploy proxy stack** with the new volume mapping
 
-#### Issue 4: Missing Media Directory
-**Symptoms**: Directory not found errors
-**Solution**: Create media directories:
-```bash
-docker exec -it kicat-app mkdir -p /vol/web/media/quotes/
-docker exec -it kicat-app mkdir -p /vol/web/media/prepared_quotes/
-```
+### Step 3: Check JavaScript Cache Issue
 
-### Step 5: Enhanced Debugging (NEW)
+#### Force Cache Reload
+1. **Hard refresh** in browser: `Ctrl+F5` (Windows) or `Cmd+Shift+R` (Mac)
+2. **Clear browser cache** for your domain
+3. **Check if new JavaScript loads** - the file upload UI should now change when you select a file
 
-#### Check Enhanced Error Logs
-With the updated view, you'll now see detailed error information:
-```bash
-# Watch logs in real-time during file upload
-docker logs kicat-app -f | grep -E "(POST data|FILES data|Content length|Error|quote)"
-```
+### Step 4: Test Both Fixes
 
-#### Test File Upload Validation
-The updated view now checks:
-- ✅ Service type exists
-- ✅ File is present in request
-- ✅ File validation passes
-- ✅ Database save succeeds
+#### Test File Upload UI
+1. Upload a file in the quote modal
+2. **UI should change** to show file name and size
+3. Form should submit successfully
+
+#### Test Media File Access
+1. Upload a file via quote modal
+2. Go to admin panel and click the file link
+3. **File should download/display** instead of 404 error
 
 ## 🎯 Quick Production Test Commands
 
 ```bash
-# 1. Check if the application is running
-curl -I https://kicat.co.kr/
+# 1. Check if Django can see uploaded files
+docker exec -it kicat-app ls -la /vol/web/media/quotes/
 
-# 2. Check media directory structure
-docker exec -it kicat-app find /vol/web/media -type d -ls
+# 2. Check if nginx-proxy can see the same files
+docker exec -it nginx-proxy ls -la /vol/web/media/quotes/ || echo "Volume not mounted"
 
-# 3. Check Django debug endpoint (if enabled)
-curl https://kicat.co.kr/debug-media/
+# 3. Upload a test file and check immediately
+# (Upload via modal, then run):
+docker exec -it kicat-app ls -la /vol/web/media/quotes/ | tail -1
 
-# 4. Test small file upload
-# Create a small test file first, then use the modal to upload it
-
-# 5. Check container resource limits
-docker stats kicat-app
+# 4. Test media URL directly
+curl -I https://kicat.graceed.co.uk/media/quotes/[FILENAME]
 ```
 
 ## 🔧 Enhanced Error Messages
@@ -154,6 +118,13 @@ The updated Django view now provides specific error messages:
 2. **Test File Upload**: Try uploading a small file and check the specific error message
 3. **Check Logs**: Monitor Docker logs for detailed error information
 4. **Fix Based on Specific Error**: Use the enhanced error messages to identify the exact issue
+
+## 🎯 Expected Results After Volume Fix
+
+1. **JavaScript Cache Fixed**: File upload UI will show selected file name and change appearance
+2. **Volume Mapping Fixed**: nginx will be able to serve media files OR Django will serve them directly
+3. **File Upload Works**: Both upload and file access will work properly
+4. **404 Errors Gone**: Clicking file links in admin will download/display files correctly
 
 ## 🕵️ Step-by-Step Debugging
 
