@@ -658,7 +658,7 @@
             </svg>
             <span class="text-xs">견적</span>
         </a>
-        <a href="mailto:contact@globaltrans.kr" class="bg-secondary text-white p-3 flex flex-col items-center justify-center hover:bg-secondaryDark transition-colors shadow-lg">
+        <a href="mailto:kicat@kicat.co.kr" class="bg-secondary text-white p-3 flex flex-col items-center justify-center hover:bg-secondaryDark transition-colors shadow-lg">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail h-5 w-5 mb-1">
             <rect width="20" height="16" x="2" y="4" rx="2"></rect>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
@@ -697,7 +697,7 @@
             </svg>
             <span>견적</span>
             </a>
-            <a href="mailto:contact@globaltrans.kr" class="menu-item menu-services">
+            <a href="mailto:kicat@kicat.co.kr" class="menu-item menu-services">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
@@ -739,7 +739,8 @@
                     <div class="absolute left-0 mt-1 w-48 bg-white shadow-lg rounded-sm border border-gray-100 hidden group-hover:block z-50">
                         <a href="{% url 'core:service_translation' %}#translation-types" class="text-primary block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">번역 종류</a>
                         <a href="{% url 'core:service_translation' %}#translation-process" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">진행 절차</a>
-                        <a href="{% url 'core:service_translation' %}#translation-rates" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">번역 요율</a>
+                        <a href="{% url 'core:service_translation' %}#languages" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">지원 언어</a>
+                        <a href="{% url 'core:service_translation' %}#translation-pricing" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary">번역 요율</a>
                     </div>
                 </div>
                 <a href="{% url 'core:service_others' %}" class="text-base font-medium text-gray-800 hover:text-primary hover:border-primary transition-all px-2 py-1">
@@ -751,7 +752,7 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <!-- Language Switcher -->
+                <!-- Language Switcher 
                 <div class="relative hidden md:block">
                 <button id="language-dropdown-button" class="flex items-center gap-1 text-sm font-medium px-3 py-2 hover:bg-gray-100">
                     <i data-lucide="globe" class="h-4 w-4"></i>
@@ -764,7 +765,7 @@
                     <a href="#" class="language-option block px-2 py-1.5 text-sm hover:bg-gray-100 cursor-pointer" data-lang="zh">中文</a>
                     <a href="#" class="language-option block px-2 py-1.5 text-sm hover:bg-gray-100 cursor-pointer" data-lang="es">Español</a>
                 </div>
-                </div>
+                </div>-->
                 
                 <button class="hidden md:flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-10 px-4 py-2 quote-request-btn transition-colors">
                 견적 문의
@@ -1182,7 +1183,7 @@
                 <li class="flex items-center">
                     <i data-lucide="mail" class="h-4 w-4 text-primary mr-2"></i>
                     <span class="text-muted-foreground">이메일:</span>
-                    <a href="mailto:contact@globaltrans.kr" class="ml-2 font-medium hover:text-primary transition-colors">kicat@kicat.co.kr</a>
+                    <a href="mailto:kicat@kicat.co.kr" class="ml-2 font-medium hover:text-primary transition-colors">kicat@kicat.co.kr</a>
                 </li>
                 <!--<li class="flex items-center">
                     <i data-lucide="clock" class="h-4 w-4 text-primary mr-2"></i>
