@@ -4,13 +4,13 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch, cm
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image, PageBreak
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
+from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT, TA_JUSTIFY
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from django.core.files.base import ContentFile
 from django.conf import settings
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
 
@@ -19,27 +19,34 @@ class QuotePDFGenerator:
         self.styles = getSampleStyleSheet()
         self.buffer = BytesIO()
         
-        # Register Korean font with proper error handling
+        # KICAT Brand Colors
+        self.primary_color = colors.HexColor('#710600')  # KICAT Primary Red
+        self.secondary_color = colors.HexColor('#d09101')  # KICAT Secondary Gold
+        self.accent_color = colors.HexColor('#f8f9fa')  # Light background
+        self.text_color = colors.HexColor('#2c3e50')  # Dark text
+        self.muted_color = colors.HexColor('#6c757d')  # Muted text
+        
+        # Register fonts with proper error handling
         try:
-            # Try multiple CID fonts for better Korean support
+            # Try multiple fonts for better support
             pdfmetrics.registerFont(UnicodeCIDFont('HeiseiMin-W3'))
-            self.korean_font = 'HeiseiMin-W3'
+            self.font = 'HeiseiMin-W3'
             print("✅ Registered HeiseiMin-W3 font")
         except Exception as e:
             try:
                 pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
-                self.korean_font = 'HeiseiKakuGo-W5'
+                self.font = 'HeiseiKakuGo-W5'
                 print("✅ Registered HeiseiKakuGo-W5 font")
             except Exception as e2:
                 try:
                     pdfmetrics.registerFont(UnicodeCIDFont('STSong-Light'))
-                    self.korean_font = 'STSong-Light'
+                    self.font = 'STSong-Light'
                     print("✅ Registered STSong-Light font")
                 except Exception as e3:
-                    self.korean_font = 'Helvetica'
+                    self.font = 'Helvetica'
                     print(f"⚠️ Using Helvetica fallback. Errors: {e}, {e2}, {e3}")
                 
-        print(f"Using font: {self.korean_font}")
+        print(f"Using font: {self.font}")
         
     def generate_quote_pdf(self, quote):
         """Generate a professional PDF quote for the given Quote object"""
@@ -48,31 +55,35 @@ class QuotePDFGenerator:
             pagesize=A4,
             rightMargin=2*cm,
             leftMargin=2*cm,
-            topMargin=2*cm,
+            topMargin=1.5*cm,
             bottomMargin=2*cm
         )
         
         # Build PDF content
         story = []
         
-        # Header with logo and quote info
-        story.extend(self._create_header_with_quote_info(quote))
-        story.append(Spacer(1, 0.5*cm))
+        # Header with company branding
+        story.extend(self._create_header(quote))
+        story.append(Spacer(1, 0.8*cm))
         
-        # Client information
-        story.extend(self._create_client_info(quote))
-        story.append(Spacer(1, 0.5*cm))
+        # Quote information banner
+        story.extend(self._create_quote_info_banner(quote))
+        story.append(Spacer(1, 0.6*cm))
         
-        # Service details table
-        story.extend(self._create_service_table(quote))
-        story.append(Spacer(1, 0.5*cm))
+        # Client information card
+        story.extend(self._create_client_info_card(quote))
+        story.append(Spacer(1, 0.6*cm))
+        
+        # Service details section
+        story.extend(self._create_service_details(quote))
+        story.append(Spacer(1, 0.8*cm))
         
         # Terms and conditions
-        story.extend(self._create_terms_and_conditions())
+        story.extend(self._create_terms_section())
         story.append(Spacer(1, 1*cm))
         
-        # Footer
-        story.extend(self._create_footer())
+        # Footer with signature
+        story.extend(self._create_footer_section())
         
         # Build PDF
         doc.build(story)
@@ -83,256 +94,414 @@ class QuotePDFGenerator:
         
         return pdf_content
     
-    def _create_header_with_quote_info(self, quote):
-        """Create header with company info and quote number"""
+    def _create_header(self, quote):
+        """Create modern header with company branding"""
         elements = []
         
-        # Company header with red background
-        company_name = "한국통번역주식회사"
-        quote_title = f"견적서 #{quote.id:04d}"
+        # Top border line
+        top_line = Table([['']]) 
+        top_line.setStyle(TableStyle([
+            ('LINEABOVE', (0, 0), (-1, -1), 3, self.primary_color),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ]))
+        elements.append(top_line)
+        elements.append(Spacer(1, 0.3*cm))
         
-        header_data = [
-            [company_name, quote_title]
-        ]
+        # Company header with logo space and contact info
+        company_name = "Korea Translation & Interpretation Co., Ltd."
+        tagline = "Professional Translation & Interpretation Services"
         
-        header_table = Table(header_data, colWidths=[12*cm, 6*cm])
+        # Header content
+        header_left = f"""
+        <font size="20" color="#710600"><b>{company_name}</b></font><br/>
+        <font size="11" color="#6c757d">{tagline}</font>
+        """
+        
+        # Contact info aligned right
+        contact_info = f"""
+        <font size="9" color="#2c3e50">
+        <b>Seoul, Gangnam-gu, South Korea</b><br/>
+        Phone: +82-2-6265-6159<br/>
+        Email: kicat@kicat.co.kr
+        </font>
+        """
+        
+        header_data = [[Paragraph(header_left, self.styles['Normal']), 
+                       Paragraph(contact_info, self.styles['Normal'])]]
+        
+        header_table = Table(header_data, colWidths=[11*cm, 7*cm])
         header_table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, -1), colors.HexColor('#8B0000')),
-            ('TEXTCOLOR', (0, 0), (-1, -1), colors.white),
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
             ('ALIGN', (0, 0), (0, 0), 'LEFT'),
             ('ALIGN', (1, 0), (1, 0), 'RIGHT'),
-            ('FONTNAME', (0, 0), (-1, -1), self.korean_font),
-            ('FONTSIZE', (0, 0), (0, 0), 16),
-            ('FONTSIZE', (1, 0), (1, 0), 20),
-            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-            ('LEFTPADDING', (0, 0), (-1, -1), 15),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 15),
-            ('TOPPADDING', (0, 0), (-1, -1), 10),
+            ('TOPPADDING', (0, 0), (-1, -1), 5),
             ('BOTTOMPADDING', (0, 0), (-1, -1), 10),
         ]))
         
         elements.append(header_table)
+        elements.append(Spacer(1, 0.4*cm))
         
-        # Company details and quote details
+        return elements
+    
+    def _create_quote_info_banner(self, quote):
+        """Create quote information banner"""
+        elements = []
+        
         current_date = datetime.now()
         
-        address = "서울특별시 강남구 도산대로 4200"
-        phone = "+82-2-2022-0000"
-        email = "info@kicat.co.kr"
-        date_str = f"날짜: {current_date.strftime('%Y년 %m월 %d일')}"
-        client_id = f"고객 ID: {quote.id:06d}"
+        # Quote banner with gradient-like effect
+        quote_number = f"QUOTE #{quote.id:04d}"
+        quote_date = current_date.strftime('%B %d, %Y')
+        valid_until = (current_date + timedelta(days=30)).strftime('%B %d, %Y')
         
-        details_data = [
-            [address, date_str],
-            [phone, ""],
-            [email, client_id]
-        ]
+        banner_content = f"""
+        <font size="24" color="white"><b>{quote_number}</b></font>
+        """
         
-        details_table = Table(details_data, colWidths=[9*cm, 9*cm])
-        details_table.setStyle(TableStyle([
-            ('FONTNAME', (0, 0), (-1, -1), self.korean_font),
-            ('FONTSIZE', (0, 0), (-1, -1), 10),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
-            ('ALIGN', (1, 0), (1, -1), 'RIGHT'),
-            ('TOPPADDING', (0, 0), (-1, -1), 5),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+        date_content = f"""
+        <font size="10" color="white">
+        <b>Issue Date:</b> {quote_date}<br/>
+        <b>Valid Until:</b> {valid_until}<br/>
+        <b>Client ID:</b> {quote.id:06d}
+        </font>
+        """
+        
+        banner_data = [[Paragraph(banner_content, self.styles['Normal']), 
+                       Paragraph(date_content, self.styles['Normal'])]]
+        
+        banner_table = Table(banner_data, colWidths=[10*cm, 8*cm])
+        banner_table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, -1), self.primary_color),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('ALIGN', (0, 0), (0, 0), 'LEFT'),
+            ('ALIGN', (1, 0), (1, 0), 'RIGHT'),
+            ('LEFTPADDING', (0, 0), (-1, -1), 20),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 20),
+            ('TOPPADDING', (0, 0), (-1, -1), 15),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 15),
         ]))
         
-        elements.append(details_table)
-        elements.append(Spacer(1, 0.5*cm))
+        elements.append(banner_table)
         
         return elements
     
-    def _create_client_info(self, quote):
-        """Create client information section"""
+    def _create_client_info_card(self, quote):
+        """Create client information card with modern styling"""
         elements = []
         
-        # Section header using Paragraph for better font control
-        header_style = ParagraphStyle(
-            'ClientHeader',
+        # Section title
+        title_style = ParagraphStyle(
+            'ClientTitle',
             parent=self.styles['Normal'],
-            fontSize=12,
+            fontSize=14,
+            fontName=self.font,
+            textColor=self.primary_color,
             spaceAfter=10,
-            fontName=self.korean_font,
-            textColor=colors.black
+            spaceBefore=5
         )
         
-        elements.append(Paragraph("고객 정보", header_style))
+        elements.append(Paragraph("CLIENT INFORMATION", title_style))
         
-        # Client details
-        company_info = f"회사: {quote.company}" if quote.company else "회사: -"
-        name_info = f"담당자: {quote.name}" if quote.name else "담당자: -"
-        phone_info = f"연락처: {quote.phone}" if quote.phone else "연락처: -"
+        # Client details in a card-like format
+        client_info = f"""
+        <font size="11" color="#2c3e50">
+        <b>Company:</b> {quote.company or 'Not specified'}<br/>
+        <b>Contact Person:</b> {quote.name or 'Not specified'}<br/>
+        <b>Phone:</b> {quote.phone or 'Not specified'}<br/>
+        <b>Email:</b> {quote.email or 'Not specified'}
+        </font>
+        """
         
-        client_data = [
-            [company_info, ""],
-            [name_info, ""],
-            [phone_info, ""]
-        ]
+        # Service request details
+        service_info = f"""
+        <font size="11" color="#2c3e50">
+        <b>Service Type:</b> {quote.service_type.name}<br/>
+        <b>Category:</b> {quote.service_type.category.name}<br/>
+        <b>Request Date:</b> {quote.created_at.strftime('%B %d, %Y')}
+        </font>
+        """
         
-        client_table = Table(client_data, colWidths=[18*cm])
-        client_table.setStyle(TableStyle([
-            ('FONTNAME', (0, 0), (-1, -1), self.korean_font),
-            ('FONTSIZE', (0, 0), (-1, -1), 10),
-            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        info_data = [[Paragraph(client_info, self.styles['Normal']), 
+                     Paragraph(service_info, self.styles['Normal'])]]
+        
+        info_table = Table(info_data, colWidths=[9*cm, 9*cm])
+        info_table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, -1), self.accent_color),
             ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-            ('TOPPADDING', (0, 0), (-1, -1), 3),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 3),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('LEFTPADDING', (0, 0), (-1, -1), 15),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 15),
+            ('TOPPADDING', (0, 0), (-1, -1), 15),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 15),
+            ('LINEBELOW', (0, 0), (-1, -1), 1, colors.HexColor('#e9ecef')),
         ]))
         
-        elements.append(client_table)
+        elements.append(info_table)
+        
+        # Add project description if available
+        if quote.message:
+            elements.append(Spacer(1, 0.3*cm))
+            desc_title = Paragraph("PROJECT DESCRIPTION", title_style)
+            elements.append(desc_title)
+            
+            desc_content = f"""
+            <font size="10" color="#2c3e50">
+            {quote.message}
+            </font>
+            """
+            
+            desc_table = Table([[Paragraph(desc_content, self.styles['Normal'])]], colWidths=[18*cm])
+            desc_table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, -1), colors.HexColor('#fff3cd')),
+                ('LEFTPADDING', (0, 0), (-1, -1), 15),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 15),
+                ('TOPPADDING', (0, 0), (-1, -1), 10),
+                ('BOTTOMPADDING', (0, 0), (-1, -1), 10),
+                ('LINEBELOW', (0, 0), (-1, -1), 1, colors.HexColor('#ffeaa7')),
+            ]))
+            elements.append(desc_table)
         
         return elements
     
-    def _create_service_table(self, quote):
-        """Create service details table matching the design"""
+    def _create_service_details(self, quote):
+        """Create enhanced service details table"""
         elements = []
         
-        # Service table header
-        header_data = [["설명", "수량", "가격", "총액"]]
+        # Section title
+        title_style = ParagraphStyle(
+            'ServiceTitle',
+            parent=self.styles['Normal'],
+            fontSize=14,
+            fontName=self.font,
+            textColor=self.primary_color,
+            spaceAfter=15,
+            spaceBefore=5
+        )
         
-        # Service items
-        service_description = f"{quote.service_type.name}"
-        if quote.message:
-            service_description += f" - {quote.message[:30]}..."
+        elements.append(Paragraph("SERVICE DETAILS & PRICING", title_style))
         
-        service_data = [
-            [service_description, "1", "500,000원", "500,000원"]
-        ]
+        # Service table with enhanced styling
+        header_data = [["Description", "Qty", "Unit Price", "Total"]]
         
-        # Combine header and data
+        # Get quote items or create default if none exist
+        quote_items = quote.items.all()
+        service_data = []
+        
+        if quote_items.exists():
+            # Use actual quote items
+            for item in quote_items:
+                service_data.append([
+                    item.item_description,
+                    str(item.quantity),
+                    f"₩{item.unit_price:,.2f}",
+                    f"₩{item.total_price:,.2f}"
+                ])
+        else:
+            # Fallback to default service if no items exist
+            service_description = f"{quote.service_type.name}"
+            if quote.message and len(quote.message) > 30:
+                service_description += f"\n{quote.message[:50]}..."
+            
+            service_data.append([
+                service_description,
+                "1",
+                "₩500,000.00",
+                "₩500,000.00"
+            ])
+        
         table_data = header_data + service_data
         
-        service_table = Table(table_data, colWidths=[8*cm, 3*cm, 3.5*cm, 3.5*cm])
+        service_table = Table(table_data, colWidths=[8.5*cm, 2.5*cm, 3.5*cm, 3.5*cm])
         service_table.setStyle(TableStyle([
             # Header styling
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#f0f0f0')),
-            ('FONTNAME', (0, 0), (-1, -1), self.korean_font),
-            ('FONTSIZE', (0, 0), (-1, 0), 11),
-            ('FONTSIZE', (0, 1), (-1, -1), 10),
+            ('BACKGROUND', (0, 0), (-1, 0), self.primary_color),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+            ('FONTNAME', (0, 0), (-1, -1), self.font),
+            ('FONTSIZE', (0, 0), (-1, 0), 12),
+            ('FONTSIZE', (0, 1), (-1, -1), 11),
             ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
             ('ALIGN', (0, 1), (0, -1), 'LEFT'),
             ('ALIGN', (1, 1), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            
+            # Row styling
+            ('BACKGROUND', (0, 1), (-1, -1), colors.white),
+            ('TEXTCOLOR', (0, 1), (-1, -1), self.text_color),
             
             # Borders
-            ('LINEBELOW', (0, 0), (-1, 0), 1, colors.black),
-            ('LINEBELOW', (0, -1), (-1, -1), 1, colors.black),
-            ('LINEBEFORE', (0, 0), (0, -1), 1, colors.black),
-            ('LINEAFTER', (-1, 0), (-1, -1), 1, colors.black),
-            ('INNERGRID', (0, 0), (-1, -1), 0.5, colors.grey),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, colors.white),
+            ('LINEBELOW', (0, -1), (-1, -1), 1, colors.HexColor('#dee2e6')),
+            ('LINEBEFORE', (0, 0), (0, -1), 1, self.primary_color),
+            ('LINEAFTER', (-1, 0), (-1, -1), 1, self.primary_color),
+            ('INNERGRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#dee2e6')),
             
             # Padding
-            ('TOPPADDING', (0, 0), (-1, -1), 8),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 8),
-            ('LEFTPADDING', (0, 0), (-1, -1), 5),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 5),
+            ('TOPPADDING', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('TOPPADDING', (0, 1), (-1, -1), 10),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 10),
+            ('LEFTPADDING', (0, 0), (-1, -1), 8),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 8),
         ]))
         
         elements.append(service_table)
-        elements.append(Spacer(1, 0.5*cm))
+        elements.append(Spacer(1, 0.4*cm))
         
-        # Summary section
+        # Enhanced summary section using quote model calculations
+        if quote_items.exists():
+            subtotal = quote.subtotal
+            tax_amount = quote.tax_amount
+            total_amount = quote.total_amount
+        else:
+            # Fallback values
+            from decimal import Decimal
+            subtotal = Decimal('500000.00')
+            tax_amount = subtotal * Decimal('0.10')
+            total_amount = subtotal + tax_amount
+        
         summary_data = [
-            ["", "", "소계:", "500,000원"],
-            ["", "", "부가세 (10%):", "50,000원"],
-            ["", "", "총액:", "550,000원"]
+            ["", "", "Subtotal:", f"₩{subtotal:,.2f}"],
+            ["", "", "Tax (10%):", f"₩{tax_amount:,.2f}"],
+            ["", "", "", ""],  # Spacer row
+            ["", "", "TOTAL AMOUNT:", f"₩{total_amount:,.2f}"]
         ]
         
-        summary_table = Table(summary_data, colWidths=[8*cm, 3*cm, 3.5*cm, 3.5*cm])
+        summary_table = Table(summary_data, colWidths=[8.5*cm, 2.5*cm, 3.5*cm, 3.5*cm])
         summary_table.setStyle(TableStyle([
-            ('FONTNAME', (0, 0), (-1, -2), self.korean_font),
-            ('FONTNAME', (0, -1), (-1, -1), self.korean_font),
-            ('FONTSIZE', (0, 0), (-1, -1), 10),
+            ('FONTNAME', (0, 0), (-1, -2), self.font),
+            ('FONTNAME', (0, -1), (-1, -1), self.font),
+            ('FONTSIZE', (0, 0), (-1, -2), 11),
+            ('FONTSIZE', (0, -1), (-1, -1), 14),
             ('ALIGN', (2, 0), (-1, -1), 'CENTER'),
+            ('TEXTCOLOR', (0, 0), (-1, -2), self.text_color),
             
             # Total row highlighting
-            ('BACKGROUND', (0, -1), (-1, -1), colors.HexColor('#f0f0f0')),
-            ('FONTSIZE', (0, -1), (-1, -1), 12),
+            ('BACKGROUND', (0, -1), (-1, -1), self.secondary_color),
+            ('TEXTCOLOR', (0, -1), (-1, -1), colors.white),
             
-            # Borders for summary area
-            ('LINEBELOW', (2, -1), (-1, -1), 2, colors.black),
-            ('LINEBEFORE', (2, 0), (2, -1), 1, colors.black),
-            ('LINEAFTER', (-1, 0), (-1, -1), 1, colors.black),
-            ('INNERGRID', (2, 0), (-1, -1), 0.5, colors.grey),
+            # Borders
+            ('LINEABOVE', (2, -1), (-1, -1), 2, self.secondary_color),
+            ('LINEBELOW', (2, -1), (-1, -1), 2, self.secondary_color),
+            ('LINEBEFORE', (2, 0), (2, -1), 1, colors.HexColor('#dee2e6')),
+            ('LINEAFTER', (-1, 0), (-1, -1), 1, colors.HexColor('#dee2e6')),
+            ('INNERGRID', (2, 0), (-1, -2), 0.5, colors.HexColor('#dee2e6')),
             
             # Padding
-            ('TOPPADDING', (0, 0), (-1, -1), 5),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
-            ('LEFTPADDING', (0, 0), (-1, -1), 5),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 5),
+            ('TOPPADDING', (0, 0), (-1, -2), 6),
+            ('BOTTOMPADDING', (0, 0), (-1, -2), 6),
+            ('TOPPADDING', (0, -1), (-1, -1), 12),
+            ('BOTTOMPADDING', (0, -1), (-1, -1), 12),
+            ('LEFTPADDING', (0, 0), (-1, -1), 8),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 8),
         ]))
         
         elements.append(summary_table)
         
         return elements
     
-    def _create_terms_and_conditions(self):
-        """Create terms and conditions section"""
+    def _create_terms_section(self):
+        """Create enhanced terms and conditions section"""
         elements = []
         
-        header_style = ParagraphStyle(
-            'TermsHeader',
+        # Section title
+        title_style = ParagraphStyle(
+            'TermsTitle',
             parent=self.styles['Normal'],
-            fontSize=12,
+            fontSize=14,
+            fontName=self.font,
+            textColor=self.primary_color,
             spaceAfter=10,
-            fontName=self.korean_font
+            spaceBefore=5
         )
         
-        elements.append(Paragraph("약관 및 조건", header_style))
+        elements.append(Paragraph("TERMS & CONDITIONS", title_style))
         
-        terms_style = ParagraphStyle(
-            'Terms',
-            parent=self.styles['Normal'],
-            fontSize=9,
-            spaceAfter=5,
-            leftIndent=20,
-            fontName=self.korean_font
-        )
+        # Terms content with better formatting
+        terms_content = """
+        <font size="10" color="#2c3e50">
+        <b>1. Quote Validity:</b> This quote is valid for 30 days from the issue date.<br/><br/>
+        <b>2. Payment Terms:</b> Payment must be completed before service delivery begins.<br/><br/>
+        <b>3. Service Delivery:</b> Estimated delivery time will be confirmed upon project acceptance.<br/><br/>
+        <b>4. Modifications:</b> Any additional requirements or changes may result in revised pricing.<br/><br/>
+        <b>5. Quality Assurance:</b> All services include quality review and client approval process.
+        </font>
+        """
         
-        terms = [
-            "• 본 견적서는 30일간 유효합니다.",
-            "• 결제는 서비스 제공 전에 완료되어야 합니다.",
-            "• 추가 요구사항이 있을 경우 별도 협의가 필요합니다."
-        ]
+        terms_table = Table([[Paragraph(terms_content, self.styles['Normal'])]], colWidths=[18*cm])
+        terms_table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, -1), colors.HexColor('#f8f9fa')),
+            ('LEFTPADDING', (0, 0), (-1, -1), 20),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 20),
+            ('TOPPADDING', (0, 0), (-1, -1), 15),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 15),
+            ('LINEBEFORE', (0, 0), (0, -1), 3, self.secondary_color),
+        ]))
         
-        for term in terms:
-            elements.append(Paragraph(term, terms_style))
+        elements.append(terms_table)
         
         return elements
     
-    def _create_footer(self):
-        """Create footer with signature section"""
+    def _create_footer_section(self):
+        """Create professional footer with signature area"""
         elements = []
         
-        footer_style = ParagraphStyle(
-            'Footer',
+        # Thank you message
+        thank_you_style = ParagraphStyle(
+            'ThankYou',
             parent=self.styles['Normal'],
-            fontSize=10,
+            fontSize=12,
+            fontName=self.font,
+            textColor=self.primary_color,
             alignment=TA_CENTER,
-            fontName=self.korean_font,
-            spaceAfter=20
+            spaceAfter=15
         )
         
-        elements.append(Paragraph("견적 승인", footer_style))
-        elements.append(Spacer(1, 0.5*cm))
+        elements.append(Paragraph("Thank you for choosing Korea Translation & Interpretation Co., Ltd.", thank_you_style))
         
-        # Signature section
+        # Signature section with enhanced styling
+        signature_content = """
+        <font size="11" color="#2c3e50">
+        <b>To proceed with this quote, please sign below and return to us:</b>
+        </font>
+        """
+        
+        elements.append(Paragraph(signature_content, self.styles['Normal']))
+        elements.append(Spacer(1, 0.4*cm))
+        
+        # Signature fields
         signature_data = [
-            ["고객 서명", "날짜"],
-            ["", ""],
-            ["_" * 20, "_" * 20]
+            ["Client Signature", "Date", "KICAT Representative"],
+            ["", "", ""],
+            ["_" * 25, "_" * 15, "_" * 25],
+            ["", "", ""],
+            [f"Print Name: ________________", f"Date: ________", "Authorized by KICAT"]
         ]
         
-        signature_table = Table(signature_data, colWidths=[9*cm, 9*cm])
+        signature_table = Table(signature_data, colWidths=[6*cm, 4*cm, 8*cm])
         signature_table.setStyle(TableStyle([
-            ('FONTNAME', (0, 0), (-1, -1), self.korean_font),
-            ('FONTSIZE', (0, 0), (-1, -1), 10),
+            ('FONTNAME', (0, 0), (-1, -1), self.font),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('FONTSIZE', (0, 2), (-1, 2), 8),
+            ('FONTSIZE', (0, 4), (-1, 4), 9),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
             ('VALIGN', (0, 0), (-1, -1), 'BOTTOM'),
-            ('TOPPADDING', (0, 0), (-1, -1), 20),
+            ('TEXTCOLOR', (0, 0), (-1, -1), self.text_color),
+            ('TOPPADDING', (0, 0), (-1, -1), 10),
+            ('BOTTOMPADDING', (0, 2), (-1, 2), 5),
         ]))
         
         elements.append(signature_table)
+        elements.append(Spacer(1, 0.5*cm))
+        
+        # Footer line
+        footer_line = Table([['']]) 
+        footer_line.setStyle(TableStyle([
+            ('LINEBELOW', (0, 0), (-1, -1), 2, self.primary_color),
+            ('TOPPADDING', (0, 0), (-1, -1), 0),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ]))
+        elements.append(footer_line)
         
         return elements
 
@@ -343,7 +512,7 @@ def generate_quote_pdf(quote):
     pdf_content = generator.generate_quote_pdf(quote)
     
     # Create filename
-    filename = f"견적서_{quote.id}_{quote.name.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.pdf"
+    filename = f"KICAT_Quote_{quote.id:04d}_{quote.name.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.pdf"
     
     # Create ContentFile
     pdf_file = ContentFile(pdf_content, filename)

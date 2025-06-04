@@ -36,9 +36,9 @@ class CreateQuoteView(CreateView):
             files = request.FILES
             
             # Debug logging
-            logger.info(f"POST data: {data}")
-            logger.info(f"FILES data: {files}")
-            logger.info(f"Content length: {request.META.get('CONTENT_LENGTH', 'Not set')}")
+            logger.info("POST data: {}".format(data))
+            logger.info("FILES data: {}".format(files))
+            logger.info("Content length: {}".format(request.META.get('CONTENT_LENGTH', 'Not set')))
             
             # Get service_type from POST data
             service_type_id = data.get('service_type')
@@ -49,7 +49,7 @@ class CreateQuoteView(CreateView):
             try:
                 service_type = ServiceType.objects.get(id=service_type_id)
             except ServiceType.DoesNotExist:
-                logger.error(f"Service type {service_type_id} does not exist")
+                logger.error("Service type {} does not exist".format(service_type_id))
                 return JsonResponse({"status": "error", "message": "Invalid service type"}, status=400)
             
             # Check if file is required and present
@@ -71,7 +71,7 @@ class CreateQuoteView(CreateView):
             # Handle file
             uploaded_file = files.get('file')
             if uploaded_file:
-                logger.info(f"File uploaded: {uploaded_file.name}, size: {uploaded_file.size}")
+                logger.info("File uploaded: {}, size: {}".format(uploaded_file.name, uploaded_file.size))
                 quote.file = uploaded_file
             else:
                 logger.error("File upload field is empty")
@@ -79,21 +79,21 @@ class CreateQuoteView(CreateView):
                 
             quote.full_clean()  # Validate the model
             quote.save()
-            logger.info(f"Quote created successfully with ID: {quote.id}")
+            logger.info("Quote created successfully with ID: {}".format(quote.id))
             return JsonResponse({"status": "success"})
         except ValidationError as e:
-            logger.error(f"Validation error creating quote: {e}")
+            logger.error("Validation error creating quote: {}".format(e))
             error_messages = []
             if hasattr(e, 'error_dict'):
                 for field, errors in e.error_dict.items():
                     for error in errors:
-                        error_messages.append(f"{field}: {error}")
+                        error_messages.append("{}: {}".format(field, error))
             else:
                 error_messages = [str(e)]
-            return JsonResponse({"status": "error", "message": f"Validation failed: {', '.join(error_messages)}"}, status=400)
+            return JsonResponse({"status": "error", "message": "Validation failed: {}".format(', '.join(error_messages))}, status=400)
         except Exception as e:
-            logger.error(f"Unexpected error creating quote: {e}", exc_info=True)
-            return JsonResponse({"status": "error", "message": f"Server error: {str(e)}"}, status=500)
+            logger.error("Unexpected error creating quote: {}".format(e), exc_info=True)
+            return JsonResponse({"status": "error", "message": "Server error: {}".format(str(e))}, status=500)
 
 # Add this new view
 class GetServiceTypesView(View):
@@ -116,7 +116,7 @@ class GetServiceTypesView(View):
                 'service_types': list(service_types)
             })
         except Exception as e:
-            logger.error(f"Error fetching service types: {e}")
+            logger.error("Error fetching service types: {}".format(e))
             return JsonResponse({
                 'success': False,
                 'service_types': []
@@ -148,10 +148,10 @@ class GenerateQuotePDFView(View):
             })
             
         except Exception as e:
-            logger.error(f"Error generating PDF for quote {quote_id}: {e}")
+            logger.error("Error generating PDF for quote {}: {}".format(quote_id, e))
             return JsonResponse({
                 'success': False,
-                'message': f'Error generating PDF: {str(e)}'
+                'message': 'Error generating PDF: {}'.format(str(e))
             }, status=500)
     
     def get(self, request, quote_id):
@@ -164,9 +164,9 @@ class GenerateQuotePDFView(View):
             
             # Serve the PDF file
             response = HttpResponse(quote.prepared_quote_pdf.read(), content_type='application/pdf')
-            response['Content-Disposition'] = f'attachment; filename="{quote.prepared_quote_pdf.name}"'
+            response['Content-Disposition'] = 'attachment; filename="{}"'.format(quote.prepared_quote_pdf.name)
             return response
             
         except Exception as e:
-            logger.error(f"Error downloading PDF for quote {quote_id}: {e}")
+            logger.error("Error downloading PDF for quote {}: {}".format(quote_id, e))
             return HttpResponse("Error downloading PDF.", status=500)

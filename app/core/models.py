@@ -61,7 +61,7 @@ class Award(models.Model):
         ordering = ['display_order', '-date']
     
     def __str__(self):
-        return f"{self.title} ({self.date.year}년)"
+        return "{} ({}년)".format(self.title, self.date.year)
     
     def get_formatted_date(self):
         """Return formatted date string for display"""
@@ -69,4 +69,4 @@ class Award(models.Model):
     
     def get_year_location(self):
         """Return year and location for card subtitle"""
-        return f"{self.date.year}년 {self.location}"
+        return "{}년 {}".format(self.date.year, self.location)

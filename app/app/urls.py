@@ -15,9 +15,9 @@ def debug_media(request):
     media_root = settings.MEDIA_ROOT
     try:
         files = os.listdir(media_root)
-        return HttpResponse(f"Media root: {media_root}<br>Files: {files}")
+        return HttpResponse("Media root: {}<br>Files: {}".format(media_root, files))
     except Exception as e:
-        return HttpResponse(f"Error accessing media: {e}")
+        return HttpResponse("Error accessing media: {}".format(e))
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,3 +32,8 @@ urlpatterns += static(
     settings.MEDIA_URL, 
     document_root=settings.MEDIA_ROOT,
 )
+
+# Customize Django Admin Site Headers and Titles
+admin.site.site_header = "KICAT Admin Dashboard"
+admin.site.site_title = "KICAT Admin"
+admin.site.index_title = "Welcome to KICAT Administration"
