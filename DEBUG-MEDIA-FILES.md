@@ -3,7 +3,157 @@
 ## Problem Summary
 - File uploads work locally (`manage.py runserver`)
 - In production (Docker + nginx-proxy), files upload but return 404 when accessed
-- Need to determine: Are files uploaded? Are paths correct? Is nginx serving properly?
+- **NEW ISSUE**: Quote request modal shows "오류가 발생했습니다. 다시 시도해 주세요." error when uploading files
+
+## 🕵️ Enhanced Step-by-Step Debugging
+
+### Step 1: Debug File Upload Errors in Production
+
+#### Check Django Logs
+```bash
+# View Django application logs in production
+docker logs kicat-app -f
+
+# Or if using Docker Compose
+docker-compose logs app -f
+```
+
+#### Test File Upload Directly
+```bash
+# SSH into the production container to test file uploads
+docker exec -it kicat-app /bin/sh
+
+# Inside container, check media directory permissions
+ls -la /vol/web/media/
+ls -la /vol/web/media/quotes/
+
+# Check if Django can write to media directory
+touch /vol/web/media/test_file.txt
+ls -la /vol/web/media/test_file.txt
+rm /vol/web/media/test_file.txt
+```
+
+#### Check File Upload Limits
+```bash
+# Check Django settings in production
+docker exec -it kicat-app python manage.py shell
+
+# In Django shell:
+from django.conf import settings
+print(f"MEDIA_ROOT: {settings.MEDIA_ROOT}")
+print(f"MEDIA_URL: {settings.MEDIA_URL}")
+print(f"FILE_UPLOAD_MAX_MEMORY_SIZE: {getattr(settings, 'FILE_UPLOAD_MAX_MEMORY_SIZE', 'Not set')}")
+print(f"DATA_UPLOAD_MAX_MEMORY_SIZE: {getattr(settings, 'DATA_UPLOAD_MAX_MEMORY_SIZE', 'Not set')}")
+```
+
+### Step 2: Test File Upload API Endpoint
+
+#### Manual API Test
+```bash
+# Test the quote creation endpoint with curl
+curl -X POST https://kicat.co.kr/quotes/create/ \
+  -H "Content-Type: multipart/form-data" \
+  -F "name=Test User" \
+  -F "company=Test Company" \
+  -F "email=test@example.com" \
+  -F "phone=123-456-7890" \
+  -F "service_type=1" \
+  -F "message=Test message" \
+  -F "file=@test_document.pdf" \
+  -H "X-CSRFToken: YOUR_CSRF_TOKEN"
+```
+
+### Step 3: Check Browser Network Tab
+
+1. Open Browser DevTools (F12)
+2. Go to Network tab
+3. Try submitting the quote form
+4. Look for the POST request to `/quotes/create/`
+5. Check:
+   - Request headers
+   - Request payload
+   - Response status and body
+   - Any error messages
+
+### Step 4: Common Production Issues & Solutions
+
+#### Issue 1: Missing CSRF Token
+**Symptoms**: 403 Forbidden errors
+**Solution**: Ensure CSRF token is properly included in form
+
+#### Issue 2: nginx Client Max Body Size
+**Symptoms**: 413 Request Entity Too Large
+**Solution**: Add to nginx configuration:
+```nginx
+client_max_body_size 10M;
+```
+
+#### Issue 3: Volume Permissions
+**Symptoms**: Permission denied errors
+**Solution**: Check Docker volume permissions:
+```bash
+docker exec -it kicat-app ls -la /vol/web/media/
+# Should show app:app ownership
+```
+
+#### Issue 4: Missing Media Directory
+**Symptoms**: Directory not found errors
+**Solution**: Create media directories:
+```bash
+docker exec -it kicat-app mkdir -p /vol/web/media/quotes/
+docker exec -it kicat-app mkdir -p /vol/web/media/prepared_quotes/
+```
+
+### Step 5: Enhanced Debugging (NEW)
+
+#### Check Enhanced Error Logs
+With the updated view, you'll now see detailed error information:
+```bash
+# Watch logs in real-time during file upload
+docker logs kicat-app -f | grep -E "(POST data|FILES data|Content length|Error|quote)"
+```
+
+#### Test File Upload Validation
+The updated view now checks:
+- ✅ Service type exists
+- ✅ File is present in request
+- ✅ File validation passes
+- ✅ Database save succeeds
+
+## 🎯 Quick Production Test Commands
+
+```bash
+# 1. Check if the application is running
+curl -I https://kicat.co.kr/
+
+# 2. Check media directory structure
+docker exec -it kicat-app find /vol/web/media -type d -ls
+
+# 3. Check Django debug endpoint (if enabled)
+curl https://kicat.co.kr/debug-media/
+
+# 4. Test small file upload
+# Create a small test file first, then use the modal to upload it
+
+# 5. Check container resource limits
+docker stats kicat-app
+```
+
+## 🔧 Enhanced Error Messages
+
+The updated Django view now provides specific error messages:
+- **"Service type is required"** - Missing service_type field
+- **"Invalid service type"** - service_type ID doesn't exist
+- **"File upload is required"** - No file in request
+- **"Validation failed: [details]"** - Django model validation errors
+- **"Server error: [details]"** - Unexpected server errors
+
+## 🚀 Next Steps After Debugging
+
+1. **Deploy Enhanced Debug Version**: The updated code includes better error handling
+2. **Test File Upload**: Try uploading a small file and check the specific error message
+3. **Check Logs**: Monitor Docker logs for detailed error information
+4. **Fix Based on Specific Error**: Use the enhanced error messages to identify the exact issue
 
 ## 🕵️ Step-by-Step Debugging
 

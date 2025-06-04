@@ -33,16 +33,29 @@ class CreateQuoteView(CreateView):
     def post(self, request, *args, **kwargs):
         try:
             data = request.POST
+            files = request.FILES
+            
+            # Debug logging
+            logger.info(f"POST data: {data}")
+            logger.info(f"FILES data: {files}")
+            logger.info(f"Content length: {request.META.get('CONTENT_LENGTH', 'Not set')}")
             
             # Get service_type from POST data
             service_type_id = data.get('service_type')
             if not service_type_id:
+                logger.error("Service type not provided")
                 return JsonResponse({"status": "error", "message": "Service type is required"}, status=400)
             
             try:
                 service_type = ServiceType.objects.get(id=service_type_id)
             except ServiceType.DoesNotExist:
+                logger.error(f"Service type {service_type_id} does not exist")
                 return JsonResponse({"status": "error", "message": "Invalid service type"}, status=400)
+            
+            # Check if file is required and present
+            if 'file' not in files:
+                logger.error("File is required but not present in request")
+                return JsonResponse({"status": "error", "message": "File upload is required"}, status=400)
             
             # Create the Quote object with correct fields
             quote = Quote(
@@ -55,19 +68,32 @@ class CreateQuoteView(CreateView):
                 google_drive_link=data.get('google_drive_link', '')
             )
             
-            # Handle file if present
-            if 'file' in request.FILES:
-                quote.file = request.FILES['file']
+            # Handle file
+            uploaded_file = files.get('file')
+            if uploaded_file:
+                logger.info(f"File uploaded: {uploaded_file.name}, size: {uploaded_file.size}")
+                quote.file = uploaded_file
+            else:
+                logger.error("File upload field is empty")
+                return JsonResponse({"status": "error", "message": "File upload is required"}, status=400)
                 
             quote.full_clean()  # Validate the model
             quote.save()
+            logger.info(f"Quote created successfully with ID: {quote.id}")
             return JsonResponse({"status": "success"})
         except ValidationError as e:
             logger.error(f"Validation error creating quote: {e}")
-            return JsonResponse({"status": "error", "message": "Invalid data provided"}, status=400)
+            error_messages = []
+            if hasattr(e, 'error_dict'):
+                for field, errors in e.error_dict.items():
+                    for error in errors:
+                        error_messages.append(f"{field}: {error}")
+            else:
+                error_messages = [str(e)]
+            return JsonResponse({"status": "error", "message": f"Validation failed: {', '.join(error_messages)}"}, status=400)
         except Exception as e:
-            logger.error(f"Unexpected error creating quote: {e}")
-            return JsonResponse({"status": "error", "message": "An error occurred. Please try again."}, status=500)
+            logger.error(f"Unexpected error creating quote: {e}", exc_info=True)
+            return JsonResponse({"status": "error", "message": f"Server error: {str(e)}"}, status=500)
 
 # Add this new view
 class GetServiceTypesView(View):
