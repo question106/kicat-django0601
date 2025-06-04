@@ -543,10 +543,17 @@ $(document).on('click', '#js-quote-request-btn', function(e) {
     const phone = $('#phone');
     const service_type = $('#service_type');
     const message = $('#message');
+    const file = $('#file');
     
     // Basic validation
     if(!name.val() || !company.val() || !email.val() || !phone.val() || !service_type.val() || !message.val()) {
         alert("모든 필수 항목을 입력해주세요.");
+        return false;
+    }
+    
+    // File validation
+    if(!file[0].files || file[0].files.length === 0) {
+        alert("파일을 첨부해주세요.");
         return false;
     }
     
@@ -622,4 +629,69 @@ $(document).on('change', '#service_category', function() {
             }
         });
     }
+});
+
+// File upload handling for quote request modal
+$(document).ready(function() {
+    $('#file').on('change', function() {
+        const fileInput = this;
+        const uploadArea = $('#file-upload-area');
+        const placeholder = $('#upload-placeholder');
+        const fileSelected = $('#file-selected');
+        const fileName = $('#file-name');
+        
+        if (fileInput.files && fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            const fileSize = (file.size / 1024 / 1024).toFixed(2); // Size in MB
+            
+            // Update UI to show selected file
+            placeholder.addClass('hidden');
+            fileSelected.removeClass('hidden');
+            
+            // Display file name with size
+            fileName.text(`${file.name} (${fileSize}MB)`);
+            
+            // Change upload area styling to indicate file is selected
+            uploadArea.removeClass('border-gray-300 bg-muted')
+                     .addClass('border-primary bg-primary/5');
+            
+        } else {
+            // Reset to original state if no file selected
+            placeholder.removeClass('hidden');
+            fileSelected.addClass('hidden');
+            fileName.text('');
+            
+            // Reset upload area styling
+            uploadArea.removeClass('border-primary bg-primary/5')
+                     .addClass('border-gray-300 bg-muted');
+        }
+    });
+    
+    // Reset file upload UI when modal is closed
+    $(document).on('click', '#closeQuoteModal', function() {
+        // Reset file input and UI
+        $('#file').val('');
+        $('#upload-placeholder').removeClass('hidden');
+        $('#file-selected').addClass('hidden');
+        $('#file-name').text('');
+        $('#file-upload-area').removeClass('border-primary bg-primary/5')
+                              .addClass('border-gray-300 bg-muted');
+    });
+    
+    // Also reset when form is successfully submitted
+    const originalCloseQuoteModal = window.closeQuoteModal;
+    window.closeQuoteModal = function() {
+        // Reset file upload UI
+        $('#file').val('');
+        $('#upload-placeholder').removeClass('hidden');
+        $('#file-selected').addClass('hidden');
+        $('#file-name').text('');
+        $('#file-upload-area').removeClass('border-primary bg-primary/5')
+                              .addClass('border-gray-300 bg-muted');
+        
+        // Call original function
+        if (originalCloseQuoteModal) {
+            originalCloseQuoteModal();
+        }
+    };
 });
