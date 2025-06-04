@@ -1198,7 +1198,7 @@
                 <li class="flex items-start">
                     <i data-lucide="map-pin" class="h-4 w-4 text-primary mr-2 mt-0.5"></i>
                     <span class="text-muted-foreground">주소:</span>
-                    <span class="ml-2 font-medium">서울시 강남구 테헤란로364, 116, 10층 1055호(역삼동, 동경빌딩)</span>
+                    <span class="ml-2 font-medium">서울시 강남구 테헤란로, 116,, 10층 1055호(역삼동, 동경빌딩)</span>
                 </li>
                 <li class="flex items-center">
                     <i data-lucide="phone" class="h-4 w-4 text-primary mr-2"></i>
@@ -1246,6 +1246,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{% static 'js/main.js' %}?v=20250604-07"></script>
     <script src="https://unpkg.com/@material-tailwind/html@3.0.0-beta.7/dist/material-tailwind.umd.min.js" defer></script>
+
+    <!-- Channel.io Live Chat Plugin -->
+    <script>
+        window.channelPluginSettings = {
+            plugin_id: "f4d7908e-15d2-4fd4-a2f7-e7474f24a677"
+        };
+        (function() {
+            var node = document.createElement("div");
+            node.id = "ch-plugin";
+            document.body.appendChild(node);
+            var async_load = function() {
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "//cdn.channel.io/plugin/ch-plugin-web.js";
+                s.charset = "UTF-8";
+                var x = document.getElementsByTagName("script")[0];
+                x.parentNode.insertBefore(s, x);
+            };
+            if (window.attachEvent) {
+                window.attachEvent("onload", async_load);
+            } else {
+                window.addEventListener("load", async_load, false);
+            }
+        })();
+    </script>
 </body>
 </html>
 
