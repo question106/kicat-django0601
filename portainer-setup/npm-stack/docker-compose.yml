@@ -6,10 +6,10 @@ services:
     container_name: nginx-proxy-manager
     restart: unless-stopped
     ports:
-      # Temporarily use different ports to avoid conflict with current nginx-proxy
-      - '8080:80'    # HTTP (testing port)
+      # Production ports
+      - '80:80'      # HTTP 
       - '8081:81'    # Admin interface  
-      - '8443:443'   # HTTPS (testing port)
+      - '443:443'    # HTTPS
     volumes:
       - npm-data:/data
       - npm-letsencrypt:/etc/letsencrypt
