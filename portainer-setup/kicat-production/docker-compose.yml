@@ -17,6 +17,12 @@ services:
       - LETSENCRYPT_HOST=kicat.co.kr,www.kicat.co.kr,kicat.graceed.co.uk
       - LETSENCRYPT_EMAIL=question106@gmail.com
       
+      # File upload configuration for nginx-proxy
+      - CLIENT_MAX_BODY_SIZE=50m
+      - PROXY_CONNECT_TIMEOUT=60s
+      - PROXY_SEND_TIMEOUT=60s
+      - PROXY_READ_TIMEOUT=60s
+      
       # Django production settings
       - DEBUG=0
       - SECRET_KEY=your-production-secret-key-here
