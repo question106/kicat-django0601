@@ -28,10 +28,19 @@ urlpatterns = [
 
 # Serve media files in both development and production
 # This is needed because we're using nginx-proxy which forwards requests to Django
-urlpatterns += static(
-    settings.MEDIA_URL, 
-    document_root=settings.MEDIA_ROOT,
-)
+# Force media serving even in production (DEBUG=False)
+from django.views.static import serve
+from django.urls import re_path
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    # Force media serving in production
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]
 
 # Customize Django Admin Site Headers and Titles
 admin.site.site_header = "KICAT Admin Dashboard"
