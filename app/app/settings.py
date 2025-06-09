@@ -168,15 +168,34 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Security settings for production
 if not DEBUG:
-    # Temporarily disable HTTPS requirements for debugging admin login
-    # CSRF_COOKIE_SECURE = True
-    # SESSION_COOKIE_SECURE = True
+    # HTTPS settings for reverse proxy (nginx-proxy)
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    
+    # CSRF settings for HTTPS
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    
+    # CSRF trusted origins for your domains
+    CSRF_TRUSTED_ORIGINS = [
+        'https://kicat.co.kr',
+        'https://www.kicat.co.kr',
+        'https://kicat.graceed.co.uk',
+    ]
+    
+    # HSTS settings
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = 'same-origin'
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
+else:
+    # Development settings - allow HTTP
+    CSRF_TRUSTED_ORIGINS = [
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+    ]
 
 # File upload settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
