@@ -28,6 +28,7 @@ services:
       - acme-state:/etc/acme.sh
     environment:
       - DEFAULT_EMAIL=question106@gmail.com
+      - NGINX_PROXY_CONTAINER=nginx-proxy
     depends_on:
       - nginx-proxy
     restart: unless-stopped
