@@ -17,6 +17,7 @@ services:
       - kicat-production_media-files:/vol/web/media:ro
     networks:
       - npm-network
+      - proxy-network
     environment:
       # Optional: Set admin email
       - PUID=1000
@@ -31,4 +32,6 @@ volumes:
 
 networks:
   npm-network:
-    driver: bridge 
+    driver: bridge
+  proxy-network:
+    external: true 
