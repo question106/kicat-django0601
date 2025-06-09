@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      # Temporarily use different ports to avoid conflict with current nginx-proxy
+      - '8080:80'    # HTTP (testing port)
+      - '8081:81'    # Admin interface  
+      - '8443:443'   # HTTPS (testing port)
+    volumes:
+      - npm-data:/data
+      - npm-letsencrypt:/etc/letsencrypt
+      # Mount media files for serving (read-only)
+      - kicat-production_media-files:/vol/web/media:ro
+    networks:
+      - npm-network
+    environment:
+      # Optional: Set admin email
+      - PUID=1000
+      - PGID=1000
+
+volumes:
+  npm-data:
+  npm-letsencrypt:
+  # External volume from kicat-production
+  kicat-production_media-files:
+    external: true
+
+networks:
+  npm-network:
+    driver: bridge 
