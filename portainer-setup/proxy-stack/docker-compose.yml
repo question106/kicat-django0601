@@ -13,6 +13,7 @@ services:
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-html:/usr/share/nginx/html
       - ./nginx-configs:/etc/nginx/vhost.d:ro
+      - kicat-production_media-files:/vol/web/media:ro
     environment:
       # Timeout settings
       - PROXY_CONNECT_TIMEOUT=60s
@@ -45,6 +46,8 @@ volumes:
   nginx-vhost:
   nginx-html:
   acme-state:
+  kicat-production_media-files:
+    external: true
 
 networks:
   proxy-network:
