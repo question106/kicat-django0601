@@ -64,6 +64,12 @@ class Quote(models.Model):
                                         help_text=_("생성된 견적서 PDF"), verbose_name=_("견적서 PDF"))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("생성일"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("수정일"))
+    
+    # Email notification tracking fields
+    admin_notified = models.BooleanField(default=False, verbose_name=_("관리자 알림 전송됨"))
+    customer_notified = models.BooleanField(default=False, verbose_name=_("고객 알림 전송됨"))
+    quote_sent_notified = models.BooleanField(default=False, verbose_name=_("견적서 발송 알림됨"))
+    last_notification_sent = models.DateTimeField(null=True, blank=True, verbose_name=_("마지막 알림 전송일"))
 
     class Meta:
         verbose_name = _("견적서")

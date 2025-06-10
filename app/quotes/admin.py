@@ -56,10 +56,10 @@ class QuoteItemAdmin(admin.ModelAdmin):
 
 
 class QuoteAdmin(admin.ModelAdmin):
-    list_display = ('name', 'company', 'email', 'phone', 'service_type', 'status', 'items_count', 'quote_total', 'has_pdf', 'pdf_actions', 'created_at', 'updated_at')
-    list_filter = ('service_type', 'status', 'created_at')
+    list_display = ('name', 'company', 'email', 'phone', 'service_type', 'status', 'items_count', 'quote_total', 'has_pdf', 'email_status', 'pdf_actions', 'created_at', 'updated_at')
+    list_filter = ('service_type', 'status', 'admin_notified', 'customer_notified', 'quote_sent_notified', 'created_at')
     search_fields = ('name', 'company', 'email', 'phone')
-    readonly_fields = ('created_at', 'updated_at', 'pdf_preview', 'quote_summary')
+    readonly_fields = ('created_at', 'updated_at', 'pdf_preview', 'quote_summary', 'last_notification_sent')
     inlines = [QuoteItemInline]
     
     fieldsets = (
@@ -75,6 +75,10 @@ class QuoteAdmin(admin.ModelAdmin):
         }),
         (_('견적 관리'), {
             'fields': ('status', 'prepared_quote_pdf', 'pdf_preview')
+        }),
+        (_('이메일 알림 상태'), {
+            'fields': ('admin_notified', 'customer_notified', 'quote_sent_notified', 'last_notification_sent'),
+            'classes': ('collapse',)
         }),
         (_('시간 정보'), {
             'fields': ('created_at', 'updated_at'),
@@ -178,6 +182,24 @@ class QuoteAdmin(admin.ModelAdmin):
         return bool(obj.prepared_quote_pdf)
     has_pdf.boolean = True
     has_pdf.short_description = _('PDF 생성됨')
+    
+    def email_status(self, obj):
+        """Show email notification status"""
+        admin_icon = '✅' if obj.admin_notified else '❌'
+        customer_icon = '✅' if obj.customer_notified else '❌'
+        quote_icon = '✅' if obj.quote_sent_notified else '❌'
+        
+        return format_html(
+            '<div style="font-size: 11px; line-height: 1.2;">'
+            '<div>관리자: {}</div>'
+            '<div>고객확인: {}</div>'
+            '<div>견적완료: {}</div>'
+            '</div>',
+            admin_icon,
+            customer_icon,
+            quote_icon
+        )
+    email_status.short_description = _('이메일 상태')
     
     def pdf_actions(self, obj):
         """Show PDF action buttons"""

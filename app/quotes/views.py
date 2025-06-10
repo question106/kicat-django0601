@@ -6,6 +6,11 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from .models import Quote, ServiceType, ServiceCategory
 from .pdf_generator import generate_quote_pdf
+from .email_notifications import (
+    send_new_quote_notification_to_admin,
+    send_quote_confirmation_to_customer,
+    send_quote_ready_notification
+)
 import logging
 
 logger = logging.getLogger(__name__)
@@ -80,6 +85,11 @@ class CreateQuoteView(CreateView):
             quote.full_clean()  # Validate the model
             quote.save()
             logger.info("Quote created successfully with ID: {}".format(quote.id))
+            
+            # Send email notifications
+            send_new_quote_notification_to_admin(quote)
+            #send_quote_confirmation_to_customer(quote)
+            
             return JsonResponse({"status": "success"})
         except ValidationError as e:
             logger.error("Validation error creating quote: {}".format(e))
@@ -140,6 +150,9 @@ class GenerateQuotePDFView(View):
             if quote.status == 'prepare_quote':
                 quote.status = 'quote_sent'
                 quote.save()
+            
+            # Send email notifications
+            #send_quote_ready_notification(quote)
             
             return JsonResponse({
                 'success': True,
