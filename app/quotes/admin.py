@@ -56,7 +56,7 @@ class QuoteItemAdmin(admin.ModelAdmin):
 
 
 class QuoteAdmin(admin.ModelAdmin):
-    list_display = ('name', 'company', 'email', 'phone', 'service_type', 'status', 'items_count', 'quote_total', 'has_pdf', 'email_status', 'pdf_actions', 'created_at', 'updated_at')
+    list_display = ('name', 'company', 'email', 'phone', 'service_type', 'status', 'items_count', 'quote_total', 'has_pdf', 'pdf_actions', 'created_at', 'updated_at')
     list_filter = ('service_type', 'status', 'admin_notified', 'customer_notified', 'quote_sent_notified', 'created_at')
     search_fields = ('name', 'company', 'email', 'phone')
     readonly_fields = ('created_at', 'updated_at', 'pdf_preview', 'quote_summary', 'last_notification_sent')
