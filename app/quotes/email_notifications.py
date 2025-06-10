@@ -32,8 +32,13 @@ def send_new_quote_notification_to_admin(quote):
     try:
         # Check if already notified to prevent duplicates
         if quote.admin_notified:
+            logger.info(f"Admin already notified for quote {quote.id}, skipping")
             return
             
+        logger.info(f"Attempting to send admin notification for quote {quote.id}")
+        logger.info(f"Email settings - Host: {settings.EMAIL_HOST}, Port: {settings.EMAIL_PORT}")
+        logger.info(f"From: {settings.DEFAULT_FROM_EMAIL}, To: {settings.ADMIN_EMAIL}")
+        
         subject = f'새로운 견적 요청 - {quote.name} ({quote.company})'
         
         # Create HTML content
@@ -45,6 +50,8 @@ def send_new_quote_notification_to_admin(quote):
         # Create plain text version
         plain_message = strip_tags(html_message)
         
+        logger.info("Email content prepared, attempting to send...")
+        
         # Send email
         send_mail(
             subject=subject,
@@ -55,16 +62,18 @@ def send_new_quote_notification_to_admin(quote):
             fail_silently=False,
         )
         
+        logger.info("Email sent successfully!")
+        
         # Update notification status atomically
         with transaction.atomic():
             quote.admin_notified = True
             quote.last_notification_sent = timezone.now()
             quote.save(update_fields=['admin_notified', 'last_notification_sent'])
             
-        logger.info(f"Admin notification sent for quote {quote.id}")
+        logger.info(f"Admin notification completed for quote {quote.id}")
         
     except Exception as e:
-        logger.error(f"Failed to send admin notification for quote {quote.id}: {e}")
+        logger.error(f"Failed to send admin notification for quote {quote.id}: {e}", exc_info=True)
 
 @async_email
 def send_quote_confirmation_to_customer(quote):
