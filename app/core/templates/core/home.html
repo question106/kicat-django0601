@@ -64,14 +64,17 @@
                 <span class="text-xs font-medium line-clamp-1">행정사법 제23조에 의거하여 비밀엄수 준수</span>
             </div>
             </div>
-            <div class="flex flex-col sm:flex-row gap-4">
-            <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-11 px-8 py-2 transition-colors quote-request-btn">
-                견적 문의
-                <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
-            </button>
-            <a href="{% url 'core:service_interpretation' %}" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium border-2 border-accent bg-transparent text-gray-900 hover:bg-accent/10 h-11 px-8 py-2 transition-colors">
-                통역 서비스
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium bg-primary text-white hover:bg-primaryDark h-11 px-8 py-2 transition-colors quote-request-btn">
+                    견적 문의
+                    <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                </button>
+                <a href="{% url 'core:service_interpretation' %}" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium border-2 border-accent bg-transparent text-gray-900 hover:bg-accent/10 h-11 px-8 py-2 transition-colors">
+                    통역 서비스
+                </a>
+                <a href="{% url 'core:service_translation' %}" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium border-2 border-accent bg-transparent text-gray-900 hover:bg-accent/10 h-11 px-8 py-2 transition-colors">
+                    번역 서비스
+                </a>
             </div>
         </div>
         </div>

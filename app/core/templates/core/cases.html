@@ -639,19 +639,6 @@
             </div>
             {% endif %}
         </div>
-        {% else %}
-        <!-- No awards message -->
-        <div class="text-center py-12">
-            <div class="text-gray-500">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-gray-400">
-                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                    <path d="M3 6h18"></path>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-                <p class="text-lg font-medium">아직 등록된 수상 및 학술대회가 없습니다.</p>
-                <p class="text-sm mt-1">관리자 페이지에서 수상 내역을 추가해보세요.</p>
-            </div>
-        </div>
         {% endif %}
     </div>
     <!-- End of Company Awards & Certifications Carousel Gallery -->
@@ -681,7 +668,7 @@
         </h3>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
         <!-- LinkedIn-style Cards (Portrait) -->
         
         <!-- Card 1 - LinkedIn -->
@@ -691,7 +678,6 @@
             <div class="flex items-center justify-between w-full">
                 <div>
                 <div class="font-bold text-gray-900">김○○ 님</div>
-                <div class="text-sm text-gray-600">법무법인 국제, 법률 고문</div>
             </div>
 
             </div>
@@ -704,7 +690,7 @@
             <div class="p-5 flex-grow">
             <div class="bg-gray-50 p-3 rounded-lg border-l-4 border-primary border-b border-r border-t border-gray-100 mb-4">
                 <p class="text-gray-800 leading-relaxed">
-                "법률 문서 번역을 맡긴 통번역주식회사의 작업은 정말 놀라웠어요. <span class="text-primary font-medium">정확한</span> 번역과 함께 <span class="text-primary font-medium">세세한 부분</span>까지 놓치지 않고 신경 써주셨고, 특히 <span class="text-primary font-medium">각국 법률 용어</span>의 미묘한 차이를 정확히 파악해주셔서 큰 도움이 되었습니다. <span class="text-primary font-medium">전문성</span>이 돋보이는 작업이었어요."
+                "법률 문서 번역을 맡긴 통번역주식회사의 작업은 정말<span class="text-primary font-medium"> 놀라웠어요</span>."
                 </p>
             </div>
             
@@ -713,35 +699,6 @@
                 </div>
             </div>
             </div>
-
-        <!-- Card 2 - Facebook -->
-        <div class="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all flex flex-col overflow-hidden">
-            <!-- Card Header -->
-            <div class="p-4 border-b bg-gray-50 flex flex-col items-start">
-            <div class="flex items-center justify-between w-full">
-                <div>
-                <div class="font-bold text-gray-900">이○○</div>
-                <div class="text-sm text-gray-600">테크코프, 기술 이사</div>
-            </div>
-            </div>
-            <div class="mt-2">
-                <span class="bg-accent text-xs px-2 py-1 font-medium text-primary">기술 문서</span>
-            </div>
-            </div>
-
-            <!-- Card Content -->
-            <div class="p-5 flex-grow">
-            <div class="bg-gray-50 p-3 rounded-lg border-l-4 border-primary border-b border-r border-t border-gray-100 mb-4">
-                <p class="text-gray-800 leading-relaxed">
-                "통번역주식회사와 함께한 <span class="text-primary font-medium">5년</span>의 협력은 정말 만족스러웠어요. 특히 <span class="text-primary font-medium">기술 문서</span> 번역에서 보여준 전문성은 정말 놀랍습니다. 복잡한 기술 용어도 <span class="text-primary font-medium">자연스럽게</span> 번역해주시고, 원문의 의미를 <span class="text-primary font-medium">정확하게</span> 전달해주셔서 큰 도움이 되었습니다."
-                </p>
-            </div>
-
-            <div class="flex items-center justify-end text-gray-500 text-sm mt-auto">
-                <div class="text-xs">2023년 11월 24일</div>
-                </div>
-                </div>
-                </div>
         
         <!-- Card 3 - Instagram -->
         <div class="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all flex flex-col overflow-hidden">
@@ -750,7 +707,6 @@
             <div class="flex items-center justify-between w-full">
                 <div>
                 <div class="font-bold text-gray-900">박○○</div>
-                <div class="text-sm text-gray-600">글로벌마케팅, 마케팅 매니저</div>
             </div>
         </div>
             <div class="mt-2">
@@ -762,7 +718,9 @@
             <div class="p-5 flex-grow">
             <div class="bg-gray-50 p-3 rounded-lg border-l-4 border-primary border-b border-r border-t border-gray-100 mb-4">
                 <p class="text-gray-800 leading-relaxed">
-                "통번역주식회사와 함께한 마케팅 콘텐츠 현지화 작업은 정말 만족스러웠어요. 특히 <span class="text-primary font-medium">각국의 문화적 맥락</span>을 고려한 번역과 <span class="text-primary font-medium">자연스러운 표현</span>이 인상적이었습니다. 덕분에 우리 브랜드의 메시지가 <span class="text-primary font-medium">현지 고객들에게 더욱 공감</span>을 얻을 수 있었죠."
+                "특히 각국의 문화적 맥락을 고려한 <span class="text-primary font-medium">자연스러운 표현</span>이 인상적이었습니다.
+                덕분에 우리 브랜드의 메시지가 <span class="text-primary font-medium">현지 클라이언트에게</span> 보다 설득력을 얻을 수 있었던 것 같습니다. 
+                통번역주식회사와 함께한 <span class="text-primary font-medium">마케팅 콘텐츠 현지화</span> 작업은 정말 만족스러웠어요."
                 </p>
             </div>
             

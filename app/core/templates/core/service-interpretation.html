@@ -370,122 +370,147 @@
         </div>
 
         <!-- Desktop view -->
-        <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Step 1 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="message-square" class="h-8 w-8 text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">1.통역 의뢰 및 상담</h3>
-            <p class="text-mutedForeground text-sm">홈페이지 견적 요청 또는 이메일 문의</p>
-            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
-            </div>
-        </div>
+        <div class="hidden md:block">
+            <!-- 당일 처리 섹션 -->
+            <div class="relative bg-gradient-to-r from-secondary/15 to-secondary/15 p-6 mb-8">
+                <!-- 당일 처리 배지 -->
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <div class="bg-secondary text-white px-4 py-2 text-sm font-bold flex items-center gap-2 shadow-lg">
+                    <i data-lucide="zap" class="h-4 w-4"></i>
+                    당일 처리
+                </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
+                <!-- Step 1 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="message-square" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">1.통역 의뢰 및 상담</h3>
+                    <p class="text-mutedForeground text-sm">홈페이지 견적 요청 또는 이메일 문의</p>
+                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                    </div>
+                </div>
 
-        <!-- Step 2 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="users" class="h-8 w-8 text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">2.통역사 리스트 발송</h3>
-            <p class="text-mutedForeground text-sm">클라이언트-통역사 확정</p>
+                <!-- Step 2 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="users" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">2.통역사 리스트 발송</h3>
+                    <p class="text-mutedForeground text-sm">클라이언트-통역사 확정</p>
 
-            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
+                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="file-text" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">3.견적서 발송</h3>
+                    <p class="text-mutedForeground text-sm">500만원 미만 선결제</p>
+                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="user-check" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">4.통역사 배정</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                </div>
+                </div>
             </div>
-        </div>
-        <!-- Step 3 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="file-text" class="h-8 w-8 text-primary"></i>
+            
+            <!-- 나머지 단계들 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+                <!-- Step 5 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center md:col-start-1 lg:col-start-1 relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="file-input" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">5.회의 자료 및 참고자료 수신</h3>
+                    <p class="text-mutedForeground text-sm">클라이언트 송부</p>
+                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                    </div>
+                </div>
+                
+                <!-- Step 6 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="book-open" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">6.통역사 사전교육 실시</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                    </div>
+                </div>
+                
+                <!-- Step 7 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="mic" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">7.통역 진행</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                    </div>
+                </div>
+                
+                <!-- Step 8 -->
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                    <i data-lucide="check-circle" class="h-8 w-8 text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">8.입금 및 사후관리</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                </div>
             </div>
-            <h3 class="text-xl font-bold mb-2">3.견적서 발송</h3>
-            <p class="text-mutedForeground text-sm">500만원 미만 선결제</p>
-            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
-            </div>
-        </div>
-        <!-- Step 4 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="user-check" class="h-8 w-8 text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">4.통역사 배정</h3>
-            <p class="text-mutedForeground text-sm"></p>
-        </div>
-        
-        <!-- Step 5 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center md:col-start-1 lg:col-start-1 relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="file-input" class="h-8 w-8 text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">5.회의 자료 및 참고자료 수신</h3>
-            <p class="text-mutedForeground text-sm">클라이언트 송부</p>
-            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
-            </div>
-        </div>
-        
-        <!-- Step 6 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="book-open" class="h-8 w-8 text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">6.통역사 사전교육 실시</h3>
-            <p class="text-mutedForeground text-sm"></p>
-            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
-            </div>
-        </div>
-        
-        <!-- Step 7 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="mic" class="h-8 w-8 text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">7.통역 진행</h3>
-            <p class="text-mutedForeground text-sm"></p>
-            <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-            </svg>
-            </div>
-        </div>
-        
-        <!-- Step 8 -->
-        <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-            <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-            <i data-lucide="check-circle" class="h-8 w-8 text-primary"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">8.입금 및 사후관리</h3>
-            <p class="text-mutedForeground text-sm"></p>
-        </div>
         </div>
 
         <!-- Mobile carousel view -->
         <div class="md:hidden relative">
+        <!-- 당일 처리 표시 -->
+        <div id="sameDayBadge" class="text-center mb-4">
+            <div class="inline-flex bg-secondary text-white px-4 py-2 text-sm font-bold items-center gap-2 shadow-lg">
+            <i data-lucide="zap" class="h-4 w-4"></i>
+            당일 처리
+            </div>
+        </div>
+        
         <div class="carousel-container overflow-hidden">
             <div class="carousel-track flex transition-transform duration-300" id="processCarousel">
-            <!-- Step 1 -->
+            <!-- Step 1 - 당일 처리 -->
             <div class="carousel-item flex-shrink-0 w-full px-4">
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
                 <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
                     <i data-lucide="message-square" class="h-6 w-6 text-primary"></i>
                 </div>
@@ -494,9 +519,9 @@
                 </div>
             </div>
             
-            <!-- Step 2 -->
+            <!-- Step 2 - 당일 처리 -->
             <div class="carousel-item flex-shrink-0 w-full px-4">
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
                 <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
                     <i data-lucide="users" class="h-6 w-6 text-primary"></i>
                 </div>
@@ -505,9 +530,9 @@
                 </div>
             </div>
             
-            <!-- Step 3 -->
+            <!-- Step 3 - 당일 처리 -->
             <div class="carousel-item flex-shrink-0 w-full px-4">
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
                 <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
                     <i data-lucide="file-text" class="h-6 w-6 text-primary"></i>
                 </div>
@@ -516,9 +541,9 @@
                 </div>
             </div>
             
-            <!-- Step 4 -->
+            <!-- Step 4 - 당일 처리 -->
             <div class="carousel-item flex-shrink-0 w-full px-4">
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
                 <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
                     <i data-lucide="user-check" class="h-6 w-6 text-primary"></i>
                 </div>
@@ -624,6 +649,14 @@ document.addEventListener('DOMContentLoaded', () => {
         indicator.classList.add('bg-gray-300');
         }
     });
+    
+    // Show/hide 당일 처리 badge based on current step
+    const sameDayBadge = document.getElementById('sameDayBadge');
+    if (currentIndex <= 3) { // Steps 1-4 (indices 0-3)
+        sameDayBadge.style.display = 'block';
+    } else { // Steps 5-8 (indices 4-7)
+        sameDayBadge.style.display = 'none';
+    }
     }
     
     // Event listeners for buttons

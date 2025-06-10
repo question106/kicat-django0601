@@ -273,62 +273,78 @@
             </p>
             </div>
 
-            <!-- Desktop view -->
-            <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Step 1 -->
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-                    <i data-lucide="message-square" class="h-8 w-8 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">1.번역 의뢰 및 견적 상담</h3>
-                    <p class="text-mutedForeground text-sm">500만원 이하 선결제</p>
-                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                    </svg>
+                    <!-- Desktop view -->
+        <div class="hidden md:block">
+            <!-- 당일 처리 섹션 (첫 4개 단계) -->
+            <div class="relative mb-8 bg-secondary/15 p-6 rounded-lg">
+                <!-- 당일 처리 배지 -->
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <div class="bg-secondary text-white px-4 py-2 text-sm font-bold flex items-center gap-2 shadow-lg">
+                        <i data-lucide="zap" class="h-4 w-4"></i>
+                        당일 처리
                     </div>
                 </div>
-
-                <!-- Step 2 -->
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-                    <i data-lucide="users" class="h-8 w-8 text-primary"></i>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                        <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                        <i data-lucide="message-square" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">1.번역 의뢰 및 견적 상담</h3>
+                        <p class="text-mutedForeground text-sm">500만원 이하 선결제</p>
+                        <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">2.전문 번역사 배정</h3>
-                    <p class="text-mutedForeground text-sm">해당 분야 경력보유한 번역사</p>
-                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                    </svg>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                        <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                        <i data-lucide="users" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">2.전문 번역사 배정</h3>
+                        <p class="text-mutedForeground text-sm">해당 분야 경력보유한 번역사</p>
+                        <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                        <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                        <i data-lucide="file-text" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">3.번역</h3>
+                        <p class="text-mutedForeground text-sm"></p>
+                        <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary">
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                        <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
+                        <i data-lucide="user-check" class="h-8 w-8 text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">4. 1차 감수</h3>
+                        <p class="text-mutedForeground text-sm">원어민 감수</p>
                     </div>
                 </div>
-
-                <!-- Step 3 -->
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-                    <i data-lucide="file-text" class="h-8 w-8 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">3.번역</h3>
-                    <p class="text-mutedForeground text-sm"></p>
-                    <div class="absolute top-1/2 -right-3 md:-right-4 lg:-right-6 transform -translate-y-1/2 hidden md:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                    </svg>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
-                    <i data-lucide="user-check" class="h-8 w-8 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">4. 1차 감수</h3>
-                    <p class="text-mutedForeground text-sm">원어민 감수</p>
-                </div>
-
+            </div>
+            
+            <!-- 나머지 단계들 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
                 <!-- Step 5 -->
                 <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center md:col-start-1 lg:col-start-1 relative rounded-lg">
                     <div class="bg-primary/10 rounded-full h-16 w-16 flex items-center justify-center mb-4">
@@ -383,99 +399,108 @@
                     <p class="text-mutedForeground text-sm"></p>
                 </div>
             </div>
-            <!-- Mobile carousel view -->
-            <div class="md:hidden relative">
-            <div class="carousel-container overflow-hidden">
-                <div class="carousel-track flex transition-transform duration-300" id="processCarousel">
-                <!-- Step 1 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="message-square" class="h-6 w-6 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">1.번역 의뢰 및 견적 상담</h3>
-                    <p class="text-mutedForeground text-sm">500만원 이하 선결제</p>
-                    </div>
+        </div>
+                    <!-- Mobile carousel view -->
+        <div class="md:hidden relative">
+        <!-- 당일 처리 표시 -->
+        <div id="sameDayBadge" class="text-center mb-4">
+            <div class="inline-flex bg-secondary text-white px-4 py-2 text-sm font-bold items-center gap-2 shadow-lg">
+            <i data-lucide="zap" class="h-4 w-4"></i>
+            당일 처리
+            </div>
+        </div>
+        
+        <div class="carousel-container overflow-hidden">
+            <div class="carousel-track flex transition-transform duration-300" id="processCarousel">
+            <!-- Step 1 - 당일 처리 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="message-square" class="h-6 w-6 text-primary"></i>
                 </div>
-                
-                <!-- Step 2 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="users" class="h-6 w-6 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">2.전문 번역사 배정</h3>
-                    <p class="text-mutedForeground text-sm">해당 분야 경력보유한 번역사</p>
-                    </div>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="file-text" class="h-6 w-6 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">3.번역</h3>
-                        <p class="text-mutedForeground text-sm"></p>
-                    </div>
-                </div>
-                
-                <!-- Step 4 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="user-check" class="h-6 w-6 text-primary"></i>
-                    </div>
-                        <h3 class="text-xl font-bold mb-2">4. 1차 감수</h3>
-                    <p class="text-mutedForeground text-sm">원어민 감수</p>
-                    </div>
-                </div>
-                
-                <!-- Step 5 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="eye" class="h-6 w-6 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">5.번역사 확인</h3>
-                        <p class="text-mutedForeground text-sm"></p>
-                    </div>
-                </div>
-                
-                <!-- Step 6 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="clipboard-check" class="h-6 w-6 text-primary"></i>
-                    </div>
-                        <h3 class="text-xl font-bold mb-2">6. 2차 감수</h3>
-                    <p class="text-mutedForeground text-sm">해당 분야 전문가의 감수</p>
-                    </div>
-                </div>
-                
-                <!-- Step 7 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="send" class="h-6 w-6 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">7.제출</h3>
-                        <p class="text-mutedForeground text-sm"></p>
-                    </div>
-                </div>
-                
-                <!-- Step 8 -->
-                <div class="carousel-item flex-shrink-0 w-full px-4">
-                    <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
-                    <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
-                        <i data-lucide="credit-card" class="h-6 w-6 text-primary"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">8.입금 및 사후관리</h3>
-                        <p class="text-mutedForeground text-sm"></p>
-                    </div>
-                </div>
+                <h3 class="text-xl font-bold mb-2">1.번역 의뢰 및 견적 상담</h3>
+                <p class="text-mutedForeground text-sm">500만원 이하 선결제</p>
                 </div>
             </div>
+            
+            <!-- Step 2 - 당일 처리 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="users" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">2.전문 번역사 배정</h3>
+                <p class="text-mutedForeground text-sm">해당 분야 경력보유한 번역사</p>
+                </div>
+            </div>
+            
+            <!-- Step 3 - 당일 처리 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="file-text" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">3.번역</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                </div>
+            </div>
+            
+            <!-- Step 4 - 당일 처리 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-secondary/15 border-l-4 border-secondary p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="user-check" class="h-6 w-6 text-primary"></i>
+                </div>
+                    <h3 class="text-xl font-bold mb-2">4. 1차 감수</h3>
+                <p class="text-mutedForeground text-sm">원어민 감수</p>
+                </div>
+            </div>
+            
+            <!-- Step 5 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="eye" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">5.번역사 확인</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                </div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="clipboard-check" class="h-6 w-6 text-primary"></i>
+                </div>
+                    <h3 class="text-xl font-bold mb-2">6. 2차 감수</h3>
+                <p class="text-mutedForeground text-sm">해당 분야 전문가의 감수</p>
+                </div>
+            </div>
+            
+            <!-- Step 7 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="send" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">7.제출</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                </div>
+            </div>
+            
+            <!-- Step 8 -->
+            <div class="carousel-item flex-shrink-0 w-full px-4">
+                <div class="bg-white p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center relative rounded-lg">
+                <div class="bg-primary/10 rounded-full h-14 w-14 flex items-center justify-center mb-4">
+                    <i data-lucide="credit-card" class="h-6 w-6 text-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">8.입금 및 사후관리</h3>
+                    <p class="text-mutedForeground text-sm"></p>
+                </div>
+            </div>
+            </div>
+        </div>
             
             <!-- Carousel controls -->
             <div class="flex justify-center mt-6 gap-2">
@@ -496,6 +521,79 @@
             </div>
             </div>
         </div>
+        
+        <!-- Carousel JavaScript -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('processCarousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+            const sameDayBadge = document.getElementById('sameDayBadge');
+            
+            if (!carousel) return;
+            
+            let currentIndex = 0;
+            const totalSlides = 8;
+            
+            // Create dots
+            for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = `w-3 h-3 rounded-full ${i === 0 ? 'bg-primary' : 'bg-gray-300'} transition-colors`;
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+            }
+            
+            const indicators = dotsContainer.querySelectorAll('button');
+            
+            // Update carousel position
+            function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                indicator.classList.remove('bg-gray-300');
+                indicator.classList.add('bg-primary');
+                } else {
+                indicator.classList.remove('bg-primary');
+                indicator.classList.add('bg-gray-300');
+                }
+            });
+            
+            // Show/hide badge based on current step
+            if (sameDayBadge) {
+                if (currentIndex <= 3) { // Steps 1-4 (indices 0-3)
+                sameDayBadge.style.display = 'block';
+                } else { // Steps 5-8 (indices 4-7)
+                sameDayBadge.style.display = 'none';
+                }
+            }
+            }
+            
+            function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+            }
+            
+            function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+            }
+            
+            function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            }
+            
+            // Event listeners
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            
+            // Auto-advance carousel (optional)
+            setInterval(nextSlide, 5000);
+        });
+        </script>
     </section>
 
     <!-- Translation Pricing Section -->
