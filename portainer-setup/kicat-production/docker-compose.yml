@@ -34,6 +34,15 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=your-secure-database-password
       
+      # Email configuration (values set via Portainer environment variables)
+      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
+      - EMAIL_PORT=${EMAIL_PORT:-587}
+      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-1}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-KICAT System <admin@kicat.co.kr>}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-question106@gmail.com}
+      
       # Additional settings
       - DJANGO_SETTINGS_MODULE=app.settings
       
