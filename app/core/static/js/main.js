@@ -960,16 +960,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const processPrevBtn = document.getElementById('prevBtn');
     const processNextBtn = document.getElementById('nextBtn');
     
-    if (!processCarousel || !processPrevBtn || !processNextBtn) return; // Exit if elements not found
+    if (!processCarousel || !processPrevBtn || !processNextBtn || !processDotsContainer) return; // Exit if elements not found
+    
+    // Prevent duplicate initialization
+    if (processDotsContainer.hasAttribute('data-initialized')) return;
+    processDotsContainer.setAttribute('data-initialized', 'true');
     
     let processCurrentIndex = 0;
     const processTotalItems = processItems.length;
     
-    // Generate dots
+    // Clear existing dots (in case of duplicate scripts)
+    processDotsContainer.innerHTML = '';
+    
+    // Generate dots with different styles for special steps
     for (let i = 0; i < processTotalItems; i++) {
         const dot = document.createElement('button');
-        dot.classList.add('h-2', 'w-2', 'rounded-full', 'bg-gray-300');
-        if (i === 0) dot.classList.add('bg-primary', 'w-4');
+        // Steps 1-2 are special (larger, pill shape), Steps 3-8 are normal (small, round)
+        if (i <= 1) {
+            // Special steps 1-2: larger pill shape
+            dot.className = `w-6 h-3 rounded-full ${i === 0 ? 'bg-secondary' : 'bg-gray-300'} transition-colors`;
+        } else {
+            // Normal steps 3-8: small round dots
+            dot.className = `w-3 h-3 rounded-full ${i === 0 ? 'bg-primary' : 'bg-gray-300'} transition-colors`;
+        }
         dot.addEventListener('click', () => goToProcessSlide(i));
         processDotsContainer.appendChild(dot);
     }
@@ -985,15 +998,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const translateValue = -processCurrentIndex * 100 + '%';
         processCarousel.style.transform = `translateX(${translateValue})`;
         
-        // Update dots
+        // Update dots with different styles for special steps
         const dots = processDotsContainer.querySelectorAll('button');
         dots.forEach((dot, index) => {
             if (index === processCurrentIndex) {
-                dot.classList.remove('bg-gray-300', 'w-2');
-                dot.classList.add('bg-primary', 'w-4');
+                // Active state: different colors for special vs normal steps
+                dot.classList.remove('bg-gray-300');
+                if (index <= 1) {
+                    dot.classList.add('bg-secondary'); // Special steps use secondary color
+                } else {
+                    dot.classList.add('bg-primary');   // Normal steps use primary color
+                }
             } else {
-                dot.classList.remove('bg-primary', 'w-4');
-                dot.classList.add('bg-gray-300', 'w-2');
+                // Inactive state: all steps use gray
+                dot.classList.remove('bg-primary', 'bg-secondary');
+                dot.classList.add('bg-gray-300');
+            }
+        });
+        
+        // Show/hide badge based on current step
+        const badges = document.querySelectorAll('[id*="sameDayBadge"]');
+        badges.forEach(badge => {
+            if (processCurrentIndex <= 1) { // Steps 1-2 (indices 0-1) - special steps
+                badge.style.display = 'block';
+            } else { // Steps 3-8 (indices 2-7) - normal steps
+                badge.style.display = 'none';
             }
         });
     }
@@ -1038,6 +1067,19 @@ document.addEventListener('DOMContentLoaded', function() {
             processPrevBtn.click();
         }
     }
+    
+    // Auto-advance carousel (optional)
+    const autoAdvanceInterval = setInterval(() => {
+        processCurrentIndex = (processCurrentIndex + 1) % processTotalItems;
+        updateProcessCarousel();
+    }, 5000);
+    
+    // Stop auto-advance when user interacts
+    [processPrevBtn, processNextBtn].forEach(btn => {
+        btn.addEventListener('click', () => {
+            clearInterval(autoAdvanceInterval);
+        });
+    });
     
     // Initialize carousel
     updateProcessCarousel();
