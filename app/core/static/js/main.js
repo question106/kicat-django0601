@@ -592,6 +592,18 @@ $(document).on('click', '#js-quote-request-btn', function(e) {
     // Create form data for submission (for file upload support)
     const formData = new FormData($('#quoteRequestForm')[0]);
     
+    // Add CSRF token manually for FormData
+    const csrfToken = $('[name=csrfmiddlewaretoken]').val();
+    if (csrfToken) {
+        formData.set('csrfmiddlewaretoken', csrfToken);
+        console.log('CSRF token added:', csrfToken.substring(0, 10) + '...');
+    } else {
+        console.error('CSRF token not found!');
+        alert('CSRF token not found. Please refresh the page and try again.');
+        submitBtn.prop("disabled", false).text("견적 문의");
+        return false;
+    }
+    
     // Disable button and show loading state
     submitBtn.prop("disabled", true).text("제출 중...");
     

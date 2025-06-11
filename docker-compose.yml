@@ -20,14 +20,11 @@ services:
       - DB_NAME=devdb
       - DB_USER=devuser
       - DB_PASSWORD=devpass
-      # Email Configuration  
-      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
-      - EMAIL_PORT=${EMAIL_PORT:-587}
-      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-1}
-      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
-      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
-      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-KICAT System <admin@kicat.co.kr>}
-      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@kicat.co.kr}
+      # Mailjet Configuration
+      - MAILJET_API_KEY=${MAILJET_API_KEY}
+      - MAILJET_API_SECRET=${MAILJET_API_SECRET}
+      - DEFAULT_FROM_EMAIL=KICAT System <wowkjobs@gmail.com>
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
     depends_on:
       - db
 

@@ -1,0 +1,1 @@
+# Management package for email_service app 

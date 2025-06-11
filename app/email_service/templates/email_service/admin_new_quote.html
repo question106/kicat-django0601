@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>새로운 견적 요청</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .email-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, rgb(113, 6, 0) 0%, #af0a00 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 30px;
+        }
+        .quote-info {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .quote-info h3 {
+            margin-top: 0;
+            color: #495057;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: 600;
+            color: #495057;
+            flex: 1;
+        }
+        .value {
+            flex: 2;
+            color: #212529;
+        }
+        .urgent {
+            background: #fff3cd;
+            border: 1px solid #d09101;
+            border-radius: 0px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #d09101;
+            font-weight: 600;
+            border-left: 4px solid #d09101;
+        }
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, rgb(113, 6, 0) 0%, #af0a00 100%);
+            color: white !important;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 0px;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        .action-button:hover {
+            background: linear-gradient(135deg, #af0a00 0%, rgb(113, 6, 0) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(113, 6, 0, 0.3);
+            color: white !important;
+        }
+        /* Override email client link styles */
+        a.action-button {
+            color: white !important;
+        }
+        a.action-button:visited {
+            color: white !important;
+        }
+        a.action-button:hover {
+            color: white !important;
+        }
+        a.action-button:active {
+            color: white !important;
+        }
+        .footer {
+            background: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        @media (max-width: 600px) {
+            .info-row {
+                flex-direction: column;
+            }
+            .label, .value {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>🔔 새로운 견적 요청</h1>
+            <p>KICAT 번역 서비스에 새로운 견적 요청이 접수되었습니다.</p>
+        </div>
+        
+        <div class="content">
+            <div class="urgent">
+                ⚠️ <strong>새로운 견적 요청이 접수되었습니다.</strong> 빠른 응답을 위해 확인해 주세요.
+            </div>
+            
+            <div class="quote-info">
+                <h3>📋 견적 요청 정보</h3>
+                
+                <div class="info-row">
+                    <span class="label">참조번호:</span>
+                    <span class="value"><strong>{{ quote.reference_number }}</strong></span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">요청일시:</span>
+                    <span class="value">{{ quote.created_at|date:"Y년 m월 d일 H:i" }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">서비스 유형:</span>
+                    <span class="value">{{ quote.service_type.name|default:"일반" }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">고객명:</span>
+                    <span class="value">{{ quote.name }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">이메일:</span>
+                    <span class="value">{{ quote.email }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">전화번호:</span>
+                    <span class="value">{{ quote.phone|default:"미제공" }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">회사명:</span>
+                    <span class="value">{{ quote.company|default:"미제공" }}</span>
+                </div>
+                
+                {% if quote.google_drive_link %}
+                <div class="info-row">
+                    <span class="label">구글 드라이브 링크:</span>
+                    <span class="value"><a href="{{ quote.google_drive_link }}" target="_blank">{{ quote.google_drive_link }}</a></span>
+                </div>
+                {% endif %}
+                
+                {% if quote.message %}
+                <div class="info-row">
+                    <span class="label">요청 사항:</span>
+                    <span class="value">{{ quote.message|linebreaks }}</span>
+                </div>
+                {% endif %}
+                
+                <div class="info-row">
+                    <span class="label">상태:</span>
+                    <span class="value">{{ quote.get_status_display }}</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="{{ site_url }}/admin/quotes/quote/{{ quote.id }}/change/" class="action-button" style="color: white !important; text-decoration: none;">
+                    관리자 페이지에서 확인하기
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>KICAT 번역 서비스 | 이메일 알림 시스템</p>
+            <p>{{ site_url }}</p>
+        </div>
+    </div>
+</body>
+</html> 

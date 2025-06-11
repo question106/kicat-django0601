@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적서 준비 완료</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .email-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, rgb(113, 6, 0) 0%, #af0a00 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 30px;
+        }
+        .ready-message {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #0c5460;
+            text-align: center;
+        }
+        .quote-info {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .quote-info h3 {
+            margin-top: 0;
+            color: #495057;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: 600;
+            color: #495057;
+            flex: 1;
+        }
+        .value {
+            flex: 2;
+            color: #212529;
+        }
+        .reference-number {
+            background: #e7f3ff;
+            border: 2px solid #007bff;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .reference-number strong {
+            font-size: 18px;
+            color: #007bff;
+        }
+        .action-section {
+            background: #fff3cd;
+            border: 1px solid #d09101;
+            border-radius: 0px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+            border-left: 4px solid #d09101;
+        }
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, rgb(113, 6, 0) 0%, #af0a00 100%);
+            color: white !important;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 0px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .action-button:hover {
+            background: linear-gradient(135deg, #af0a00 0%, rgb(113, 6, 0) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(113, 6, 0, 0.3);
+            color: white !important;
+        }
+        /* Override email client link styles */
+        a.action-button {
+            color: white !important;
+        }
+        a.action-button:visited {
+            color: white !important;
+        }
+        a.action-button:hover {
+            color: white !important;
+        }
+        a.action-button:active {
+            color: white !important;
+        }
+        .quote-details {
+            background: #e7f3ff;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .contact-info {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        @media (max-width: 600px) {
+            .info-row {
+                flex-direction: column;
+            }
+            .label, .value {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>📋 견적서 준비 완료</h1>
+            <p>안녕하세요, {{ quote.name }}님! 요청하신 견적서가 준비되었습니다.</p>
+        </div>
+        
+        <div class="content">
+            <div class="ready-message">
+                <strong>🎉 견적서가 준비되었습니다!</strong><br>
+                상세한 견적 내용을 확인해 주세요.
+            </div>
+            
+            <div class="reference-number">
+                <p><strong>참조번호</strong></p>
+                <strong>{{ quote.reference_number }}</strong>
+            </div>
+            
+            <div class="quote-info">
+                <h3>📋 견적 요청 정보</h3>
+                
+                <div class="info-row">
+                    <span class="label">요청일시:</span>
+                    <span class="value">{{ quote.created_at|date:"Y년 m월 d일 H:i" }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">서비스 유형:</span>
+                    <span class="value">{{ quote.service_type.name|default:"일반" }}</span>
+                </div>
+                
+                {% if quote.source_language %}
+                <div class="info-row">
+                    <span class="label">원본 언어:</span>
+                    <span class="value">{{ quote.source_language }}</span>
+                </div>
+                {% endif %}
+                
+                {% if quote.target_language %}
+                <div class="info-row">
+                    <span class="label">번역 언어:</span>
+                    <span class="value">{{ quote.target_language }}</span>
+                </div>
+                {% endif %}
+                
+                {% if quote.word_count %}
+                <div class="info-row">
+                    <span class="label">예상 단어 수:</span>
+                    <span class="value">{{ quote.word_count|floatformat:0 }}개</span>
+                </div>
+                {% endif %}
+                
+                {% if quote.deadline %}
+                <div class="info-row">
+                    <span class="label">희망 마감일:</span>
+                    <span class="value">{{ quote.deadline|date:"Y년 m월 d일" }}</span>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if quote.price or quote.estimated_delivery_days %}
+            <div class="quote-details">
+                <h4>💰 견적 세부사항</h4>
+                
+                {% if quote.price %}
+                <div class="info-row">
+                    <span class="label">견적 가격:</span>
+                    <span class="value"><strong>{{ quote.price|floatformat:0 }}원</strong></span>
+                </div>
+                {% endif %}
+                
+                {% if quote.estimated_delivery_days %}
+                <div class="info-row">
+                    <span class="label">예상 소요일:</span>
+                    <span class="value">{{ quote.estimated_delivery_days }}일</span>
+                </div>
+                {% endif %}
+                
+                {% if quote.admin_notes %}
+                <div class="info-row">
+                    <span class="label">참고사항:</span>
+                    <span class="value">{{ quote.admin_notes|linebreaks }}</span>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <div class="action-section">
+                <h4>📞 다음 단계</h4>
+                <p>견적 내용을 검토하신 후, 아래 방법으로 연락해 주세요:</p>
+                
+                <div style="margin: 20px 0;">
+                    <a href="mailto:question106@gmail.com?subject=[KICAT] 견적 문의 - {{ quote.reference_number }}" class="action-button" style="color: white !important; text-decoration: none;">
+                        이메일로 문의하기
+                    </a>
+                </div>
+                
+                <p><small>이메일 문의 시 참조번호를 꼭 포함해 주세요.</small></p>
+            </div>
+            
+            <div class="contact-info">
+                <h4>📞 연락처 정보</h4>
+                <p><strong>이메일:</strong> question106@gmail.com</p>
+                <p><strong>참조번호:</strong> {{ quote.reference_number }}</p>
+                <p><strong>업무시간:</strong> 평일 09:00 - 18:00</p>
+                
+                <hr style="margin: 15px 0; border: none; border-top: 1px solid #e9ecef;">
+                
+                <h4>💡 참고사항</h4>
+                <ul style="text-align: left; padding-left: 20px;">
+                    <li>견적은 요청일로부터 7일간 유효합니다</li>
+                    <li>프로젝트 확정 시 50% 선금, 완료 시 잔금 결제입니다</li>
+                    <li>추가 문의사항이 있으시면 언제든지 연락해 주세요</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>KICAT 번역 서비스</strong></p>
+            <p>전문적이고 신뢰할 수 있는 번역 서비스를 제공합니다</p>
+            <p>{{ site_url }}</p>
+        </div>
+    </div>
+</body>
+</html> 

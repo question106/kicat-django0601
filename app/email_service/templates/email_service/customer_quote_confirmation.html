@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>견적 요청 접수 확인</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .email-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, rgb(113, 6, 0) 0%, #af0a00 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .content {
+            padding: 30px;
+        }
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #155724;
+            text-align: center;
+        }
+        .quote-summary {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .quote-summary h3 {
+            margin-top: 0;
+            color: #495057;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: 600;
+            color: #495057;
+            flex: 1;
+        }
+        .value {
+            flex: 2;
+            color: #212529;
+        }
+        .reference-number {
+            background: #e7f3ff;
+            border: 2px solid #007bff;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .reference-number strong {
+            font-size: 18px;
+            color: #007bff;
+        }
+        .next-steps {
+            background: #fff3cd;
+            border: 1px solid #d09101;
+            border-radius: 0px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #d09101;
+        }
+        .contact-info {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+        @media (max-width: 600px) {
+            .info-row {
+                flex-direction: column;
+            }
+            .label, .value {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>✅ 견적 요청 접수 완료</h1>
+            <p>안녕하세요, {{ quote.name }}님! 견적 요청이 성공적으로 접수되었습니다.</p>
+        </div>
+        
+        <div class="content">
+            <div class="success-message">
+                <strong>🎉 견적 요청이 성공적으로 접수되었습니다!</strong><br>
+                빠른 시일 내에 담당자가 연락드릴 예정입니다.
+            </div>
+            
+            <div class="reference-number">
+                <p><strong>참조번호</strong></p>
+                <strong>{{ quote.reference_number }}</strong>
+                <p><small>이 번호로 견적 진행 상황을 문의하실 수 있습니다.</small></p>
+            </div>
+            
+            <div class="quote-summary">
+                <h3>📋 요청하신 견적 정보</h3>
+                
+                <div class="info-row">
+                    <span class="label">요청일시:</span>
+                    <span class="value">{{ quote.created_at|date:"Y년 m월 d일 H:i" }}</span>
+                </div>
+                
+                <div class="info-row">
+                    <span class="label">서비스 유형:</span>
+                    <span class="value">{{ quote.service_type.name|default:"일반" }}</span>
+                </div>
+                
+                {% if quote.google_drive_link %}
+                <div class="info-row">
+                    <span class="label">구글 드라이브 링크:</span>
+                    <span class="value">{{ quote.google_drive_link }}</span>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="next-steps">
+                <h4>📌 다음 단계</h4>
+                <ul>
+                    <li><strong>검토 단계:</strong> 담당자가 요청사항을 검토합니다 (1-2시간)</li>
+                    <li><strong>견적 작성:</strong> 정확한 견적서를 작성합니다 (2-4시간)</li>
+                    <li><strong>견적서 발송:</strong> 이메일로 견적서를 보내드립니다</li>
+                </ul>
+            </div>
+            
+            <div class="contact-info">
+                <h4>📞 문의 사항이 있으시면</h4>
+                <p><strong>이메일:</strong> question106@gmail.com</p>
+                <p><strong>참조번호:</strong> {{ quote.reference_number }}</p>
+                <p>궁금한 사항이 있으시면 언제든지 연락해 주세요!</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>KICAT 번역 서비스</strong></p>
+            <p>전문적이고 신뢰할 수 있는 번역 서비스를 제공합니다</p>
+            <p>{{ site_url }}</p>
+        </div>
+    </div>
+</body>
+</html> 

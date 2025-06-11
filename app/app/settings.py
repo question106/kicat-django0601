@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'core',
     'quotes',
+    'email_service',
 ]
 
 MIDDLEWARE = [
@@ -202,19 +203,12 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-# Email Configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
-EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587'))
-EMAIL_USE_TLS = bool(int(os.environ.get('EMAIL_USE_TLS', '1')))
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# Mailjet Configuration
+MAILJET_API_KEY = os.environ.get('MAILJET_API_KEY')
+MAILJET_API_SECRET = os.environ.get('MAILJET_API_SECRET')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'KICAT System <wowkjobs@gmail.com>')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'question106@gmail.com')
 
-# Email settings for development/testing
-if DEBUG:
-    # In development, you can use console backend for testing
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    # Use SMTP backend for real email sending
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Fallback to console backend in development if no Mailjet credentials
+if DEBUG and not (MAILJET_API_KEY and MAILJET_API_SECRET):
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -80,6 +80,13 @@ class Quote(models.Model):
         return "{} - {}".format(self.name, self.company)
     
     @property
+    def reference_number(self):
+        """Generate a reference number based on ID and creation date"""
+        if self.id:
+            return f"QT-{self.created_at.strftime('%Y%m')}-{self.id:04d}"
+        return "QT-PENDING"
+    
+    @property
     def subtotal(self):
         """Calculate subtotal from all quote items"""
         total = sum(item.total_price for item in self.items.all())

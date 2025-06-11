@@ -6,7 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from .models import Quote, ServiceType, ServiceCategory
 from .pdf_generator import generate_quote_pdf
-from .email_notifications import (
+from email_service.services import (
     send_new_quote_notification_to_admin,
     send_quote_confirmation_to_customer,
     send_quote_ready_notification
