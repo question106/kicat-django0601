@@ -38,7 +38,7 @@ services:
       - MAILJET_API_KEY=${MAILJET_API_KEY}
       - MAILJET_API_SECRET=${MAILJET_API_SECRET}
       - DEFAULT_FROM_EMAIL=KICAT System <wowkjobs@gmail.com>
-      - ADMIN_EMAILS=${ADMIN_EMAIL}
+      - ADMIN_EMAILS=${ADMIN_EMAILS}
       
       # Additional settings
       - DJANGO_SETTINGS_MODULE=app.settings
