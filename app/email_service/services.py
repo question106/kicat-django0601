@@ -107,7 +107,7 @@ mailjet_service = MailjetService()
 
 @async_email
 def send_new_quote_notification_to_admin(quote):
-    """Send notification to admin when a new quote request is submitted"""
+    """Send notification to all admin emails when a new quote request is submitted"""
     try:
         # Render HTML template
         html_content = render_to_string('email_service/admin_new_quote.html', {
@@ -115,21 +115,34 @@ def send_new_quote_notification_to_admin(quote):
             'site_url': 'https://kicat.co.kr'
         })
         
-        # Send email
-        result = mailjet_service.send_email(
-            to_email=settings.ADMIN_EMAIL,
-            to_name="KICAT Admin",
-            subject=f"[KICAT] 새로운 견적 요청 - {quote.service_type.category.name if quote.service_type and quote.service_type.category else '일반'}",
-            html_content=html_content
-        )
+        subject = f"[KICAT] 새로운 견적 요청 - {quote.service_type.category.name if quote.service_type and quote.service_type.category else '일반'}"
         
-        if result.get("success"):
-            # Update quote model to mark admin as notified
+        # Send email to all admin addresses
+        all_successful = True
+        results = []
+        
+        for admin_email in settings.ADMIN_EMAILS:
+            result = mailjet_service.send_email(
+                to_email=admin_email,
+                to_name="KICAT Admin",
+                subject=subject,
+                html_content=html_content
+            )
+            results.append(result)
+            
+            if result.get("success"):
+                logger.info(f"Admin notification sent to {admin_email} for quote {quote.id}")
+            else:
+                logger.error(f"Failed to send admin notification to {admin_email} for quote {quote.id}: {result.get('error')}")
+                all_successful = False
+        
+        # Update quote model if at least one email was sent successfully
+        if any(result.get("success") for result in results):
             quote.admin_notified = True
             quote.save(update_fields=['admin_notified'])
-            logger.info(f"Admin notification sent for quote {quote.id}")
+            logger.info(f"Admin notification process completed for quote {quote.id}")
         else:
-            logger.error(f"Failed to send admin notification for quote {quote.id}: {result.get('error')}")
+            logger.error(f"All admin notification attempts failed for quote {quote.id}")
             
     except Exception as e:
         logger.error(f"Exception in send_new_quote_notification_to_admin for quote {quote.id}: {str(e)}")

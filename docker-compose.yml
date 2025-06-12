@@ -24,7 +24,7 @@ services:
       - MAILJET_API_KEY=${MAILJET_API_KEY}
       - MAILJET_API_SECRET=${MAILJET_API_SECRET}
       - DEFAULT_FROM_EMAIL=KICAT System <wowkjobs@gmail.com>
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_EMAILS=${ADMIN_EMAILS}
     depends_on:
       - db
 

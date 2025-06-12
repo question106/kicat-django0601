@@ -207,7 +207,12 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 MAILJET_API_KEY = os.environ.get('MAILJET_API_KEY')
 MAILJET_API_SECRET = os.environ.get('MAILJET_API_SECRET')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'KICAT System <wowkjobs@gmail.com>')
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'question106@gmail.com')
+# Admin email configuration - supports multiple emails separated by commas
+ADMIN_EMAILS_RAW = os.environ.get('ADMIN_EMAILS', 'question106@gmail.com')
+ADMIN_EMAILS = [email.strip() for email in ADMIN_EMAILS_RAW.split(',') if email.strip()]
+
+# Keep backwards compatibility
+ADMIN_EMAIL = ADMIN_EMAILS[0] if ADMIN_EMAILS else 'question106@gmail.com'
 
 # Fallback to console backend in development if no Mailjet credentials
 if DEBUG and not (MAILJET_API_KEY and MAILJET_API_SECRET):

@@ -22,7 +22,7 @@ class Command(BaseCommand):
         
         if not to_email:
             self.stdout.write(
-                self.style.ERROR('No recipient email specified. Use --to-email or set ADMIN_EMAIL in settings.')
+                self.style.ERROR('No recipient email specified. Use --to-email or set ADMIN_EMAILS in settings.')
             )
             return
         
