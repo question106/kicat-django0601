@@ -688,13 +688,13 @@
             </svg>
             <span class="text-xs">견적</span>
         </a>
-        <a href="mailto:kicat@kicat.co.kr" class="bg-secondary text-white p-3 flex flex-col items-center justify-center hover:bg-secondaryDark transition-colors shadow-lg">
+        <button onclick="copyEmailToClipboard()" class="bg-secondary text-white p-3 flex flex-col items-center justify-center hover:bg-secondaryDark transition-colors shadow-lg">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail h-5 w-5 mb-1">
             <rect width="20" height="16" x="2" y="4" rx="2"></rect>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
             <span class="text-xs">이메일</span>
-        </a>
+        </button>
         </div>
     </div>
 
@@ -727,13 +727,13 @@
             </svg>
             <span>견적</span>
             </a>
-            <a href="mailto:kicat@kicat.co.kr" class="menu-item menu-services">
+            <button onclick="copyEmailToClipboard()" class="menu-item menu-services">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
             <span>이메일</span>
-            </a>
+            </button>
         </div>
     </div>
 
@@ -1246,6 +1246,70 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{% static 'js/main.js' %}?v=20250604-07"></script>
     <script src="https://unpkg.com/@material-tailwind/html@3.0.0-beta.7/dist/material-tailwind.umd.min.js" defer></script>
+
+    <!-- Email Copy to Clipboard Function -->
+    <script>
+        function copyEmailToClipboard() {
+            const email = 'kicat@kicat.co.kr';
+            
+            // Copy to clipboard using the modern API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(function() {
+                    showEmailCopiedAlert();
+                }).catch(function(err) {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(email);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyTextToClipboard(email);
+            }
+        }
+        
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showEmailCopiedAlert();
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        function showEmailCopiedAlert() {
+            // Create and show alert
+            const alertDiv = document.createElement('div');
+            alertDiv.innerHTML = `
+                <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[9999] bg-green-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg shadow-lg flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 md:h-5 md:w-5">
+                        <polyline points="20,6 9,17 4,12"></polyline>
+                    </svg>
+                    <span class="text-sm md:text-base">이메일 주소가 복사 되었습니다</span>
+                </div>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            // Remove alert after 3 seconds
+            setTimeout(function() {
+                document.body.removeChild(alertDiv);
+            }, 3000);
+        }
+    </script>
 
     <!-- Channel.io Live Chat Plugin -->
     <script>
