@@ -231,4 +231,4 @@ def send_test_email(to_email, to_name="Test User"):
         
     except Exception as e:
         logger.error(f"Exception in send_test_email: {str(e)}")
-        return {"success": False, "error": str(e)}
+        return {"success": False, "error": str(e)} 

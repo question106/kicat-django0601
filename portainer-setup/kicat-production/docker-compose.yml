@@ -25,19 +25,19 @@ services:
       
       # Django production settings
       - DEBUG=0
-      - SECRET_KEY=your-production-secret-key-here
+      - SECRET_KEY=${SECRET_KEY}
       - ALLOWED_HOSTS=kicat.co.kr www.kicat.co.kr kicat.graceed.co.uk
       
       # Database configuration
       - DB_HOST=db
       - DB_NAME=kicat_production
       - DB_USER=postgres
-      - DB_PASSWORD=your-secure-database-password
+      - DB_PASSWORD=${DB_PASSWORD}
       
       # Mailjet configuration (values set via Portainer environment variables)
       - MAILJET_API_KEY=${MAILJET_API_KEY}
       - MAILJET_API_SECRET=${MAILJET_API_SECRET}
-      - DEFAULT_FROM_EMAIL=KICAT System <wowkjobs@gmail.com>
+      - DEFAULT_FROM_EMAIL=KICAT System <kicat@kicat.co.kr>
       - ADMIN_EMAILS=${ADMIN_EMAILS}
       
       # Additional settings
@@ -59,7 +59,7 @@ services:
     environment:
       - POSTGRES_DB=kicat_production
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=your-secure-database-password
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     restart: unless-stopped
     networks:
       - kicat-internal
