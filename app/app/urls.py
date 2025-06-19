@@ -7,7 +7,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.sitemaps.views import sitemap
+from core.sitemaps import StaticViewSitemap, QuoteRequestSitemap
 import os
+
+# Sitemap configuration
+sitemaps = {
+    'static': StaticViewSitemap,
+    'quotes': QuoteRequestSitemap,
+}
 
 # Debug view to test media file access
 @csrf_exempt
@@ -24,6 +32,7 @@ urlpatterns = [
     path('quotes/', include('quotes.urls')),
     path('', include('core.urls')),
     path('debug-media/', debug_media, name='debug_media'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 # Serve media files in both development and production

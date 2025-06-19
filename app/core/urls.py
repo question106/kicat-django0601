@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     HomeView, AboutView, ServiceInterpretationView, 
     ServiceTranslationView, ServiceOthersView, CasesView,
-    KoreaCultureArtsTranslationAgencyView, QuoteRequestView
+    KoreaCultureArtsTranslationAgencyView, QuoteRequestView,
+    robots_txt
 )
 
 app_name = 'core'
@@ -16,4 +17,5 @@ urlpatterns = [
     path('cases', CasesView.as_view(), name='cases'),
     path('korea-culture-arts-translation-agency', KoreaCultureArtsTranslationAgencyView.as_view(), name='korea_culture_arts_translation_agency'),
     path('quote-request', QuoteRequestView.as_view(), name='quote_request'),
+    path('robots.txt', robots_txt, name='robots_txt'),
 ] 

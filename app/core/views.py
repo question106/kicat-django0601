@@ -1,4 +1,6 @@
 from django.views.generic import TemplateView
+from django.http import HttpResponse
+from django.template import loader
 from quotes.models import Quote
 from .models import Award
 import math
@@ -63,3 +65,10 @@ class KoreaCultureArtsTranslationAgencyView(TemplateView):
 class QuoteRequestView(TemplateView):
     template_name = "core/quote-request.html"
     http_method_names = ["get"]
+
+
+def robots_txt(request):
+    """Serve robots.txt file"""
+    template = loader.get_template('robots.txt')
+    context = {'request': request}
+    return HttpResponse(template.render(context), content_type="text/plain")
