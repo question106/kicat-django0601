@@ -197,3 +197,7 @@ cython_debug/
 # Data
 data/.env
 data/
+
+
+# MacOS
+.DS_Store
