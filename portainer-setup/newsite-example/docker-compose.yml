@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # Django Application for New Site
+  app:
+    build:
+      context: https://github.com/YOUR-USERNAME/YOUR-NEW-REPO.git
+      dockerfile: Dockerfile
+    container_name: newsite-app
+    volumes:
+      - newsite-static:/vol/web/static
+      - newsite-media:/vol/web/media
+    environment:
+      # Django production settings
+      - DEBUG=0
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=newsite.com www.newsite.com
+      
+      # Database configuration
+      - DB_HOST=db
+      - DB_NAME=newsite_production
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD}
+      
+      # Email configuration (if needed)
+      - MAILJET_API_KEY=${MAILJET_API_KEY}
+      - MAILJET_API_SECRET=${MAILJET_API_SECRET}
+      - DEFAULT_FROM_EMAIL=New Site <admin@newsite.com>
+      - ADMIN_EMAILS=${ADMIN_EMAILS}
+      
+      # Additional settings
+      - DJANGO_SETTINGS_MODULE=app.settings
+      
+    depends_on:
+      - db
+    restart: unless-stopped
+    expose:
+      - "8000"
+    networks:
+      - proxy-network  # Connect to NPM network
+      - newsite-internal
+
+  # PostgreSQL Database for New Site
+  db:
+    image: postgres:13-alpine
+    container_name: newsite-db
+    volumes:
+      - newsite-postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=newsite_production
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    restart: unless-stopped
+    networks:
+      - newsite-internal
+
+volumes:
+  newsite-static:
+  newsite-media:
+  newsite-postgres:
+
+networks:
+  proxy-network:
+    external: true  # This connects to NPM
+  newsite-internal:
+    driver: bridge 
