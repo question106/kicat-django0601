@@ -53,6 +53,9 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon.ico' %}">
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/symbol-removebg-preview.png' %}">
 
+        <!-- Sitemap for SEO -->
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ request.scheme }}://{{ request.get_host }}/sitemap.xml">
+
         <!-- Tailwind CSS via CDN -->
         <script src="https://cdn.tailwindcss.com"></script>
 
