@@ -669,6 +669,27 @@
             #quoteRequestModal .relative {
                 max-height: 90vh;
             }
+
+            /* Channel.io chat button positioning - target specific launcher ID */
+            #ch-plugin-launcher,
+            #ch-plugin-launcher div,
+            #ch-plugin [class*="launcher"], 
+            #ch-plugin [class*="button"], 
+            #ch-plugin [class*="trigger"],
+            #ch-plugin div[style*="position: fixed"],
+            #ch-plugin div[style*="bottom"],
+            .huQWSX {
+                position: fixed !important;
+                bottom: 120px !important;
+                right: 14px !important;
+                z-index: 999999 !important;
+            }
+            
+            /* Additional targeting for Channel.io elements */
+            #ch-plugin > div > div[style*="position: fixed"] {
+                bottom: 120px !important;
+                right: 14px !important;
+            }
             }
         </style>
     </head>
@@ -1340,6 +1361,102 @@
                 s.charset = "UTF-8";
                 var x = document.getElementsByTagName("script")[0];
                 x.parentNode.insertBefore(s, x);
+                
+                // Function to apply custom positioning
+                function applyChannelIoPosition() {
+                    // Add CSS for Channel.io launcher button
+                    var style = document.createElement('style');
+                    style.id = 'channel-io-custom-position';
+                    style.textContent = `
+                        /* Target Channel.io launcher button specifically */
+                        #ch-plugin-launcher,
+                        #ch-plugin-launcher div,
+                        #ch-plugin [class*="launcher"], 
+                        #ch-plugin [class*="button"], 
+                        #ch-plugin [class*="trigger"],
+                        #ch-plugin div[style*="position: fixed"],
+                        #ch-plugin div[style*="bottom"],
+                        .huQWSX {
+                            bottom: 120px !important;
+                            right: 14px !important;
+                            position: fixed !important;
+                            z-index: 999999 !important;
+                        }
+                        
+                        /* More specific mobile targeting */
+                        @media (max-width: 640px) {
+                            #ch-plugin-launcher,
+                            #ch-plugin-launcher div,
+                            #ch-plugin [class*="launcher"], 
+                            #ch-plugin [class*="button"], 
+                            #ch-plugin [class*="trigger"],
+                            #ch-plugin div[style*="position: fixed"],
+                            #ch-plugin div[style*="bottom"],
+                            .huQWSX {
+                                bottom: 120px !important;
+                                right: 14px !important;
+                            }
+                        }
+                    `;
+                    
+                    // Remove existing style if present
+                    var existingStyle = document.getElementById('channel-io-custom-position');
+                    if (existingStyle) {
+                        existingStyle.remove();
+                    }
+                    
+                    document.head.appendChild(style);
+                    
+                    // Directly modify the ch-plugin-launcher element
+                    setTimeout(function() {
+                        var launcher = document.getElementById('ch-plugin-launcher');
+                        if (launcher) {
+                            launcher.style.setProperty('bottom', '120px', 'important');
+                            launcher.style.setProperty('right', '14px', 'important');
+                            launcher.style.setProperty('position', 'fixed', 'important');
+                        }
+                        
+                        // Also check for any fixed positioned elements in ch-plugin
+                        var chPlugin = document.getElementById('ch-plugin');
+                        if (chPlugin) {
+                            var fixedElements = chPlugin.querySelectorAll('div[style*="position: fixed"], div[style*="bottom"]');
+                            fixedElements.forEach(function(element) {
+                                if (element.style.position === 'fixed' || element.style.bottom) {
+                                    element.style.setProperty('bottom', '120px', 'important');
+                                    element.style.setProperty('right', '14px', 'important');
+                                }
+                            });
+                        }
+                    }, 500);
+                }
+                
+                // Apply positioning after script loads
+                s.onload = function() {
+                    setTimeout(applyChannelIoPosition, 1000);
+                    setTimeout(applyChannelIoPosition, 3000);
+                    setTimeout(applyChannelIoPosition, 5000);
+                };
+                
+                // Use MutationObserver to detect when Channel.io elements are added
+                var observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.nodeType === 1) { // Element node
+                                // Check if this is a Channel.io related element
+                                if (node.id === 'ch-plugin' || 
+                                    (node.className && typeof node.className === 'string' && node.className.includes('ch-')) ||
+                                    (node.style && node.style.position === 'fixed')) {
+                                    setTimeout(applyChannelIoPosition, 100);
+                                }
+                            }
+                        });
+                    });
+                });
+                
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
             };
             if (window.attachEvent) {
                 window.attachEvent("onload", async_load);
@@ -1347,7 +1464,10 @@
                 window.addEventListener("load", async_load, false);
             }
         })();
+
+        
     </script>
+
 </body>
 </html>
 
