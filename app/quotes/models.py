@@ -8,8 +8,8 @@ class ServiceCategory(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name=_("설명"))
     
     class Meta:
-        verbose_name = _("서비스 카테고리")
-        verbose_name_plural = _("서비스 카테고리")
+        verbose_name = _("서비스 카테고리 (번역, 통역, 기타 등 카테고리)")
+        verbose_name_plural = _("서비스 카테고리 (번역, 통역, 기타 등 카테고리)")
     
     def __str__(self):
         return self.name
@@ -22,8 +22,8 @@ class ServiceType(models.Model):
     is_active = models.BooleanField(default=True, verbose_name=_("활성화"))
     
     class Meta:
-        verbose_name = _("서비스 유형")
-        verbose_name_plural = _("서비스 유형")
+        verbose_name = _("서비스 유형 (동시 통역, 순차 통역 등 상세 서비스 유형)")
+        verbose_name_plural = _("서비스 유형 (동시, 순차 등 상세 서비스 유형)")
     
     def __str__(self):
         return self.name
@@ -114,8 +114,8 @@ class QuoteItem(models.Model):
     
     class Meta:
         ordering = ['created_at']
-        verbose_name = _("견적 항목")
-        verbose_name_plural = _("견적 항목")
+        verbose_name = _("견적 항목 (견적서 내 서비스 항목)")
+        verbose_name_plural = _("견적 항목 (견적서 내 서비스 항목)")
     
     def save(self, *args, **kwargs):
         """Automatically calculate total_price before saving"""
