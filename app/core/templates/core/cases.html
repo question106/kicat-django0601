@@ -580,9 +580,9 @@
         </div>
     <!-- Company Awards & Certifications Carousel Gallery -->
     <div class="mt-12 mb-12 relative overflow-hidden">
+        {% if award_slides %}
         <h3 class="text-lg font-medium text-center mb-6">수상 및 학술대회</h3>
         
-        {% if award_slides %}
         <div class="carousel-container relative">
             <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
                 {% load static %}
