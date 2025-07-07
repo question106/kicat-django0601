@@ -76,10 +76,10 @@ class QuoteAdmin(admin.ModelAdmin):
         (_('견적 관리'), {
             'fields': ('status', 'prepared_quote_pdf', 'pdf_preview')
         }),
-        (_('이메일 알림 상태'), {
-            'fields': ('admin_notified', 'customer_notified', 'quote_sent_notified', 'last_notification_sent'),
-            'classes': ('collapse',)
-        }),
+        # (_('이메일 알림 상태'), {
+        #     'fields': ('admin_notified', 'customer_notified', 'quote_sent_notified', 'last_notification_sent'),
+        #     'classes': ('collapse',)
+        # }),
         (_('시간 정보'), {
             'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
