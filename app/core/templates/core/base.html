@@ -5,14 +5,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>한국통번역(주)</title>
-        <meta name="description" content="신뢰할 수 있는 전문 통번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.">
+        <title>{% block title %}한국통번역주식회사 | 전문 통번역 서비스{% endblock %}</title>
+        <meta name="description" content="{% block meta_description %}한국통번역주식회사 - 신뢰할 수 있는 전문 통번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.{% endblock %}">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ request.build_absolute_uri }}">
-        <meta property="og:title" content="한국통번역(주)">
-        <meta property="og:description" content="신뢰할 수 있는 전문 통번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.">
+        <meta property="og:title" content="{% block og_title %}한국통번역주식회사 | 전문 통번역 서비스{% endblock %}">
+        <meta property="og:description" content="{% block og_description %}한국통번역주식회사 - 신뢰할 수 있는 전문 통번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.{% endblock %}">
         <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/symbol.png' %}">
         <meta property="og:image:width" content="545">
         <meta property="og:image:height" content="397">
@@ -24,8 +24,8 @@
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
-        <meta name="twitter:title" content="한국통번역(주)">
-        <meta name="twitter:description" content="신뢰할 수 있는 전문 통번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.">
+        <meta name="twitter:title" content="{% block twitter_title %}한국통번역주식회사 | 전문 통번역 서비스{% endblock %}">
+        <meta name="twitter:description" content="{% block twitter_description %}한국통번역주식회사 - 신뢰할 수 있는 전문 통번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다.{% endblock %}">
         <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/symbol.png' %}">
         <meta name="twitter:image:alt" content="한국통번역주식회사 로고">
 
@@ -34,12 +34,125 @@
         <meta property="kakao:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/symbol.png' %}">
 
         <!-- Naver -->
+        <meta name="naver-site-verification" content="34ac3e85318a37023de0f67b74858d49a8275221" />
         <meta name="naver-site-verification" content="c1d313a86581726eff6c6a04eecc7be9fc0f9f24" />
-        <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="한국통번역(주)" />
-        <meta property="og:description" content="신뢰할 수 있는 전문 통번역 서비스. 50개 이상의 언어로 비즈니스 성공을 위한 번역 솔루션을 제공합니다." />
-        <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/symbol.png' %}" />
+
+        <!-- Schema.org Structured Data (JSON-LD) for SEO -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+                    "name": "한국통번역주식회사",
+                    "alternateName": ["한국통번역(주)", "KICAT", "Korea Interpretation and Culture Arts Translation", "한국문화예술번역원"],
+                    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/kicat_logo_hig_res_bg-removebg.png' %}",
+                        "width": 200,
+                        "height": 60
+                    },
+                    "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/symbol.png' %}",
+                    "description": "한국통번역주식회사는 동시통역, 순차통역, 문서번역 등 50개 이상의 언어로 전문 통번역 서비스를 제공하는 대한민국 대표 통번역 회사입니다.",
+                    "foundingDate": "2017",
+                    "founder": {
+                        "@type": "Person",
+                        "name": "배현진"
+                    },
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "테헤란로 116, 10층 1055호 (역삼동, 동경빌딩)",
+                        "addressLocality": "강남구",
+                        "addressRegion": "서울특별시",
+                        "postalCode": "06134",
+                        "addressCountry": "KR"
+                    },
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "telephone": "+82-2-6265-6159",
+                        "contactType": "customer service",
+                        "availableLanguage": ["Korean", "English", "Japanese", "Chinese"],
+                        "areaServed": "KR"
+                    },
+                    "email": "kicat@kicat.co.kr",
+                    "sameAs": [
+                        "https://pf.kakao.com/_dVjAxl"
+                    ]
+                },
+                {
+                    "@type": "LocalBusiness",
+                    "@id": "{{ request.scheme }}://{{ request.get_host }}/#localbusiness",
+                    "name": "한국통번역주식회사",
+                    "image": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/symbol.png' %}",
+                    "priceRange": "₩₩₩",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "테헤란로 116, 10층 1055호 (역삼동, 동경빌딩)",
+                        "addressLocality": "강남구",
+                        "addressRegion": "서울특별시",
+                        "postalCode": "06134",
+                        "addressCountry": "KR"
+                    },
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": 37.498327,
+                        "longitude": 127.029318
+                    },
+                    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+                    "telephone": "+82-2-6265-6159",
+                    "openingHoursSpecification": {
+                        "@type": "OpeningHoursSpecification",
+                        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                        "opens": "09:00",
+                        "closes": "18:00"
+                    }
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "{{ request.scheme }}://{{ request.get_host }}/#website",
+                    "url": "{{ request.scheme }}://{{ request.get_host }}/",
+                    "name": "한국통번역주식회사",
+                    "description": "전문 통역 및 번역 서비스",
+                    "publisher": {
+                        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+                    },
+                    "inLanguage": "ko-KR"
+                },
+                {
+                    "@type": "Service",
+                    "@id": "{{ request.scheme }}://{{ request.get_host }}/#interpretation-service",
+                    "name": "통역 서비스",
+                    "description": "동시통역, 순차통역, 수행통역, 화상통역, 위스퍼링 통역 등 전문 통역 서비스",
+                    "provider": {
+                        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+                    },
+                    "serviceType": ["동시통역", "순차통역", "수행통역", "화상통역", "위스퍼링 통역"],
+                    "areaServed": {
+                        "@type": "Country",
+                        "name": "대한민국"
+                    },
+                    "availableLanguage": ["Korean", "English", "Japanese", "Chinese", "Spanish", "French", "German", "Russian", "Vietnamese", "Thai"]
+                },
+                {
+                    "@type": "Service",
+                    "@id": "{{ request.scheme }}://{{ request.get_host }}/#translation-service",
+                    "name": "번역 서비스",
+                    "description": "비즈니스 문서, 마케팅 문서, 기술 문서, 국제표준 문서 등 50개 이상 언어 전문 번역",
+                    "provider": {
+                        "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization"
+                    },
+                    "serviceType": ["문서번역", "비즈니스 번역", "기술 번역", "마케팅 번역", "법률 번역", "의료 번역"],
+                    "areaServed": {
+                        "@type": "Country",
+                        "name": "대한민국"
+                    },
+                    "availableLanguage": ["Korean", "English", "Japanese", "Chinese", "Spanish", "French", "German", "Russian", "Vietnamese", "Thai"]
+                }
+            ]
+        }
+        </script>
         
         <!-- Additional meta tags for better social sharing -->
         <meta name="author" content="한국통번역주식회사">
@@ -53,8 +166,14 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon.ico' %}">
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/symbol-removebg-preview.png' %}">
 
+        <!-- Canonical URL for SEO -->
+        <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+
         <!-- Sitemap for SEO -->
         <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ request.scheme }}://{{ request.get_host }}/sitemap.xml">
+
+        <!-- Breadcrumb Schema (page-specific) -->
+        {% block breadcrumb_schema %}{% endblock %}
 
         <!-- Tailwind CSS via CDN -->
         <script src="https://cdn.tailwindcss.com"></script>

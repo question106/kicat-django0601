@@ -201,3 +201,7 @@ data/
 
 # MacOS
 .DS_Store
+
+.DS_Store
+portainer-setup/.DS_Store
+app/.DS_Store

@@ -5,9 +5,19 @@ from django.utils import timezone
 
 class StaticViewSitemap(Sitemap):
     """Sitemap for static pages"""
-    priority = 0.8
     changefreq = 'weekly'
     protocol = 'https'
+    
+    # Priority mapping: homepage gets highest priority
+    priority_map = {
+        'core:home': 1.0,           # Homepage - highest priority
+        'core:about': 0.8,
+        'core:service_interpretation': 0.8,
+        'core:service_translation': 0.8,
+        'core:service_others': 0.7,
+        'core:cases': 0.7,
+        'core:korea_culture_arts_translation_agency': 0.6,
+    }
     
     def items(self):
         return [
@@ -22,6 +32,9 @@ class StaticViewSitemap(Sitemap):
     
     def location(self, item):
         return reverse(item)
+    
+    def priority(self, item):
+        return self.priority_map.get(item, 0.5)
     
     def lastmod(self, obj):
         return timezone.now()

@@ -1,6 +1,33 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
+{% block title %}회사소개 | 한국통번역주식회사{% endblock %}
+{% block meta_description %}한국통번역주식회사 회사소개 - CEO 인사말, 비전, 핵심가치, 기밀정보 보호 서약 등 회사 정보를 확인하세요.{% endblock %}
+{% block og_title %}회사소개 | 한국통번역주식회사{% endblock %}
+{% block og_description %}한국통번역주식회사 회사소개 - CEO 인사말, 비전, 핵심가치, 기밀정보 보호 서약 등 회사 정보를 확인하세요.{% endblock %}
+{% block twitter_title %}회사소개 | 한국통번역주식회사{% endblock %}
+{% block twitter_description %}한국통번역주식회사 회사소개 - CEO 인사말, 비전, 핵심가치, 기밀정보 보호 서약 등 회사 정보를 확인하세요.{% endblock %}
+
+{% block breadcrumb_schema %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "{{ request.scheme }}://{{ request.get_host }}/"
+    }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "회사소개",
+        "item": "{{ request.scheme }}://{{ request.get_host }}/about/"
+    }]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <!-- Header Section -->
 <section class="py-16 md:py-24 bg-gradient-to-r from-primary/5 to-gray-50">
